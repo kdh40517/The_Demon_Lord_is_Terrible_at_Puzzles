@@ -1,10 +1,31 @@
 fileFormatVersion: 2
-guid: a29ff6dc2b6f2824298f9b20e3c49737
+guid: 66500e22796595c429f7356c4811890d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5707793279648403714
-    second: DevillBack_0
+      213: 4571153594948402895
+    second: MasterText_0
+  - first:
+      213: -9084431198393305049
+    second: MasterText_1
+  - first:
+      213: -7490345156741834760
+    second: MasterText_2
+  - first:
+      213: 6432595889129607914
+    second: MasterText_3
+  - first:
+      213: 8074823012622508728
+    second: MasterText_4
+  - first:
+      213: -783946216533114077
+    second: MasterText_5
+  - first:
+      213: -4546290378601207749
+    second: MasterText_6
+  - first:
+      213: -747548975784766677
+    second: MasterText_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +147,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DevillBack_0
+      name: MasterText_7
       rect:
         serializedVersion: 2
-        x: 0
+        x: 130
         y: 0
-        width: 1536
+        width: 1375
         height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2011ec42fb7263f40800000000000000
-      internalID: 5707793279648403714
+      spriteID: b23542eca2c20a5f0800000000000000
+      internalID: -747548975784766677
       vertices: []
       indices: 
       edges: []
@@ -151,7 +172,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: db2926e9e4ab7344dbda8b5afadddc45
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +182,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DevillBack_0: 5707793279648403714
+      MasterText_0: 4571153594948402895
+      MasterText_1: -9084431198393305049
+      MasterText_2: -7490345156741834760
+      MasterText_3: 6432595889129607914
+      MasterText_4: 8074823012622508728
+      MasterText_5: -783946216533114077
+      MasterText_6: -4546290378601207749
+      MasterText_7: -747548975784766677
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

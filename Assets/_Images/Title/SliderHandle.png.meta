@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a29ff6dc2b6f2824298f9b20e3c49737
+guid: 213afea65c6324d4591808544e8c4c02
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5707793279648403714
-    second: DevillBack_0
+      213: -3259548300371644414
+    second: SliderHandle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DevillBack_0
+      name: SliderHandle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1536
-        height: 1024
+        x: 440
+        y: 204
+        width: 652
+        height: 680
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2011ec42fb7263f40800000000000000
-      internalID: 5707793279648403714
+      spriteID: 200be143712c3c2d0800000000000000
+      internalID: -3259548300371644414
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f8ad2076a6326fa46a60bfb0de8a6ac3
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DevillBack_0: 5707793279648403714
+      SliderHandle_0: -3259548300371644414
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
