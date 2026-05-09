@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+guid: 58d1d3aea2248c8458667cb94fb4b944
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6014520929937150712
+    second: LoadingBar_0
+  - first:
+      213: -2747364424833572476
+    second: LoadingBar_1
+  - first:
+      213: 1003904668748562243
+    second: LoadingBar_2
+  - first:
+      213: 2482668712623446813
+    second: LoadingBar_3
+  - first:
+      213: 650436441039702949
+    second: LoadingBar_4
+  - first:
+      213: 3593927002623245716
+    second: LoadingBar_5
+  - first:
+      213: 4293491585809594991
+    second: LoadingBar_6
+  - first:
+      213: -7702700108993730855
+    second: LoadingBar_7
+  - first:
+      213: 96179295095354079
+    second: LoadingBar_8
+  - first:
+      213: -1943498584992773413
+    second: LoadingBar_9
+  - first:
+      213: 3151266459308200760
+    second: LoadingBar_10
+  - first:
+      213: 7544847370175143236
+    second: LoadingBar_11
+  - first:
+      213: 2906553596568707859
+    second: LoadingBar_12
+  - first:
+      213: -1888174645776580574
+    second: LoadingBar_13
+  - first:
+      213: 4129884551500416923
+    second: LoadingBar_14
+  - first:
+      213: -2899519845080399047
+    second: LoadingBar_15
+  - first:
+      213: -8509744011299023419
+    second: LoadingBar_16
+  - first:
+      213: 956718015081795858
+    second: LoadingBar_17
+  - first:
+      213: 7754631282764684883
+    second: LoadingBar_18
+  - first:
+      213: -588159529842366374
+    second: LoadingBar_19
+  - first:
+      213: -3697794745393358560
+    second: LoadingBar_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LoadingBar_0
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 547
+        width: 1341
+        height: 183
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80da1fc9411288ca0800000000000000
+      internalID: -6014520929937150712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d20fb8bbd0235fe49994b5ac0d047aec
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LoadingBar_0: -6014520929937150712
+      LoadingBar_1: -2747364424833572476
+      LoadingBar_10: 3151266459308200760
+      LoadingBar_11: 7544847370175143236
+      LoadingBar_12: 2906553596568707859
+      LoadingBar_13: -1888174645776580574
+      LoadingBar_14: 4129884551500416923
+      LoadingBar_15: -2899519845080399047
+      LoadingBar_16: -8509744011299023419
+      LoadingBar_17: 956718015081795858
+      LoadingBar_18: 7754631282764684883
+      LoadingBar_19: -588159529842366374
+      LoadingBar_2: 1003904668748562243
+      LoadingBar_20: -3697794745393358560
+      LoadingBar_3: 2482668712623446813
+      LoadingBar_4: 650436441039702949
+      LoadingBar_5: 3593927002623245716
+      LoadingBar_6: 4293491585809594991
+      LoadingBar_7: -7702700108993730855
+      LoadingBar_8: 96179295095354079
+      LoadingBar_9: -1943498584992773413
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

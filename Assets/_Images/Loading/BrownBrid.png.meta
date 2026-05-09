@@ -1,0 +1,4697 @@
+fileFormatVersion: 2
+guid: 526641667f18f1f49be156ead434df63
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5930377852259354098
+    second: BrownBrid_0
+  - first:
+      213: 5874733306292927422
+    second: BrownBrid_1
+  - first:
+      213: 7986502703513991777
+    second: BrownBrid_2
+  - first:
+      213: -2834465712308180230
+    second: BrownBrid_3
+  - first:
+      213: 6816138243577176837
+    second: BrownBrid_4
+  - first:
+      213: -8164689427751620620
+    second: BrownBrid_5
+  - first:
+      213: 7086321497619105083
+    second: BrownBrid_6
+  - first:
+      213: -7184441578359085102
+    second: BrownBrid_7
+  - first:
+      213: -40947846832148727
+    second: BrownBrid_8
+  - first:
+      213: -5932129929454574449
+    second: BrownBrid_9
+  - first:
+      213: -4803885936836217562
+    second: BrownBrid_10
+  - first:
+      213: 4673286488072994910
+    second: BrownBrid_11
+  - first:
+      213: 6628824630410704027
+    second: BrownBrid_12
+  - first:
+      213: -6016268199480662932
+    second: BrownBrid_13
+  - first:
+      213: -1569084578019817760
+    second: BrownBrid_14
+  - first:
+      213: 7151690476711297692
+    second: BrownBrid_15
+  - first:
+      213: 2109979676133796702
+    second: BrownBrid_16
+  - first:
+      213: -416952483155521853
+    second: BrownBrid_17
+  - first:
+      213: -6621901214132456940
+    second: BrownBrid_18
+  - first:
+      213: 4746058137687545541
+    second: BrownBrid_19
+  - first:
+      213: -2575072396275039549
+    second: BrownBrid_20
+  - first:
+      213: 8820865968528314743
+    second: BrownBrid_21
+  - first:
+      213: 8860154318835199615
+    second: BrownBrid_22
+  - first:
+      213: -3385764258835544587
+    second: BrownBrid_23
+  - first:
+      213: 5682572252387049664
+    second: BrownBrid_24
+  - first:
+      213: -1327303135653332739
+    second: BrownBrid_25
+  - first:
+      213: -7116313941793995022
+    second: BrownBrid_26
+  - first:
+      213: -860302023277414446
+    second: BrownBrid_27
+  - first:
+      213: 8388539783421762517
+    second: BrownBrid_28
+  - first:
+      213: -440964290347528517
+    second: BrownBrid_29
+  - first:
+      213: 690344925483726986
+    second: BrownBrid_30
+  - first:
+      213: -1014637362517339574
+    second: BrownBrid_31
+  - first:
+      213: -6103868185758902508
+    second: BrownBrid_32
+  - first:
+      213: -6364870953013168538
+    second: BrownBrid_33
+  - first:
+      213: 7067531144485741987
+    second: BrownBrid_34
+  - first:
+      213: 1344677208459331679
+    second: BrownBrid_35
+  - first:
+      213: -36209458662003069
+    second: BrownBrid_36
+  - first:
+      213: -6260953668453937646
+    second: BrownBrid_37
+  - first:
+      213: -7100023665424601907
+    second: BrownBrid_38
+  - first:
+      213: 3677309420626312413
+    second: BrownBrid_39
+  - first:
+      213: -4956616195174265100
+    second: BrownBrid_40
+  - first:
+      213: 1897155394518759604
+    second: BrownBrid_41
+  - first:
+      213: -7231847670193059358
+    second: BrownBrid_42
+  - first:
+      213: -8768894839788066898
+    second: BrownBrid_43
+  - first:
+      213: -3515446089298397394
+    second: BrownBrid_44
+  - first:
+      213: -4992309890753680532
+    second: BrownBrid_45
+  - first:
+      213: -2286171694289905244
+    second: BrownBrid_46
+  - first:
+      213: -3379094218644205472
+    second: BrownBrid_47
+  - first:
+      213: -9065815170183190154
+    second: BrownBrid_48
+  - first:
+      213: -5518836161887998100
+    second: BrownBrid_49
+  - first:
+      213: -1200793645127853815
+    second: BrownBrid_50
+  - first:
+      213: 1673652605303192632
+    second: BrownBrid_51
+  - first:
+      213: 7499855246962157260
+    second: BrownBrid_52
+  - first:
+      213: -440590879749480844
+    second: BrownBrid_53
+  - first:
+      213: -3359352295753669681
+    second: BrownBrid_54
+  - first:
+      213: 2962486574433636149
+    second: BrownBrid_55
+  - first:
+      213: -4990843753930450229
+    second: BrownBrid_56
+  - first:
+      213: 3887109867253014021
+    second: BrownBrid_57
+  - first:
+      213: -3297711642255881131
+    second: BrownBrid_58
+  - first:
+      213: -9138420475996701424
+    second: BrownBrid_59
+  - first:
+      213: -7607023605708417924
+    second: BrownBrid_60
+  - first:
+      213: 2273646552280913045
+    second: BrownBrid_61
+  - first:
+      213: 2571508832372191123
+    second: BrownBrid_62
+  - first:
+      213: 8370596869967147580
+    second: BrownBrid_63
+  - first:
+      213: 4756043014179309291
+    second: BrownBrid_64
+  - first:
+      213: -3884576859479258680
+    second: BrownBrid_65
+  - first:
+      213: 6221617502389687755
+    second: BrownBrid_66
+  - first:
+      213: 2090019270319266128
+    second: BrownBrid_67
+  - first:
+      213: 9030628344963763841
+    second: BrownBrid_68
+  - first:
+      213: -6428734998635406486
+    second: BrownBrid_69
+  - first:
+      213: 2422712269631644966
+    second: BrownBrid_70
+  - first:
+      213: -6493736468684549399
+    second: BrownBrid_71
+  - first:
+      213: 7586392484373367141
+    second: BrownBrid_72
+  - first:
+      213: -5960881806301469582
+    second: BrownBrid_73
+  - first:
+      213: 6780509800350057960
+    second: BrownBrid_74
+  - first:
+      213: -4146163208236320189
+    second: BrownBrid_75
+  - first:
+      213: 2267305730562932156
+    second: BrownBrid_76
+  - first:
+      213: 6034401144975928977
+    second: BrownBrid_77
+  - first:
+      213: -5175669917347124363
+    second: BrownBrid_78
+  - first:
+      213: -372132428343154705
+    second: BrownBrid_79
+  - first:
+      213: -6768501136750212908
+    second: BrownBrid_80
+  - first:
+      213: 3296948498343538206
+    second: BrownBrid_81
+  - first:
+      213: 7770436231618660131
+    second: BrownBrid_82
+  - first:
+      213: -8853039521800776547
+    second: BrownBrid_83
+  - first:
+      213: 2123492972664836141
+    second: BrownBrid_84
+  - first:
+      213: -9101424522338161166
+    second: BrownBrid_85
+  - first:
+      213: -7983474214489853697
+    second: BrownBrid_86
+  - first:
+      213: 3344738294280262464
+    second: BrownBrid_87
+  - first:
+      213: 1695467535684505706
+    second: BrownBrid_88
+  - first:
+      213: 4126786598847923269
+    second: BrownBrid_89
+  - first:
+      213: -3405272760212342479
+    second: BrownBrid_90
+  - first:
+      213: -4027298980288191094
+    second: BrownBrid_91
+  - first:
+      213: 5451031148026120779
+    second: BrownBrid_92
+  - first:
+      213: 6792889631028357066
+    second: BrownBrid_93
+  - first:
+      213: -7669542925619896962
+    second: BrownBrid_94
+  - first:
+      213: -1714548579367630944
+    second: BrownBrid_95
+  - first:
+      213: -3355121376542567504
+    second: BrownBrid_96
+  - first:
+      213: -5443486069969299848
+    second: BrownBrid_97
+  - first:
+      213: -1671828754521167129
+    second: BrownBrid_98
+  - first:
+      213: -4424752292244088088
+    second: BrownBrid_99
+  - first:
+      213: 6721574559959308005
+    second: BrownBrid_100
+  - first:
+      213: 3604312520789269520
+    second: BrownBrid_101
+  - first:
+      213: 616876369271347262
+    second: BrownBrid_102
+  - first:
+      213: 7467796837550323158
+    second: BrownBrid_103
+  - first:
+      213: -8409208070479990601
+    second: BrownBrid_104
+  - first:
+      213: 7045744194762167801
+    second: BrownBrid_105
+  - first:
+      213: -2269934561859043383
+    second: BrownBrid_106
+  - first:
+      213: -2955230726449588990
+    second: BrownBrid_107
+  - first:
+      213: -7146348390232382775
+    second: BrownBrid_108
+  - first:
+      213: -1780474963392965309
+    second: BrownBrid_109
+  - first:
+      213: 3619889127488090324
+    second: BrownBrid_110
+  - first:
+      213: -1943637291849000399
+    second: BrownBrid_111
+  - first:
+      213: -3920394796914171772
+    second: BrownBrid_112
+  - first:
+      213: -3131712566137687498
+    second: BrownBrid_113
+  - first:
+      213: -3802764763727161122
+    second: BrownBrid_114
+  - first:
+      213: 4869071746267690271
+    second: BrownBrid_115
+  - first:
+      213: 2423744995410538798
+    second: BrownBrid_116
+  - first:
+      213: -2170121171696426464
+    second: BrownBrid_117
+  - first:
+      213: -6378225310918964886
+    second: BrownBrid_118
+  - first:
+      213: 2304424825308899914
+    second: BrownBrid_119
+  - first:
+      213: -133152888930134382
+    second: BrownBrid_120
+  - first:
+      213: 3590040180086869557
+    second: BrownBrid_121
+  - first:
+      213: -7035198162017571298
+    second: BrownBrid_122
+  - first:
+      213: -2643694299024492952
+    second: BrownBrid_123
+  - first:
+      213: 564991954660767410
+    second: BrownBrid_124
+  - first:
+      213: -6263195482347332234
+    second: BrownBrid_125
+  - first:
+      213: -3752934477768715353
+    second: BrownBrid_126
+  - first:
+      213: -5102940410801955233
+    second: BrownBrid_127
+  - first:
+      213: 5165605664330737365
+    second: BrownBrid_128
+  - first:
+      213: -4382787054278147839
+    second: BrownBrid_129
+  - first:
+      213: 3446399722743347148
+    second: BrownBrid_130
+  - first:
+      213: -5726184967804057202
+    second: BrownBrid_131
+  - first:
+      213: -8448424966956727584
+    second: BrownBrid_132
+  - first:
+      213: 8541436982518529838
+    second: BrownBrid_133
+  - first:
+      213: 8616437956607258424
+    second: BrownBrid_134
+  - first:
+      213: 1452284568106560846
+    second: BrownBrid_135
+  - first:
+      213: 458268850297999286
+    second: BrownBrid_136
+  - first:
+      213: -5116953973265216349
+    second: BrownBrid_137
+  - first:
+      213: -5097487906278678065
+    second: BrownBrid_138
+  - first:
+      213: 4167780859366732300
+    second: BrownBrid_139
+  - first:
+      213: 6913058378131688312
+    second: BrownBrid_140
+  - first:
+      213: 1435448463737556227
+    second: BrownBrid_141
+  - first:
+      213: -3784708113058749080
+    second: BrownBrid_142
+  - first:
+      213: -4878455654765115386
+    second: BrownBrid_143
+  - first:
+      213: 1872124604023272383
+    second: BrownBrid_144
+  - first:
+      213: 736497070225437452
+    second: BrownBrid_145
+  - first:
+      213: -5372763637043788127
+    second: BrownBrid_146
+  - first:
+      213: 7155893156988018114
+    second: BrownBrid_147
+  - first:
+      213: -5613584547596292813
+    second: BrownBrid_148
+  - first:
+      213: 7351609622650870800
+    second: BrownBrid_149
+  - first:
+      213: 374593684163913834
+    second: BrownBrid_150
+  - first:
+      213: -6728508420164858716
+    second: BrownBrid_151
+  - first:
+      213: 1783657765000942133
+    second: BrownBrid_152
+  - first:
+      213: -5456631141735214214
+    second: BrownBrid_153
+  - first:
+      213: -3341211918816520131
+    second: BrownBrid_154
+  - first:
+      213: 2006909749501718908
+    second: BrownBrid_155
+  - first:
+      213: 4324244535589303257
+    second: BrownBrid_156
+  - first:
+      213: -7258306595938224609
+    second: BrownBrid_157
+  - first:
+      213: 5777620126758198785
+    second: BrownBrid_158
+  - first:
+      213: -3359621962098910277
+    second: BrownBrid_159
+  - first:
+      213: 5861452873387567707
+    second: BrownBrid_160
+  - first:
+      213: 6245219887675926068
+    second: BrownBrid_161
+  - first:
+      213: 2635720748923418065
+    second: BrownBrid_162
+  - first:
+      213: 1059078084000467563
+    second: BrownBrid_163
+  - first:
+      213: -6293176077209339158
+    second: BrownBrid_164
+  - first:
+      213: 625493831231987368
+    second: BrownBrid_165
+  - first:
+      213: 5411235146910725221
+    second: BrownBrid_166
+  - first:
+      213: -8300127767275923349
+    second: BrownBrid_167
+  - first:
+      213: 6374043613299250221
+    second: BrownBrid_168
+  - first:
+      213: 1496364281810585663
+    second: BrownBrid_169
+  - first:
+      213: 4220446048751366423
+    second: BrownBrid_170
+  - first:
+      213: -707576089414362619
+    second: BrownBrid_171
+  - first:
+      213: -578871416009854215
+    second: BrownBrid_172
+  - first:
+      213: -9031965090261766277
+    second: BrownBrid_173
+  - first:
+      213: -5249161899670007265
+    second: BrownBrid_174
+  - first:
+      213: 3386918521493569293
+    second: BrownBrid_175
+  - first:
+      213: 6626279820047064663
+    second: BrownBrid_176
+  - first:
+      213: -3866901545897717727
+    second: BrownBrid_177
+  - first:
+      213: -14761217362615313
+    second: BrownBrid_178
+  - first:
+      213: 7661422224249527694
+    second: BrownBrid_179
+  - first:
+      213: -6963268512497689467
+    second: BrownBrid_180
+  - first:
+      213: 3168875238221580362
+    second: BrownBrid_181
+  - first:
+      213: 8852012322756597773
+    second: BrownBrid_182
+  - first:
+      213: -5508842085168687956
+    second: BrownBrid_183
+  - first:
+      213: -4664170328318055420
+    second: BrownBrid_184
+  - first:
+      213: 510220131223211673
+    second: BrownBrid_185
+  - first:
+      213: 7132408137968472698
+    second: BrownBrid_186
+  - first:
+      213: -2856403404241377395
+    second: BrownBrid_187
+  - first:
+      213: -426367105737747385
+    second: BrownBrid_188
+  - first:
+      213: 7797185017584543699
+    second: BrownBrid_189
+  - first:
+      213: -2868402535931086473
+    second: BrownBrid_190
+  - first:
+      213: -995196392873024280
+    second: BrownBrid_191
+  - first:
+      213: -4106512003498736791
+    second: BrownBrid_192
+  - first:
+      213: 142402809309525855
+    second: BrownBrid_193
+  - first:
+      213: -4182041257100547895
+    second: BrownBrid_194
+  - first:
+      213: 4936256257454483244
+    second: BrownBrid_195
+  - first:
+      213: -5959916810105075704
+    second: BrownBrid_196
+  - first:
+      213: 7364548272167695293
+    second: BrownBrid_197
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BrownBrid_0
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 610
+        width: 302
+        height: 199
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0abc3c83c013bda0800000000000000
+      internalID: -5930377852259354098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_1
+      rect:
+        serializedVersion: 2
+        x: 2003
+        y: 612
+        width: 302
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebbfebff0de378150800000000000000
+      internalID: 5874733306292927422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_2
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 1183
+        width: 7
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16af5a005e1c5de60800000000000000
+      internalID: 7986502703513991777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_7
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 1167
+        width: 57
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d72c54037cbb4c90800000000000000
+      internalID: -7184441578359085102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_9
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 1165
+        width: 18
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f84a5694247dcada0800000000000000
+      internalID: -5932129929454574449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_10
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 1166
+        width: 40
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 625f169413b255db0800000000000000
+      internalID: -4803885936836217562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_11
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 1166
+        width: 59
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e50493ffc49dad040800000000000000
+      internalID: 4673286488072994910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_18
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 1071
+        width: 57
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41238e91ee74a14a0800000000000000
+      internalID: -6621901214132456940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_19
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 1147
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c6d7340bb26dd140800000000000000
+      internalID: 4746058137687545541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_20
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1030
+        width: 58
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c2cc158c41834cd0800000000000000
+      internalID: -2575072396275039549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_21
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 1146
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77156790dd20a6a70800000000000000
+      internalID: 8820865968528314743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_22
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 1027
+        width: 139
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7ea05de86795fa70800000000000000
+      internalID: 8860154318835199615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_23
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 1147
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f5c4ea58595301d0800000000000000
+      internalID: -3385764258835544587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_24
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 1071
+        width: 55
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c085022b5d8cde40800000000000000
+      internalID: 5682572252387049664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_25
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 1071
+        width: 64
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df8fe1a94d8749de0800000000000000
+      internalID: -1327303135653332739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_26
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 1067
+        width: 95
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f6853d7c26cd3d90800000000000000
+      internalID: -7116313941793995022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_28
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1067
+        width: 56
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5db16171d741a6470800000000000000
+      internalID: 8388539783421762517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_29
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1071
+        width: 21
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbe0433705161e9f0800000000000000
+      internalID: -440964290347528517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_30
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 1027
+        width: 124
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8873f75d09949900800000000000000
+      internalID: 690344925483726986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_31
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 1071
+        width: 40
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42905fc1b84be1f0800000000000000
+      internalID: -1014637362517339574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_32
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 1067
+        width: 56
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41758088934ba4ba0800000000000000
+      internalID: -6103868185758902508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_33
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 1068
+        width: 57
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 666b27c379f6ba7a0800000000000000
+      internalID: -6364870953013168538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_34
+      rect:
+        serializedVersion: 2
+        x: 1397
+        y: 1067
+        width: 8
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a5251a612ae41260800000000000000
+      internalID: 7067531144485741987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_35
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 1053
+        width: 57
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5848c3fbc049a210800000000000000
+      internalID: 1344677208459331679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_36
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 1051
+        width: 58
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e21fe60bb5f7ff0800000000000000
+      internalID: -36209458662003069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_37
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 1056
+        width: 56
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ecf9c7fcf9c19a0800000000000000
+      internalID: -6260953668453937646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_38
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 1067
+        width: 62
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dccef750816a77d90800000000000000
+      internalID: -7100023665424601907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_39
+      rect:
+        serializedVersion: 2
+        x: 1756
+        y: 1087
+        width: 8
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddcf0a15f6d680330800000000000000
+      internalID: 3677309420626312413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_40
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1066
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe80bee4df863bb0800000000000000
+      internalID: -4956616195174265100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_41
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 986
+        width: 120
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b8b10e97cc045a10800000000000000
+      internalID: 1897155394518759604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_42
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 986
+        width: 396
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e908642cd053ab90800000000000000
+      internalID: -7231847670193059358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_43
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 986
+        width: 85
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea72da15a90ae4680800000000000000
+      internalID: -8768894839788066898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_44
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 986
+        width: 40
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e27355c4860a63fc0800000000000000
+      internalID: -3515446089298397394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_45
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 986
+        width: 29
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b25f0da90c7bab0800000000000000
+      internalID: -4992309890753680532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_46
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 988
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a91c4ae4f2e540e0800000000000000
+      internalID: -2286171694289905244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_47
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 986
+        width: 40
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 060d22b16bb0b11d0800000000000000
+      internalID: -3379094218644205472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_48
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 986
+        width: 40
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67922eda221cf2280800000000000000
+      internalID: -9065815170183190154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_49
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 986
+        width: 29
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6fe51530c72963b0800000000000000
+      internalID: -5518836161887998100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_50
+      rect:
+        serializedVersion: 2
+        x: 1357
+        y: 987
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9099b95ba8ce55fe0800000000000000
+      internalID: -1200793645127853815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_51
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 986
+        width: 39
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83cf0885d220a3710800000000000000
+      internalID: 1673652605303192632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_53
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 988
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47e5141ede4b2e9f0800000000000000
+      internalID: -440590879749480844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_54
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 986
+        width: 39
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc3a538b2ee2161d0800000000000000
+      internalID: -3359352295753669681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_55
+      rect:
+        serializedVersion: 2
+        x: 1525
+        y: 986
+        width: 39
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53f0bf0f7dddc1920800000000000000
+      internalID: 2962486574433636149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_63
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 896
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c32736001855a2470800000000000000
+      internalID: 8370596869967147580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_64
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be6c2ac3cebd00240800000000000000
+      internalID: 4756043014179309291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_65
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 896
+        width: 71
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c9490c7de5371ac0800000000000000
+      internalID: -3884576859479258680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_66
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc55a46a720a75650800000000000000
+      internalID: 6221617502389687755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_67
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 896
+        width: 60
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 059d915f37d310d10800000000000000
+      internalID: 2090019270319266128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_68
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e832822ac335d70800000000000000
+      internalID: 9030628344963763841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_69
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b1733649b88c6a0800000000000000
+      internalID: -6428734998635406486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_70
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 625ef5029f33f9120800000000000000
+      internalID: 2422712269631644966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_71
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e2de07461d91e5a0800000000000000
+      internalID: -6493736468684549399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_72
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 895
+        width: 164
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56984c525c7484960800000000000000
+      internalID: 7586392484373367141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_73
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 893
+        width: 23
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 274ef4b4491b64da0800000000000000
+      internalID: -5960881806301469582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_74
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 896
+        width: 190
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e58bed1db5391e50800000000000000
+      internalID: 6780509800350057960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_75
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34ab748878ed576c0800000000000000
+      internalID: -4146163208236320189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_76
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 893
+        width: 57
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbd396b9c86177f10800000000000000
+      internalID: 2267305730562932156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_77
+      rect:
+        serializedVersion: 2
+        x: 1339
+        y: 896
+        width: 49
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19e2086aedf7eb350800000000000000
+      internalID: 6034401144975928977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_78
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57b69ddc1a35c28b0800000000000000
+      internalID: -5175669917347124363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_79
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe7e33f278be5daf0800000000000000
+      internalID: -372132428343154705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_80
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 896
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d80d22c3147112a0800000000000000
+      internalID: -6768501136750212908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_81
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 896
+        width: 42
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e2686f03d11cd20800000000000000
+      internalID: 3296948498343538206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_82
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3278477459226db60800000000000000
+      internalID: 7770436231618660131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_83
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 896
+        width: 94
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d941298d57fa32580800000000000000
+      internalID: -8853039521800776547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_84
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d20d9be9b99287d10800000000000000
+      internalID: 2123492972664836141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_85
+      rect:
+        serializedVersion: 2
+        x: 1742
+        y: 896
+        width: 70
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fd210c4e9e31b180800000000000000
+      internalID: -9101424522338161166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_86
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 896
+        width: 162
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff077db0080053190800000000000000
+      internalID: -7983474214489853697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_87
+      rect:
+        serializedVersion: 2
+        x: 1988
+        y: 893
+        width: 23
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0439839e1c5ea6e20800000000000000
+      internalID: 3344738294280262464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_88
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 896
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a609ea0adb2878710800000000000000
+      internalID: 1695467535684505706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_89
+      rect:
+        serializedVersion: 2
+        x: 2044
+        y: 896
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5444c280c8a454930800000000000000
+      internalID: 4126786598847923269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_90
+      rect:
+        serializedVersion: 2
+        x: 2078
+        y: 896
+        width: 221
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 139ba3c677a0eb0d0800000000000000
+      internalID: -3405272760212342479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_91
+      rect:
+        serializedVersion: 2
+        x: 2298
+        y: 893
+        width: 22
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8521ab3ae82c18c0800000000000000
+      internalID: -4027298980288191094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_92
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 848
+        width: 58
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4acfa5c2f3f5ab40800000000000000
+      internalID: 5451031148026120779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_93
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 848
+        width: 101
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac721ef0121354e50800000000000000
+      internalID: 6792889631028357066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_94
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 848
+        width: 110
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7dd0d8185f409590800000000000000
+      internalID: -7669542925619896962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_95
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 848
+        width: 63
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a744a0b623b438e0800000000000000
+      internalID: -1714548579367630944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_96
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 848
+        width: 101
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b35cdc52e63071d0800000000000000
+      internalID: -3355121376542567504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_97
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 848
+        width: 75
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87651bb924ad474b0800000000000000
+      internalID: -5443486069969299848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_98
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 848
+        width: 64
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea6b710b987cc8e0800000000000000
+      internalID: -1671828754521167129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_99
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 848
+        width: 101
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ea12b9cb3f1892c0800000000000000
+      internalID: -4424752292244088088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_100
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 848
+        width: 75
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e65da92374d74d50800000000000000
+      internalID: 6721574559959308005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_105
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 848
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f5d113e30387c160800000000000000
+      internalID: 7045744194762167801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_106
+      rect:
+        serializedVersion: 2
+        x: 1654
+        y: 848
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cf7209ea829f70e0800000000000000
+      internalID: -2269934561859043383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_107
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 848
+        width: 101
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20517a0df49ecf6d0800000000000000
+      internalID: -2955230726449588990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_108
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 848
+        width: 110
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c2a307800213dc90800000000000000
+      internalID: -7146348390232382775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_109
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 847
+        width: 64
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3455c73447b7a47e0800000000000000
+      internalID: -1780474963392965309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_110
+      rect:
+        serializedVersion: 2
+        x: 2082
+        y: 847
+        width: 102
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d0f9328bfd6c3230800000000000000
+      internalID: 3619889127488090324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_111
+      rect:
+        serializedVersion: 2
+        x: 2193
+        y: 847
+        width: 132
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13a532f4e20d605e0800000000000000
+      internalID: -1943637291849000399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_112
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 508
+        width: 346
+        height: 335
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48024ae04b5f799c0800000000000000
+      internalID: -3920394796914171772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_113
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 574
+        width: 17
+        height: 261
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6327cbc730ce984d0800000000000000
+      internalID: -3131712566137687498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_114
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 546
+        width: 347
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed89ba5689dd93bc0800000000000000
+      internalID: -3802764763727161122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_115
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 546
+        width: 359
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f153d2ea4fa629340800000000000000
+      internalID: 4869071746267690271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_116
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 548
+        width: 7
+        height: 289
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2173955b3fd2a120800000000000000
+      internalID: 2423744995410538798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_117
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 609
+        width: 302
+        height: 210
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 022ea79ca4e22e1e0800000000000000
+      internalID: -2170121171696426464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_121
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53e057fd58262d130800000000000000
+      internalID: 3590040180086869557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_122
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e2674bb84fd5e90800000000000000
+      internalID: -7035198162017571298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_123
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 461
+        width: 24
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8667bebba06bf4bd0800000000000000
+      internalID: -2643694299024492952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_124
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 461
+        width: 37
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b63286703147d700800000000000000
+      internalID: 564991954660767410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_125
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67d1bd384e8a419a0800000000000000
+      internalID: -6263195482347332234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_126
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a39743f9f5eaebc0800000000000000
+      internalID: -3752934477768715353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_127
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5ed920abb6be29b0800000000000000
+      internalID: -5102940410801955233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_128
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d6ed20bbfaefa740800000000000000
+      internalID: 5165605664330737365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_129
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 461
+        width: 37
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 101029725663d23c0800000000000000
+      internalID: -4382787054278147839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_130
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc73f1cb94214df20800000000000000
+      internalID: 3446399722743347148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_131
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e898bd34c118880b0800000000000000
+      internalID: -5726184967804057202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_132
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 461
+        width: 59
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e2c005114a21ca80800000000000000
+      internalID: -8448424966956727584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_133
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2fb66e5ea7498670800000000000000
+      internalID: 8541436982518529838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_134
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83fa4c07bacb39770800000000000000
+      internalID: 8616437956607258424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_135
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4de5c2ce1d872410800000000000000
+      internalID: 1452284568106560846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_136
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf83a167191c5600800000000000000
+      internalID: 458268850297999286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_137
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3acc08bd87decf8b0800000000000000
+      internalID: -5116953973265216349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_138
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 457
+        width: 23
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc1e863c1c51249b0800000000000000
+      internalID: -5097487906278678065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_139
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 461
+        width: 33
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02f9381c9ee6d930800000000000000
+      internalID: 4167780859366732300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_140
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 461
+        width: 33
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87bc31cc7fd10ff50800000000000000
+      internalID: 6913058378131688312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_141
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d057eb5ccbbe310800000000000000
+      internalID: 1435448463737556227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_142
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 865289ef5040a7bc0800000000000000
+      internalID: -3784708113058749080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_143
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 461
+        width: 90
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 608ca3ddd6e3c4cb0800000000000000
+      internalID: -4878455654765115386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_144
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 461
+        width: 33
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb3731e886f1bf910800000000000000
+      internalID: 1872124604023272383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_145
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0337e8ee20983a00800000000000000
+      internalID: 736497070225437452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_146
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 461
+        width: 37
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a68edf20fb1075b0800000000000000
+      internalID: -5372763637043788127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_147
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 461
+        width: 33
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cd5be8a9e6de4360800000000000000
+      internalID: 7155893156988018114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_148
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 461
+        width: 58
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33da6e3989a8812b0800000000000000
+      internalID: -5613584547596292813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_149
+      rect:
+        serializedVersion: 2
+        x: 1623
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01cd275500a260660800000000000000
+      internalID: 7351609622650870800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_150
+      rect:
+        serializedVersion: 2
+        x: 1656
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a68e1b798f2d23500800000000000000
+      internalID: 374593684163913834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_151
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 461
+        width: 57
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ac49d3bd398f92a0800000000000000
+      internalID: -6728508420164858716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_152
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 461
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5329fbb7943d0c810800000000000000
+      internalID: 1783657765000942133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_153
+      rect:
+        serializedVersion: 2
+        x: 1795
+        y: 461
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a73d98613e62644b0800000000000000
+      internalID: -5456631141735214214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_154
+      rect:
+        serializedVersion: 2
+        x: 1828
+        y: 457
+        width: 56
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d38d3ab5671a1a1d0800000000000000
+      internalID: -3341211918816520131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_155
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 408
+        width: 64
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71715bb8c9f9db10800000000000000
+      internalID: 2006909749501718908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_156
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 408
+        width: 101
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d379b98e7dc20c30800000000000000
+      internalID: 4324244535589303257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_157
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 403
+        width: 120
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f163a3e6b90554b90800000000000000
+      internalID: -7258306595938224609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_158
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 409
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10ed196e4ea3e2050800000000000000
+      internalID: 5777620126758198785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_159
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 409
+        width: 39
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbb5e7120a93061d0800000000000000
+      internalID: -3359621962098910277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_160
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 409
+        width: 101
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5a65f14550185150800000000000000
+      internalID: 5861452873387567707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_161
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 408
+        width: 109
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436e025366a7ba650800000000000000
+      internalID: 6245219887675926068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_162
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 403
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d5f4b67e06f39420800000000000000
+      internalID: 2635720748923418065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_163
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 408
+        width: 63
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6acf3af7e992be00800000000000000
+      internalID: 1059078084000467563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_164
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 409
+        width: 101
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aea73f053b52aa8a0800000000000000
+      internalID: -6293176077209339158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_165
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 403
+        width: 122
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aed7c353533ea800800000000000000
+      internalID: 625493831231987368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_166
+      rect:
+        serializedVersion: 2
+        x: 1239
+        y: 408
+        width: 62
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564f8b732b1981b40800000000000000
+      internalID: 5411235146910725221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_167
+      rect:
+        serializedVersion: 2
+        x: 1311
+        y: 408
+        width: 101
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b68992985c500dc80800000000000000
+      internalID: -8300127767275923349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_168
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 409
+        width: 109
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d249c8925e6257850800000000000000
+      internalID: 6374043613299250221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_169
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 403
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3807efd26724c410800000000000000
+      internalID: 1496364281810585663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_170
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 408
+        width: 83
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 711b6890259029a30800000000000000
+      internalID: 4220446048751366423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_171
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 409
+        width: 102
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50a95eaab4f2e26f0800000000000000
+      internalID: -707576089414362619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_172
+      rect:
+        serializedVersion: 2
+        x: 1812
+        y: 403
+        width: 122
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f2fa1e938f67f7f0800000000000000
+      internalID: -578871416009854215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_173
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 408
+        width: 84
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7fe7339a9308a280800000000000000
+      internalID: -9031965090261766277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_174
+      rect:
+        serializedVersion: 2
+        x: 2082
+        y: 409
+        width: 102
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1297a1401b3727b0800000000000000
+      internalID: -5249161899670007265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_175
+      rect:
+        serializedVersion: 2
+        x: 2192
+        y: 408
+        width: 110
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0fb0dc5370c00f20800000000000000
+      internalID: 3386918521493569293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_176
+      rect:
+        serializedVersion: 2
+        x: 2301
+        y: 403
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e9e38836645fb50800000000000000
+      internalID: 6626279820047064663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_177
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 370
+        width: 152
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1209b5f1881065ac0800000000000000
+      internalID: -3866901545897717727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_178
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 371
+        width: 122
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe326a240ce8bcff0800000000000000
+      internalID: -14761217362615313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_179
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 370
+        width: 152
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8d1da6cbe6d25a60800000000000000
+      internalID: 7661422224249527694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_180
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 371
+        width: 122
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c99ec4e208d5f90800000000000000
+      internalID: -6963268512497689467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_181
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 371
+        width: 151
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a488abf5d3b1afb20800000000000000
+      internalID: 3168875238221580362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_182
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 371
+        width: 121
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d08994dbe4aa8da70800000000000000
+      internalID: 8852012322756597773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_183
+      rect:
+        serializedVersion: 2
+        x: 1249
+        y: 371
+        width: 151
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca45cc58f49ac83b0800000000000000
+      internalID: -5508842085168687956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_184
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 371
+        width: 122
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40c6fa85cc9854fb0800000000000000
+      internalID: -4664170328318055420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_185
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 370
+        width: 151
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e00de818aa41700800000000000000
+      internalID: 510220131223211673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_186
+      rect:
+        serializedVersion: 2
+        x: 1790
+        y: 371
+        width: 123
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7257b099676bf260800000000000000
+      internalID: 7132408137968472698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_187
+      rect:
+        serializedVersion: 2
+        x: 2010
+        y: 371
+        width: 152
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d87e9fadc340c58d0800000000000000
+      internalID: -2856403404241377395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_188
+      rect:
+        serializedVersion: 2
+        x: 2171
+        y: 371
+        width: 122
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7441796506d351af0800000000000000
+      internalID: -426367105737747385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_189
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 437
+        height: 369
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d7ef15567a253c60800000000000000
+      internalID: 7797185017584543699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_190
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 76
+        width: 19
+        height: 279
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7797ffc47136138d0800000000000000
+      internalID: -2868402535931086473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_191
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 54
+        width: 347
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e4ad09472a5032f0800000000000000
+      internalID: -995196392873024280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_192
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 57
+        width: 380
+        height: 312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 963849d071db207c0800000000000000
+      internalID: -4106512003498736791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_193
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 116
+        width: 30
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5779efb99ae9f100800000000000000
+      internalID: 142402809309525855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_194
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 63
+        width: 10
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c86e7252a766f5c0800000000000000
+      internalID: -4182041257100547895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_195
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 57
+        width: 345
+        height: 312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c27afd9a9ea118440800000000000000
+      internalID: 4936256257454483244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_196
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 57
+        width: 411
+        height: 312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 808cecafc3f1a4da0800000000000000
+      internalID: -5959916810105075704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrownBrid_197
+      rect:
+        serializedVersion: 2
+        x: 1978
+        y: 0
+        width: 422
+        height: 369
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db3b5cd62a1243660800000000000000
+      internalID: 7364548272167695293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 18ed7b44812a5f349af496209a1592b2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BrownBrid_0: -5930377852259354098
+      BrownBrid_1: 5874733306292927422
+      BrownBrid_10: -4803885936836217562
+      BrownBrid_100: 6721574559959308005
+      BrownBrid_101: 3604312520789269520
+      BrownBrid_102: 616876369271347262
+      BrownBrid_103: 7467796837550323158
+      BrownBrid_104: -8409208070479990601
+      BrownBrid_105: 7045744194762167801
+      BrownBrid_106: -2269934561859043383
+      BrownBrid_107: -2955230726449588990
+      BrownBrid_108: -7146348390232382775
+      BrownBrid_109: -1780474963392965309
+      BrownBrid_11: 4673286488072994910
+      BrownBrid_110: 3619889127488090324
+      BrownBrid_111: -1943637291849000399
+      BrownBrid_112: -3920394796914171772
+      BrownBrid_113: -3131712566137687498
+      BrownBrid_114: -3802764763727161122
+      BrownBrid_115: 4869071746267690271
+      BrownBrid_116: 2423744995410538798
+      BrownBrid_117: -2170121171696426464
+      BrownBrid_118: -6378225310918964886
+      BrownBrid_119: 2304424825308899914
+      BrownBrid_12: 6628824630410704027
+      BrownBrid_120: -133152888930134382
+      BrownBrid_121: 3590040180086869557
+      BrownBrid_122: -7035198162017571298
+      BrownBrid_123: -2643694299024492952
+      BrownBrid_124: 564991954660767410
+      BrownBrid_125: -6263195482347332234
+      BrownBrid_126: -3752934477768715353
+      BrownBrid_127: -5102940410801955233
+      BrownBrid_128: 5165605664330737365
+      BrownBrid_129: -4382787054278147839
+      BrownBrid_13: -6016268199480662932
+      BrownBrid_130: 3446399722743347148
+      BrownBrid_131: -5726184967804057202
+      BrownBrid_132: -8448424966956727584
+      BrownBrid_133: 8541436982518529838
+      BrownBrid_134: 8616437956607258424
+      BrownBrid_135: 1452284568106560846
+      BrownBrid_136: 458268850297999286
+      BrownBrid_137: -5116953973265216349
+      BrownBrid_138: -5097487906278678065
+      BrownBrid_139: 4167780859366732300
+      BrownBrid_14: -1569084578019817760
+      BrownBrid_140: 6913058378131688312
+      BrownBrid_141: 1435448463737556227
+      BrownBrid_142: -3784708113058749080
+      BrownBrid_143: -4878455654765115386
+      BrownBrid_144: 1872124604023272383
+      BrownBrid_145: 736497070225437452
+      BrownBrid_146: -5372763637043788127
+      BrownBrid_147: 7155893156988018114
+      BrownBrid_148: -5613584547596292813
+      BrownBrid_149: 7351609622650870800
+      BrownBrid_15: 7151690476711297692
+      BrownBrid_150: 374593684163913834
+      BrownBrid_151: -6728508420164858716
+      BrownBrid_152: 1783657765000942133
+      BrownBrid_153: -5456631141735214214
+      BrownBrid_154: -3341211918816520131
+      BrownBrid_155: 2006909749501718908
+      BrownBrid_156: 4324244535589303257
+      BrownBrid_157: -7258306595938224609
+      BrownBrid_158: 5777620126758198785
+      BrownBrid_159: -3359621962098910277
+      BrownBrid_16: 2109979676133796702
+      BrownBrid_160: 5861452873387567707
+      BrownBrid_161: 6245219887675926068
+      BrownBrid_162: 2635720748923418065
+      BrownBrid_163: 1059078084000467563
+      BrownBrid_164: -6293176077209339158
+      BrownBrid_165: 625493831231987368
+      BrownBrid_166: 5411235146910725221
+      BrownBrid_167: -8300127767275923349
+      BrownBrid_168: 6374043613299250221
+      BrownBrid_169: 1496364281810585663
+      BrownBrid_17: -416952483155521853
+      BrownBrid_170: 4220446048751366423
+      BrownBrid_171: -707576089414362619
+      BrownBrid_172: -578871416009854215
+      BrownBrid_173: -9031965090261766277
+      BrownBrid_174: -5249161899670007265
+      BrownBrid_175: 3386918521493569293
+      BrownBrid_176: 6626279820047064663
+      BrownBrid_177: -3866901545897717727
+      BrownBrid_178: -14761217362615313
+      BrownBrid_179: 7661422224249527694
+      BrownBrid_18: -6621901214132456940
+      BrownBrid_180: -6963268512497689467
+      BrownBrid_181: 3168875238221580362
+      BrownBrid_182: 8852012322756597773
+      BrownBrid_183: -5508842085168687956
+      BrownBrid_184: -4664170328318055420
+      BrownBrid_185: 510220131223211673
+      BrownBrid_186: 7132408137968472698
+      BrownBrid_187: -2856403404241377395
+      BrownBrid_188: -426367105737747385
+      BrownBrid_189: 7797185017584543699
+      BrownBrid_19: 4746058137687545541
+      BrownBrid_190: -2868402535931086473
+      BrownBrid_191: -995196392873024280
+      BrownBrid_192: -4106512003498736791
+      BrownBrid_193: 142402809309525855
+      BrownBrid_194: -4182041257100547895
+      BrownBrid_195: 4936256257454483244
+      BrownBrid_196: -5959916810105075704
+      BrownBrid_197: 7364548272167695293
+      BrownBrid_2: 7986502703513991777
+      BrownBrid_20: -2575072396275039549
+      BrownBrid_21: 8820865968528314743
+      BrownBrid_22: 8860154318835199615
+      BrownBrid_23: -3385764258835544587
+      BrownBrid_24: 5682572252387049664
+      BrownBrid_25: -1327303135653332739
+      BrownBrid_26: -7116313941793995022
+      BrownBrid_27: -860302023277414446
+      BrownBrid_28: 8388539783421762517
+      BrownBrid_29: -440964290347528517
+      BrownBrid_3: -2834465712308180230
+      BrownBrid_30: 690344925483726986
+      BrownBrid_31: -1014637362517339574
+      BrownBrid_32: -6103868185758902508
+      BrownBrid_33: -6364870953013168538
+      BrownBrid_34: 7067531144485741987
+      BrownBrid_35: 1344677208459331679
+      BrownBrid_36: -36209458662003069
+      BrownBrid_37: -6260953668453937646
+      BrownBrid_38: -7100023665424601907
+      BrownBrid_39: 3677309420626312413
+      BrownBrid_4: 6816138243577176837
+      BrownBrid_40: -4956616195174265100
+      BrownBrid_41: 1897155394518759604
+      BrownBrid_42: -7231847670193059358
+      BrownBrid_43: -8768894839788066898
+      BrownBrid_44: -3515446089298397394
+      BrownBrid_45: -4992309890753680532
+      BrownBrid_46: -2286171694289905244
+      BrownBrid_47: -3379094218644205472
+      BrownBrid_48: -9065815170183190154
+      BrownBrid_49: -5518836161887998100
+      BrownBrid_5: -8164689427751620620
+      BrownBrid_50: -1200793645127853815
+      BrownBrid_51: 1673652605303192632
+      BrownBrid_52: 7499855246962157260
+      BrownBrid_53: -440590879749480844
+      BrownBrid_54: -3359352295753669681
+      BrownBrid_55: 2962486574433636149
+      BrownBrid_56: -4990843753930450229
+      BrownBrid_57: 3887109867253014021
+      BrownBrid_58: -3297711642255881131
+      BrownBrid_59: -9138420475996701424
+      BrownBrid_6: 7086321497619105083
+      BrownBrid_60: -7607023605708417924
+      BrownBrid_61: 2273646552280913045
+      BrownBrid_62: 2571508832372191123
+      BrownBrid_63: 8370596869967147580
+      BrownBrid_64: 4756043014179309291
+      BrownBrid_65: -3884576859479258680
+      BrownBrid_66: 6221617502389687755
+      BrownBrid_67: 2090019270319266128
+      BrownBrid_68: 9030628344963763841
+      BrownBrid_69: -6428734998635406486
+      BrownBrid_7: -7184441578359085102
+      BrownBrid_70: 2422712269631644966
+      BrownBrid_71: -6493736468684549399
+      BrownBrid_72: 7586392484373367141
+      BrownBrid_73: -5960881806301469582
+      BrownBrid_74: 6780509800350057960
+      BrownBrid_75: -4146163208236320189
+      BrownBrid_76: 2267305730562932156
+      BrownBrid_77: 6034401144975928977
+      BrownBrid_78: -5175669917347124363
+      BrownBrid_79: -372132428343154705
+      BrownBrid_8: -40947846832148727
+      BrownBrid_80: -6768501136750212908
+      BrownBrid_81: 3296948498343538206
+      BrownBrid_82: 7770436231618660131
+      BrownBrid_83: -8853039521800776547
+      BrownBrid_84: 2123492972664836141
+      BrownBrid_85: -9101424522338161166
+      BrownBrid_86: -7983474214489853697
+      BrownBrid_87: 3344738294280262464
+      BrownBrid_88: 1695467535684505706
+      BrownBrid_89: 4126786598847923269
+      BrownBrid_9: -5932129929454574449
+      BrownBrid_90: -3405272760212342479
+      BrownBrid_91: -4027298980288191094
+      BrownBrid_92: 5451031148026120779
+      BrownBrid_93: 6792889631028357066
+      BrownBrid_94: -7669542925619896962
+      BrownBrid_95: -1714548579367630944
+      BrownBrid_96: -3355121376542567504
+      BrownBrid_97: -5443486069969299848
+      BrownBrid_98: -1671828754521167129
+      BrownBrid_99: -4424752292244088088
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,10 +10,9 @@ namespace SeoAhn
         [Header("옵션창")]
         [SerializeField] private GameObject optionPanel;
 
-        [Header("타이틀 화면 오브젝트")]
-        [SerializeField] private GameObject titleLogo;
-        [SerializeField] private GameObject startButton;
-        [SerializeField] private GameObject optionButton;
+        [Header("이름 입력창")]
+        [SerializeField] private GameObject nameInputPanel;
+        [SerializeField] private TMP_InputField nameInputField;
 
         [Header("슬라이더")]
         [SerializeField] private Slider masterSlider;
@@ -29,7 +29,10 @@ namespace SeoAhn
                 optionPanel.SetActive(false);
             }
 
-            ShowTitleObjects();
+            if (nameInputPanel != null)
+            {
+                nameInputPanel.SetActive(false);
+            }
 
             SetupSlider(masterSlider);
             SetupSlider(bgmSlider);
@@ -39,9 +42,9 @@ namespace SeoAhn
             SetSliderValue(bgmSlider, 1f);
             SetSliderValue(sfxSlider, 1f);
 
-            ChangeMasterVolume(GetSliderValue(masterSlider));
-            ChangeBGMVolume(GetSliderValue(bgmSlider));
-            ChangeSFXVolume(GetSliderValue(sfxSlider));
+            ChangeMasterVolume(1f);
+            ChangeBGMVolume(1f);
+            ChangeSFXVolume(1f);
         }
 
         private void SetupSlider(Slider slider)
@@ -58,26 +61,44 @@ namespace SeoAhn
 
         private void SetSliderValue(Slider slider, float value)
         {
-            if (slider == null)
+            if (slider != null)
+            {
+                slider.value = value;
+            }
+        }
+
+        public void OpenNameInput()
+        {
+            if (nameInputPanel != null)
+            {
+                nameInputPanel.SetActive(true);
+            }
+
+            if (nameInputField != null)
+            {
+                nameInputField.text = string.Empty;
+                nameInputField.ActivateInputField();
+            }
+        }
+
+        public void ConfirmNameAndStart()
+        {
+            if (nameInputField == null)
             {
                 return;
             }
 
-            slider.value = value;
-        }
+            string playerName = nameInputField.text.Trim();
 
-        private float GetSliderValue(Slider slider)
-        {
-            if (slider == null)
+            if (string.IsNullOrEmpty(playerName))
             {
-                return 1f;
+                Debug.Log("닉네임을 입력해야 합니다.");
+                return;
             }
 
-            return slider.value;
-        }
+            PlayerPrefs.SetString("PlayerName", playerName);
+            PlayerPrefs.Save();
 
-        public void StartGame()
-        {
             SceneManager.LoadScene("02_StoryScene");
         }
 
@@ -87,8 +108,6 @@ namespace SeoAhn
             {
                 optionPanel.SetActive(true);
             }
-
-            HideTitleObjects();
         }
 
         public void CloseOptions()
@@ -96,44 +115,6 @@ namespace SeoAhn
             if (optionPanel != null)
             {
                 optionPanel.SetActive(false);
-            }
-
-            ShowTitleObjects();
-        }
-
-        private void HideTitleObjects()
-        {
-            if (titleLogo != null)
-            {
-                titleLogo.SetActive(false);
-            }
-
-            if (startButton != null)
-            {
-                startButton.SetActive(false);
-            }
-
-            if (optionButton != null)
-            {
-                optionButton.SetActive(false);
-            }
-        }
-
-        private void ShowTitleObjects()
-        {
-            if (titleLogo != null)
-            {
-                titleLogo.SetActive(true);
-            }
-
-            if (startButton != null)
-            {
-                startButton.SetActive(true);
-            }
-
-            if (optionButton != null)
-            {
-                optionButton.SetActive(true);
             }
         }
 
