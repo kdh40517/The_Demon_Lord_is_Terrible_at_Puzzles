@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 namespace TM
 {
@@ -9,10 +10,24 @@ namespace TM
         [Header("퍼즐 보드에 있는 모든 파이프 타일들")]
         public Pipe[] allPipes;
 
-        // 4x3 보드
         private Pipe[,] grid = new Pipe[4, 3];
+        public bool isCleared = false;
 
-        private bool isCleared = false;
+        [Header("Audio Settings")]
+        public AudioSource audioSource;
+        public AudioClip clearSound;
+
+        [Header("Effect Settings")]
+        public ParticleSystem waterParticle;
+
+        [Header("UI Settings")]
+        public CanvasGroup clearUIGroup;
+
+        // ★ 새로 추가된 변수: 클리어 후 페이드인이 시작될 때까지의 대기 시간
+        public float clearDelay = 2.5f;
+
+        public float fadeDuration = 1.5f;
+        public GameObject exitButton;
 
         void Awake()
         {
@@ -21,48 +36,38 @@ namespace TM
 
         void Start()
         {
-            // 배열 검사
-            if (allPipes == null || allPipes.Length < 12)
+            if (exitButton != null)
             {
-                Debug.LogError("allPipes 배열에 Pipe 12개를 넣어주세요!");
-                return;
+                exitButton.SetActive(false);
             }
 
-            // 1차원 배열 → 2차원 배열 변환
-            int index = 0;
+            if (allPipes == null || allPipes.Length < 12) return;
 
+            int index = 0;
             for (int y = 0; y < 3; y++)
             {
                 for (int x = 0; x < 4; x++)
                 {
-                    if (allPipes[index] == null)
-                    {
-                        Debug.LogError($"allPipes[{index}] 가 비어있습니다!");
-                        return;
-                    }
-
                     grid[x, y] = allPipes[index];
                     index++;
                 }
             }
 
             ShufflePipes();
-
             CheckWaterFlow();
         }
 
-        // 파이프 랜덤 회전
+        public void OnExitButtonClicked()
+        {
+            Debug.Log("나가기 버튼이 클릭되었습니다! 씬 이동 준비 완료!");
+        }
+
         public void ShufflePipes()
         {
-            Debug.Log("파이프 셔플 시작");
-
             foreach (Pipe pipe in allPipes)
             {
-                if (pipe == null)
-                    continue;
-
+                if (pipe == null) continue;
                 int randomRotationCount = Random.Range(0, 4);
-
                 for (int i = 0; i < randomRotationCount; i++)
                 {
                     pipe.RotatePipe();
@@ -70,47 +75,26 @@ namespace TM
             }
         }
 
-        // 물 흐름 검사
         public void CheckWaterFlow()
         {
-            // 전체 초기화
-            foreach (Pipe pipe in allPipes)
-            {
-                if (pipe != null)
-                {
-                    pipe.SetWater(false);
-                }
-            }
+            foreach (Pipe pipe in allPipes) { if (pipe != null) pipe.SetWater(false); }
 
-            // 시작 지점 검사
             Pipe startPipe = grid[0, 1];
+            if (startPipe != null && startPipe.isOpened[3]) { DFS_CheckConnection(0, 1); }
 
-            if (startPipe == null)
-            {
-                Debug.LogError("시작 파이프가 없습니다!");
-                return;
-            }
-
-            // 서쪽이 열려 있으면 시작
-            if (startPipe.isOpened[3])
-            {
-                DFS_CheckConnection(0, 1);
-            }
-
-            // 클리어 체크
             Pipe goalPipe = grid[3, 1];
 
-            if (
-                goalPipe != null &&
-                goalPipe.hasWater &&
-                goalPipe.isOpened[1]
-            )
+            if (goalPipe != null && goalPipe.hasWater && goalPipe.isOpened[1])
             {
                 if (!isCleared)
                 {
                     isCleared = true;
-
                     Debug.Log("클리어! 문이 열렸습니다!");
+
+                    if (audioSource != null && clearSound != null) audioSource.PlayOneShot(clearSound);
+                    if (waterParticle != null) waterParticle.Play();
+
+                    if (clearUIGroup != null) StartCoroutine(FadeInClearUI());
                 }
             }
             else
@@ -119,69 +103,75 @@ namespace TM
             }
         }
 
-        // DFS 탐색
         private void DFS_CheckConnection(int x, int y)
         {
-            // 범위 검사
-            if (x < 0 || x >= 4 || y < 0 || y >= 3)
-                return;
-
+            if (x < 0 || x >= 4 || y < 0 || y >= 3) return;
             Pipe currentPipe = grid[x, y];
+            if (currentPipe == null || currentPipe.hasWater) return;
 
-            // null 검사
-            if (currentPipe == null)
-                return;
-
-            // 이미 방문한 경우
-            if (currentPipe.hasWater)
-                return;
-
-            // 현재 파이프 물 채우기
             currentPipe.SetWater(true);
 
-            // 북
-            if (
-                currentPipe.isOpened[0] &&
-                y > 0 &&
-                grid[x, y - 1] != null &&
-                grid[x, y - 1].isOpened[2]
-            )
-            {
+            if (currentPipe.isOpened[0] && y > 0 && grid[x, y - 1] != null && grid[x, y - 1].isOpened[2])
                 DFS_CheckConnection(x, y - 1);
-            }
-
-            // 동
-            if (
-                currentPipe.isOpened[1] &&
-                x < 3 &&
-                grid[x + 1, y] != null &&
-                grid[x + 1, y].isOpened[3]
-            )
-            {
+            if (currentPipe.isOpened[1] && x < 3 && grid[x + 1, y] != null && grid[x + 1, y].isOpened[3])
                 DFS_CheckConnection(x + 1, y);
-            }
-
-            // 남
-            if (
-                currentPipe.isOpened[2] &&
-                y < 2 &&
-                grid[x, y + 1] != null &&
-                grid[x, y + 1].isOpened[0]
-            )
-            {
+            if (currentPipe.isOpened[2] && y < 2 && grid[x, y + 1] != null && grid[x, y + 1].isOpened[0])
                 DFS_CheckConnection(x, y + 1);
+            if (currentPipe.isOpened[3] && x > 0 && grid[x - 1, y] != null && grid[x - 1, y].isOpened[1])
+                DFS_CheckConnection(x - 1, y);
+        }
+
+        private IEnumerator FadeInClearUI()
+        {
+            // ★ 새로 추가된 부분: 지정된 시간(clearDelay)만큼 아무것도 안 하고 멈춰서 기다립니다. ★
+            yield return new WaitForSeconds(clearDelay);
+
+            float elapsedTime = 0f;
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                clearUIGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+                yield return null;
             }
 
-            // 서
-            if (
-                currentPipe.isOpened[3] &&
-                x > 0 &&
-                grid[x - 1, y] != null &&
-                grid[x - 1, y].isOpened[1]
-            )
+            clearUIGroup.alpha = 1f;
+            clearUIGroup.interactable = true;
+            clearUIGroup.blocksRaycasts = true;
+
+            if (exitButton != null)
             {
-                DFS_CheckConnection(x - 1, y);
+                exitButton.SetActive(true);
+                StartCoroutine(PopUpAnimation(exitButton.transform));
             }
+        }
+
+        private IEnumerator PopUpAnimation(Transform target)
+        {
+            float popDuration = 0.3f;
+            float time = 0f;
+
+            target.localScale = Vector3.zero;
+
+            while (time < popDuration)
+            {
+                time += Time.deltaTime;
+                float progress = time / popDuration;
+                float scale;
+
+                if (progress < 0.7f)
+                {
+                    scale = Mathf.Lerp(0f, 1.1f, progress / 0.7f);
+                }
+                else
+                {
+                    scale = Mathf.Lerp(1.1f, 1f, (progress - 0.7f) / 0.3f);
+                }
+
+                target.localScale = new Vector3(scale, scale, scale);
+                yield return null;
+            }
+
+            target.localScale = Vector3.one;
         }
     }
 }

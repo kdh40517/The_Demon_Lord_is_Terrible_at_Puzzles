@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: a29ff6dc2b6f2824298f9b20e3c49737
+guid: abe6f5acbe7981f41acbbfddf949cffe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5707793279648403714
-    second: DevillBack_0
+      213: 5912702713765834796
+    second: ExitBtnImg_0
+  - first:
+      213: -6017085412117105441
+    second: ExitBtnImg_1
+  - first:
+      213: -6101274268114508300
+    second: ExitBtnImg_2
+  - first:
+      213: 7638916814179838179
+    second: ExitBtnImg_3
+  - first:
+      213: 7175291849413902849
+    second: ExitBtnImg_4
+  - first:
+      213: -9051471664024241136
+    second: ExitBtnImg_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,24 +124,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DevillBack_0
+      name: ExitBtnImg_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +143,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2011ec42fb7263f40800000000000000
-      internalID: 5707793279648403714
+      spriteID: c2030849ac32e0250800000000000000
+      internalID: 5912702713765834796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExitBtnImg_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 807
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd4339392b40f7ca0800000000000000
+      internalID: -6017085412117105441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExitBtnImg_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 286
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f5adcb016be35ba0800000000000000
+      internalID: -6101274268114508300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExitBtnImg_3
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 279
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e8a2f9ae52e20a60800000000000000
+      internalID: 7638916814179838179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExitBtnImg_4
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 283
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1024214bbe1c39360800000000000000
+      internalID: 7175291849413902849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExitBtnImg_5
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 274
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01c32537a76b26280800000000000000
+      internalID: -9051471664024241136
       vertices: []
       indices: 
       edges: []
@@ -161,7 +273,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DevillBack_0: 5707793279648403714
+      ExitBtnImg_0: 5912702713765834796
+      ExitBtnImg_1: -6017085412117105441
+      ExitBtnImg_2: -6101274268114508300
+      ExitBtnImg_3: 7638916814179838179
+      ExitBtnImg_4: 7175291849413902849
+      ExitBtnImg_5: -9051471664024241136
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
