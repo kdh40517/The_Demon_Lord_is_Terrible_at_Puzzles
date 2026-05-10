@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa3b9acbabfbfd44ba001b03954a430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DH.Note
-  instrumentType: 0
+  instrumentType: 1
+  isPoisoned: 0
   x: 0
   y: 0

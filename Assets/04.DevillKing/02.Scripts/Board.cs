@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace DH
 {
@@ -9,6 +10,17 @@ namespace DH
         [Header("보드 설정")]
         public Transform boardPanel;
         public GameObject[] instrumentPrefabs;
+
+        // ★ 유고수 추가: 돌멩이 프리팹을 넣을 전용 가방!
+        public GameObject stonePrefab;
+
+        private List<GameObject> normalPrefabs = new List<GameObject>();
+        private List<GameObject> poisonPrefabs = new List<GameObject>();
+
+        [Header("확률 설정")]
+        [Range(0, 100)]
+        public int poisonChance = 15;
+
         public int width = 6;
         public int height = 6;
         public float cellSize = 100f;
@@ -16,12 +28,29 @@ namespace DH
 
         public Note[,] board;
 
-        void Awake() { Instance = this; }
+        void Awake()
+        {
+            Instance = this;
+            SortPrefabs();
+        }
 
         void Start()
         {
             board = new Note[width, height];
             GenerateBoard();
+        }
+
+        void SortPrefabs()
+        {
+            foreach (GameObject prefab in instrumentPrefabs)
+            {
+                Note noteScript = prefab.GetComponent<Note>();
+                if (noteScript != null)
+                {
+                    if (noteScript.isPoisoned) poisonPrefabs.Add(prefab);
+                    else normalPrefabs.Add(prefab);
+                }
+            }
         }
 
         public void GenerateBoard()
@@ -37,31 +66,29 @@ namespace DH
 
         public void SpawnNote(int x, int y, float dropOffset)
         {
-            // 👇 유고수가 추가한 쉬운 확률 계산법 (주사위 굴리기!)
-            int dice = Random.Range(1, 101); // 1부터 100까지 중에 하나를 뽑습니다.
-            int randomIndex = 0;
+            GameObject newNoteObj = null;
+            int dice = Random.Range(1, 101);
+            bool isPoisonActive = GameManager.Instance != null && GameManager.Instance.poisonTurnsLeft > 0;
 
-            // 몽둥이(0번)가 나올 확률을 15%로 설정해 볼게요. (숫자는 원하시는 대로 더하거나 빼셔도 됩니다!)
-            if (dice <= 10)
+            if (isPoisonActive && dice <= poisonChance && poisonPrefabs.Count > 0)
             {
-                randomIndex = 0; // 1부터 15 사이의 숫자가 나오면 몽둥이 당첨!
+                int randomIndex = Random.Range(0, poisonPrefabs.Count);
+                newNoteObj = Instantiate(poisonPrefabs[randomIndex], boardPanel);
             }
-            else
+            else if (normalPrefabs.Count > 0)
             {
-                // 16부터 100이 나오면, 몽둥이를 뺀 나머지 조각(1번부터 끝까지) 중에서만 뽑습니다.
-                randomIndex = Random.Range(1, instrumentPrefabs.Length);
+                int randomIndex = Random.Range(0, normalPrefabs.Count);
+                newNoteObj = Instantiate(normalPrefabs[randomIndex], boardPanel);
             }
 
-            GameObject newNoteObj = Instantiate(instrumentPrefabs[randomIndex], boardPanel);
+            if (newNoteObj == null) return;
+
             Note newNote = newNoteObj.GetComponent<Note>();
-
-            newNote.instrumentType = randomIndex;
             newNote.x = x;
             newNote.y = y;
 
             float startX = -(width * cellSize + (width - 1) * spacing) / 2f + cellSize / 2f;
             float startY = -(height * cellSize + (height - 1) * spacing) / 2f + cellSize / 2f;
-
             float targetX = startX + x * (cellSize + spacing);
             float targetY = startY + y * (cellSize + spacing);
 
@@ -69,6 +96,87 @@ namespace DH
             rect.anchoredPosition = new Vector2(targetX, targetY + dropOffset);
 
             board[x, y] = newNote;
+        }
+
+        // ★ 유고수 추가: 보스가 마법을 쓰면 멀쩡한 조각을 돌로 바꿔버리는 무시무시한 기능!
+        public void SpawnStones(int count)
+        {
+            if (stonePrefab == null) return;
+
+            // 1. 돌이 아닌 멀쩡한 조각들의 목록을 싹 다 모읍니다.
+            List<Note> validTargets = new List<Note>();
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (board[x, y] != null && board[x, y].instrumentType != NoteType.Stone)
+                    {
+                        validTargets.Add(board[x, y]);
+                    }
+                }
+            }
+
+            // 2. 그 중에서 count(예: 3개)만큼 무작위로 골라서 돌로 바꿔치기합니다!
+            for (int i = 0; i < count; i++)
+            {
+                if (validTargets.Count == 0) break; // 더 이상 바꿀 조각이 없으면 중지
+
+                int randomIndex = Random.Range(0, validTargets.Count);
+                Note targetNote = validTargets[randomIndex];
+                validTargets.RemoveAt(randomIndex); // 한 번 돌로 바꾼 곳은 빼기
+
+                int tx = targetNote.x;
+                int ty = targetNote.y;
+
+                // 원래 있던 몽둥이나 방패를 펑! 없앱니다.
+                Destroy(targetNote.gameObject);
+
+                // 그 자리에 무거운 돌멩이를 쿵! 떨어뜨립니다.
+                GameObject stoneObj = Instantiate(stonePrefab, boardPanel);
+                Note newStone = stoneObj.GetComponent<Note>();
+                newStone.x = tx;
+                newStone.y = ty;
+
+                float startX = -(width * cellSize + (width - 1) * spacing) / 2f + cellSize / 2f;
+                float startY = -(height * cellSize + (height - 1) * spacing) / 2f + cellSize / 2f;
+                float targetX = startX + tx * (cellSize + spacing);
+                float targetY = startY + ty * (cellSize + spacing);
+
+                RectTransform rect = stoneObj.GetComponent<RectTransform>();
+                rect.anchoredPosition = new Vector2(targetX, targetY);
+
+                board[tx, ty] = newStone; // 보드판에 돌멩이 등록 완료!
+            }
+        }
+        public void BreakDefenseNotes()
+        {
+            List<Note> targets = new List<Note>();
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    Note n = board[x, y];
+                    // 아직 고장 나지 않은 멀쩡한 방패와 갑옷만 모읍니다.
+                    if (n != null && (n.instrumentType == NoteType.Shield || n.instrumentType == NoteType.Armor) && !n.isBroken)
+                    {
+                        targets.Add(n);
+                    }
+                }
+            }
+
+            int breakCount = Mathf.FloorToInt(targets.Count * 0.66f);
+
+            for (int i = 0; i < breakCount; i++)
+            {
+                int randomIndex = Random.Range(0, targets.Count);
+                Note targetNote = targets[randomIndex];
+                targets.RemoveAt(randomIndex);
+
+                // ★ 종류(Type)는 바꾸지 않고, 고장 스티커만 찰칵!
+                targetNote.isBroken = true;
+                targetNote.GetComponent<UnityEngine.UI.Image>().color = new Color(0.3f, 0.3f, 0.3f, 1f); // 회색으로 변색
+            }
         }
     }
 }

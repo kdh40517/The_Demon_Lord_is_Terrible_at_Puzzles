@@ -1,9 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace DH
 {
+    public enum NoteType
+    {
+        Club,
+        Armor,
+        Shield,
+        Stone,
+        Broken
+    }
+
     public class PuzzleManager : MonoBehaviour
     {
         public static PuzzleManager Instance;
@@ -14,6 +24,10 @@ namespace DH
         [Header("선 연결 설정")]
         public LineRenderer lineRenderer;
         public LineRenderer dragLineRenderer;
+
+        [Header("마우스 텍스트 설정")]
+        public TextMeshProUGUI floatingText;
+        public Vector3 textOffset = new Vector3(30f, 30f, 0f);
 
         [Header("효과음 설정")]
         public AudioSource sfxPlayer;
@@ -28,10 +42,15 @@ namespace DH
         {
             if (!GameManager.Instance.isGameStarted || GameManager.Instance.isGameOver) return;
 
+            // ★ 유고수 추가: 돌멩이는 터치해서 이을 수 없습니다! 딴딴해요!
+            if (firstNote.instrumentType == NoteType.Stone) return;
+
             connectedNotes.Clear();
             AddNoteToPath(firstNote);
-            PlayInstrumentSound(firstNote.instrumentType);
+            PlayInstrumentSound((int)firstNote.instrumentType);
             UpdateLine();
+
+            UpdateFloatingText();
             isDrawing = true;
         }
 
@@ -50,12 +69,24 @@ namespace DH
                 dragLineRenderer.positionCount = 2;
                 dragLineRenderer.SetPosition(0, startPos);
                 dragLineRenderer.SetPosition(1, endPos);
+
+                if (floatingText != null)
+                {
+                    Vector3 textPos = endPos;
+                    textPos.x += 0.8f;
+                    textPos.y += 0.8f;
+                    textPos.z -= 1f;
+                    floatingText.transform.position = textPos;
+                }
             }
         }
 
         public void OnNoteEnter(Note enteredNote)
         {
             if (!GameManager.Instance.isGameStarted || GameManager.Instance.isGameOver) return;
+
+            // ★ 유고수 추가: 드래그 하다가 돌멩이를 만나면 연결 안 됨! 막혀버립니다!
+            if (enteredNote.instrumentType == NoteType.Stone) return;
 
             lastHoveredNote = enteredNote;
 
@@ -64,14 +95,12 @@ namespace DH
             if (connectedNotes.Count >= 2 && connectedNotes[connectedNotes.Count - 2] == enteredNote)
             {
                 Note lastNoteToRemove = connectedNotes[connectedNotes.Count - 1];
-
                 CanvasGroup cg = lastNoteToRemove.GetComponent<CanvasGroup>();
                 if (cg != null) cg.alpha = 1f;
 
                 connectedNotes.RemoveAt(connectedNotes.Count - 1);
                 UpdateLine();
-
-                Debug.Log("되돌리기 완료! 현재 연결 개수: " + connectedNotes.Count);
+                UpdateFloatingText();
                 return;
             }
 
@@ -79,7 +108,7 @@ namespace DH
 
             Note lastNote = connectedNotes[connectedNotes.Count - 1];
 
-            if (lastNote.instrumentType == enteredNote.instrumentType || enteredNote.instrumentType == 99 || lastNote.instrumentType == 99)
+            if (lastNote.instrumentType == enteredNote.instrumentType)
             {
                 int distanceX = Mathf.Abs(lastNote.x - enteredNote.x);
                 int distanceY = Mathf.Abs(lastNote.y - enteredNote.y);
@@ -87,10 +116,44 @@ namespace DH
                 if (distanceX <= 1 && distanceY <= 1)
                 {
                     AddNoteToPath(enteredNote);
-                    PlayInstrumentSound(enteredNote.instrumentType);
+                    PlayInstrumentSound((int)enteredNote.instrumentType);
                     UpdateLine();
+                    UpdateFloatingText();
                 }
             }
+        }
+
+        void UpdateFloatingText()
+        {
+            if (floatingText == null || connectedNotes.Count == 0) return;
+
+            int validScore = 0;
+            int poisonDamage = 0;
+
+            foreach (Note note in connectedNotes)
+            {
+                if (!note.isBroken) validScore++; // 고장 안 난 조각만 점수로 인정!
+                if (note.isPoisoned) poisonDamage++; // 독 조각은 플레이어 HP 데미지로 누적!
+            }
+
+            NoteType currentType = connectedNotes[0].instrumentType;
+            string statName = "";
+
+            if (currentType == NoteType.Club) statName = "DMG";
+            else if (currentType == NoteType.Armor) statName = "HP";
+            else if (currentType == NoteType.Shield) statName = "DEF";
+
+            // 1. 기본 점수 텍스트 (예: DMG 5)
+            string textOut = $"<color=white>{statName} {validScore}</color>";
+
+            // 2. 독을 밟았다면 그 아래에 빨간 글씨로 덧붙이기 (예: (HP -1))
+            if (poisonDamage > 0)
+            {
+                textOut += $"\n<size=60%><color=red>(HP -{poisonDamage})</color></size>";
+            }
+
+            floatingText.text = textOut;
+            floatingText.gameObject.SetActive(true);
         }
 
         void AddNoteToPath(Note note)
@@ -114,25 +177,64 @@ namespace DH
             isDrawing = false;
             dragLineRenderer.positionCount = 0;
 
+            if (floatingText != null) floatingText.gameObject.SetActive(false);
+
             if (connectedNotes.Count >= 3 && releasedNote == connectedNotes[connectedNotes.Count - 1])
             {
-                Debug.Log("🎉 퍼즐 성공! 악기 파괴!");
+                int validScore = 0;
+                int poisonDamage = 0;
+
+                foreach (Note note in connectedNotes)
+                {
+                    if (!note.isBroken) validScore++;
+                    if (note.isPoisoned) poisonDamage++;
+                }
 
                 if (GameManager.Instance != null)
                 {
-                    GameManager.Instance.CheckWinCondition();
+                    // 1. 독 데미지 먼저 입기!
+                    if (poisonDamage > 0)
+                    {
+                        GameManager.Instance.TakePoisonDamage(poisonDamage);
+                    }
+
+                    // 2. 유효한 공격 점수가 있다면 종류에 맞게 발동! (★ 이 부분이 수정되었습니다!)
+                    if (validScore > 0)
+                    {
+                        NoteType firstType = connectedNotes[0].instrumentType;
+
+                        if (firstType == NoteType.Club)
+                        {
+                            GameManager.Instance.AttackBoss(validScore); // 몽둥이: 보스 공격
+                        }
+                        else if (firstType == NoteType.Armor)
+                        {
+                            GameManager.Instance.HealPlayer(validScore); // 갑옷: 내 피 회복
+                        }
+                        else if (firstType == NoteType.Shield)
+                        {
+                            GameManager.Instance.AddShield(validScore);  // 방패: 방어도 증가
+                        }
+                    }
                 }
+
+                BreakAdjacentStones(connectedNotes);
 
                 foreach (Note note in connectedNotes)
                 {
                     BoardManager.Instance.board[note.x, note.y] = null;
                     Destroy(note.gameObject);
                 }
+
+                if (GameManager.Instance != null && !GameManager.Instance.isGameOver)
+                {
+                    GameManager.Instance.NextTurn();
+                }
+
                 StartCoroutine(ApplyGravity());
             }
             else
             {
-                Debug.Log("❌ 취소됨: 마지막 블록이 아니거나 개수 부족");
                 foreach (Note note in connectedNotes)
                 {
                     CanvasGroup cg = note.GetComponent<CanvasGroup>();
@@ -142,6 +244,39 @@ namespace DH
 
             connectedNotes.Clear();
             lineRenderer.positionCount = 0;
+        }
+
+        // ★ 유고수 추가: 이은 길 주변(8방향)에 돌멩이가 있으면 모조리 부수는 함수!
+        void BreakAdjacentStones(List<Note> path)
+        {
+            int width = BoardManager.Instance.width;
+            int height = BoardManager.Instance.height;
+            Note[,] board = BoardManager.Instance.board;
+
+            // ★ 대각선을 뺀 상, 하, 좌, 우 4방향 좌표값만 남깁니다.
+            int[] dx = { -1, 1, 0, 0 };
+            int[] dy = { 0, 0, -1, 1 };
+
+            foreach (Note node in path)
+            {
+                // 체크 횟수를 8회에서 4회로 변경!
+                for (int i = 0; i < 4; i++)
+                {
+                    int nx = node.x + dx[i];
+                    int ny = node.y + dy[i];
+
+                    if (nx >= 0 && nx < width && ny >= 0 && ny < height)
+                    {
+                        Note target = board[nx, ny];
+                        if (target != null && target.instrumentType == NoteType.Stone)
+                        {
+                            Debug.Log($"💥 쾅! ({nx}, {ny}) 위치의 돌이 직선 폭발로 파괴됨!");
+                            Destroy(target.gameObject);
+                            board[nx, ny] = null;
+                        }
+                    }
+                }
+            }
         }
 
         IEnumerator ApplyGravity()
