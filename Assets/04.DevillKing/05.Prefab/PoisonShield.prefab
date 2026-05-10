@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2267067611091177818}
   - component: {fileID: 6051719976602751875}
   - component: {fileID: 8340002598071112640}
-  - component: {fileID: 8726363436484915357}
+  - component: {fileID: 5927438116598778992}
   m_Layer: 5
-  m_Name: ShieldPrefab
+  m_Name: PoisonShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8982279136340972550}
+  - {fileID: 8455165874727257316}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1333333, g: 0.5450981, b: 0.1333333, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -91,11 +91,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DH.Note
   instrumentType: 2
-  isPoisoned: 0
-  brokenOverlay: {fileID: 4923091668601368338}
+  isPoisoned: 1
+  brokenOverlay: {fileID: 5373171133576246856}
   x: 0
   y: 0
---- !u!114 &8726363436484915357
+--- !u!114 &5927438116598778992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
   m_ShowMaskGraphic: 1
---- !u!1 &4923091668601368338
+--- !u!1 &5373171133576246856
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,9 +116,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8982279136340972550}
-  - component: {fileID: 2101893165833536506}
-  - component: {fileID: 8506877136574375116}
+  - component: {fileID: 8455165874727257316}
+  - component: {fileID: 1187688562121352069}
+  - component: {fileID: 2511026707579567463}
   m_Layer: 5
   m_Name: BrokenOverlay
   m_TagString: Untagged
@@ -126,13 +126,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!224 &8982279136340972550
+--- !u!224 &8455165874727257316
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4923091668601368338}
+  m_GameObject: {fileID: 5373171133576246856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -145,21 +145,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2101893165833536506
+--- !u!222 &1187688562121352069
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4923091668601368338}
+  m_GameObject: {fileID: 5373171133576246856}
   m_CullTransparentMesh: 1
---- !u!114 &8506877136574375116
+--- !u!114 &2511026707579567463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4923091668601368338}
+  m_GameObject: {fileID: 5373171133576246856}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}

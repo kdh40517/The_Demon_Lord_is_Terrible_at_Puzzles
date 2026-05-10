@@ -18,9 +18,11 @@ namespace DH
         [Header("보스 & 플레이어 설정")]
         public int bossHP = 100;
         public int bossMaxHP = 100;
+
+        // ★ 유고수 수정: 최대 체력을 20으로 명시합니다.
+        [SerializeField] private int playerMaxHP = 20;
         public int playerHP = 20;
-        public int playerMaxHP = 20; // ★ 최대 체력 20 제한!
-        public int playerShield = 0; // ★ 유고수 추가: 현재 내가 쌓아둔 방어도!
+        public int playerShield = 0;
 
         [Header("턴제 시스템")]
         public int turnCount = 0;
@@ -31,50 +33,68 @@ namespace DH
         void Start()
         {
             isGameStarted = true;
-            UpdateHPUI();
+            InitializeUI(); // ★ UI 초기화 함수 호출
+        }
+
+        // ★ 유고수 추가: 시작할 때 슬라이더의 최대값을 내 피(20)에 맞춥니다.
+        void InitializeUI()
+        {
+            if (bossHPBar != null)
+            {
+                bossHPBar.maxValue = bossMaxHP;
+                bossHPBar.value = bossHP;
+            }
+            if (playerHPBar != null)
+            {
+                playerHPBar.maxValue = playerMaxHP; // ★ 슬라이더 MAX를 20으로!
+                playerHPBar.value = playerHP;
+            }
         }
 
         public void AttackBoss(int damage)
         {
+            if (isGameOver) return;
             bossHP -= damage;
             if (bossHP < 0) bossHP = 0;
             UpdateHPUI();
 
-            Debug.Log($"💥 보스를 때렸습니다! 데미지: {damage} / 남은 체력: {bossHP}");
+            Debug.Log($"💥 보스 데미지: {damage} / 남은 체력: {bossHP}");
             if (bossHP <= 0) GameOver(true);
         }
 
-        // ★ 유고수 추가: 갑옷(Armor)을 이었을 때 내 체력을 회복합니다!
+        // ★ 유고수 수정: 더 튼튼한 회복 로직 (최대 20까지만 찹니다!)
         public void HealPlayer(int healAmount)
         {
-            playerHP += healAmount;
-            if (playerHP > playerMaxHP) playerHP = playerMaxHP; // 최대 체력을 넘지 않게!
+            if (isGameOver) return;
+
+            // Mathf.Min을 써서 (현재피 + 회복량)과 (최대피) 중 작은 쪽을 택합니다.
+            playerHP = Mathf.Min(playerHP + healAmount, playerMaxHP);
+
             UpdateHPUI();
-            Debug.Log($"💊 갑옷으로 체력을 {healAmount} 회복했습니다! (현재 체력: {playerHP})");
+            Debug.Log($"💊 체력을 {healAmount} 회복! (현재: {playerHP}/{playerMaxHP})");
         }
 
-        // ★ 유고수 추가: 방패(Shield)를 이었을 때 방어도를 쌓습니다!
         public void AddShield(int shieldAmount)
         {
+            if (isGameOver) return;
             playerShield += shieldAmount;
-            Debug.Log($"🛡️ 방패를 세웠습니다! 방어도 +{shieldAmount} (현재 방어도: {playerShield})");
+            Debug.Log($"🛡️ 방어도 +{shieldAmount} (현재: {playerShield})");
         }
 
-        // 독 데미지 (방어도를 무시하고 직접 피를 깎음!)
         public void TakePoisonDamage(int damage)
         {
+            if (isGameOver) return;
             playerHP -= damage;
             if (playerHP < 0) playerHP = 0;
             UpdateHPUI();
 
-            Debug.Log($"🤢 독 노트를 만져서 체력이 {damage} 깎였습니다! (남은 체력: {playerHP})");
+            Debug.Log($"🤢 독 데미지 {damage}! (남은 체력: {playerHP})");
             if (playerHP <= 0) GameOver(false);
         }
 
         public void NextTurn()
         {
             if (isGameOver) return;
-
             turnCount++;
             if (poisonTurnsLeft > 0) poisonTurnsLeft--;
 
@@ -87,34 +107,30 @@ namespace DH
         void BossAttack()
         {
             if (isGameOver) return;
-            Debug.Log("👿 보스의 공격 턴!");
+            Debug.Log("👿 보스의 공격!");
 
-            // ★ 유고수 수정: 보스의 기본 10 데미지를 방패로 먼저 막습니다!
             int incomingDamage = 10;
 
             if (playerShield > 0)
             {
                 if (playerShield >= incomingDamage)
                 {
-                    // 방어도가 충분해서 데미지를 전부 막았을 때!
                     playerShield -= incomingDamage;
                     incomingDamage = 0;
-                    Debug.Log($"🛡️ 깡! 방패로 보스의 공격을 완벽하게 막아냈습니다! (남은 방어도: {playerShield})");
+                    Debug.Log($"🛡️ 방패로 막음! (남은 방어도: {playerShield})");
                 }
                 else
                 {
-                    // 방어도가 모자라서 방패가 부서지고 남은 데미지가 들어올 때!
                     incomingDamage -= playerShield;
-                    Debug.Log($"🛡️ 쩌적.. 방패가 파괴되면서 {playerShield}의 데미지를 막았습니다.");
                     playerShield = 0;
+                    Debug.Log("🛡️ 방패가 깨짐!");
                 }
             }
 
-            // 방패로 못 막은 데미지만 내 체력에서 깎기
             if (incomingDamage > 0)
             {
                 playerHP -= incomingDamage;
-                Debug.Log($"⚔️ 앗! 보스에게 {incomingDamage}의 데미지를 입었습니다! (남은 체력: {playerHP})");
+                Debug.Log($"⚔️ 명치 타격! {incomingDamage} 데미지! (남은 체력: {playerHP})");
             }
 
             if (playerHP <= 0)
@@ -131,22 +147,22 @@ namespace DH
             {
                 bossHP += 20;
                 if (bossHP > bossMaxHP) bossHP = bossMaxHP;
-                Debug.Log("💖 [추가 패턴] 보스가 데미지를 주면서 동시에 체력을 20 회복합니다!");
+                Debug.Log("💖 추가 패턴: 보스 회복 +20!");
             }
             else if (dice <= 40)
             {
                 poisonTurnsLeft = 3;
-                Debug.Log("☠️ [추가 패턴] 보스가 공격하며 독 구름까지 뿌렸습니다!");
+                Debug.Log("☠️ 추가 패턴: 독 살포!");
             }
             else if (dice <= 70)
             {
                 if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(8);
-                Debug.Log("🪨 [추가 패턴] 보스가 공격과 함께 바위를 떨어뜨립니다!");
+                Debug.Log("🪨 추가 패턴: 바위 투척!");
             }
             else
             {
                 if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
-                Debug.Log("🔨 [방패 부수기] 보스가 보드판의 방어구들을 고철로 만들었습니다!");
+                Debug.Log("🔨 추가 패턴: 방패 부수기!");
             }
 
             UpdateHPUI();
@@ -162,13 +178,54 @@ namespace DH
         {
             isGameOver = true;
             isGameStarted = false;
-            if (isWin) Debug.Log("🎉 승리!");
-            else Debug.Log("💀 패배...");
+            if (isWin) Debug.Log("🎉 마왕성 정복 성공! 공주님 진정 완료!");
+            else Debug.Log("💀 용사 파티 전멸...");
         }
 
         public void RestartGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        void OnGUI()
+        {
+            // 화면 왼쪽 위에 가로 150, 세로 300 크기의 메뉴판을 엽니다.
+            GUILayout.BeginArea(new Rect(20, 20, 150, 300));
+
+            // 메뉴 제목
+            GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
+            titleStyle.fontSize = 15;
+            titleStyle.normal.textColor = Color.white;
+            GUILayout.Label("🛠️ 테스트 메뉴", titleStyle);
+
+            // 1. 방패 부수기 버튼
+            if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
+            {
+                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
+                Debug.Log("[디버그] 강제로 방패를 부쉈습니다!");
+            }
+
+            // 2. 돌멩이 투척 버튼
+            if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
+            {
+                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
+                Debug.Log("[디버그] 강제로 돌멩이를 소환했습니다!");
+            }
+
+            // 3. 독 패턴 ON 버튼
+            if (GUILayout.Button("☠️ 독 패턴 켜기", GUILayout.Height(40)))
+            {
+                poisonTurnsLeft = 3;
+                Debug.Log("[디버그] 독 패턴이 켜졌습니다! (빈칸이 생기면 독이 떨어집니다)");
+            }
+
+            // 4. 강제 보스 공격 버튼
+            if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
+            {
+                turnCount = 2; // 턴을 2로 조작하고
+                NextTurn();    // 턴을 넘기면 무조건 3의 배수가 되어 보스가 공격합니다!
+            }
+
+            GUILayout.EndArea();
         }
     }
 }
