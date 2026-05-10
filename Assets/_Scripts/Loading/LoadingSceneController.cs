@@ -1,46 +1,58 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 namespace SeoAhn
 {
-    // 로딩 씬에서 다음 씬을 비동기로 불러오고
-    // 로딩바와 로딩 텍스트 애니메이션을 담당하는 스크립트입니다.
+    // 로딩 씬에서 다음 씬을 비동기로 불러오고,
+    // 로딩바, 로딩 텍스트 애니메이션, 씬 전환 전 페이드 효과를 담당합니다.
     public class LoadingSceneController : MonoBehaviour
     {
         [Header("로딩바 이미지")]
-        [SerializeField] private Image loadingFillImage; // 점점 차오르는 로딩 게이지 이미지
+        [SerializeField] private Image loadingFillImage; // 점점 차오르는 로딩바 이미지
 
         [Header("로딩 텍스트")]
         [SerializeField] private TMP_Text loadingText; // "로딩중입니다..." 텍스트
-        [SerializeField] private float dotAnimationSpeed = 0.5f; // 점 애니메이션 속도
+        [SerializeField] private float dotAnimationSpeed = 0.5f; // 점이 하나씩 늘어나는 속도
+
+        [Header("페이드")]
+        [SerializeField] private Image fadeOverlayImage; // 씬 전환 전 검게 덮을 이미지
+        [SerializeField] private float fadeDuration = 1f; // 페이드 시간
 
         [Header("로딩 설정")]
         [SerializeField] private float minimumLoadingTime = 5f; // 최소 로딩 시간
 
         private void Start()
         {
-            // 처음 로딩바는 비어있는 상태
+            // 로딩바를 비운 상태로 시작합니다.
             if (loadingFillImage != null)
             {
                 loadingFillImage.fillAmount = 0f;
             }
 
-            // 점 애니메이션 시작
+            // 페이드 오버레이는 처음엔 투명하게 둡니다.
+            if (fadeOverlayImage != null)
+            {
+                Color color = fadeOverlayImage.color;
+                color.a = 0f;
+                fadeOverlayImage.color = color;
+            }
+
+            // 로딩 텍스트 점 애니메이션 시작
             StartCoroutine(AnimateLoadingText());
 
-            // 저장된 다음 씬 이름 가져오기
+            // 이전 씬에서 저장한 다음 씬 이름을 가져옵니다.
             string nextSceneName = PlayerPrefs.GetString("NextSceneName", "03_StageScene");
 
-            // 로딩 시작
+            // 다음 씬 로딩 시작
             StartCoroutine(LoadSceneRoutine(nextSceneName));
         }
 
         private IEnumerator AnimateLoadingText()
         {
-            // 로딩 텍스트 점 애니메이션 반복
+            // 로딩중입니다 → 로딩중입니다. → 로딩중입니다.. → 로딩중입니다...
             while (true)
             {
                 if (loadingText != null)
@@ -77,23 +89,23 @@ namespace SeoAhn
         {
             float timer = 0f;
 
-            // 다음 씬 비동기 로딩
+            // 다음 씬을 비동기로 불러옵니다.
             AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
-            // 로딩 완료되어도 바로 넘어가지 않음
+            // 로딩이 끝나도 바로 씬 전환되지 않도록 막습니다.
             operation.allowSceneActivation = false;
 
             while (!operation.isDone)
             {
                 timer += Time.deltaTime;
 
-                // Unity 로딩 진행률 계산
+                // Unity의 비동기 로딩 progress는 보통 0~0.9까지만 올라갑니다.
                 float loadingProgress = Mathf.Clamp01(operation.progress / 0.9f);
 
-                // 최소 시간 기준 진행률
+                // 최소 로딩 시간에 맞춘 진행률입니다.
                 float timeProgress = Mathf.Clamp01(timer / minimumLoadingTime);
 
-                // 둘 중 느린 쪽 기준으로 로딩바 표시
+                // 실제 로딩률과 시간 진행률 중 더 낮은 값을 사용합니다.
                 float finalProgress = Mathf.Min(loadingProgress, timeProgress);
 
                 if (loadingFillImage != null)
@@ -101,7 +113,7 @@ namespace SeoAhn
                     loadingFillImage.fillAmount = finalProgress;
                 }
 
-                // 조건 만족 시 씬 전환
+                // 실제 로딩도 끝났고 최소 로딩 시간도 지났다면 페이드 후 씬 전환합니다.
                 if (operation.progress >= 0.9f && timer >= minimumLoadingTime)
                 {
                     if (loadingFillImage != null)
@@ -109,10 +121,41 @@ namespace SeoAhn
                         loadingFillImage.fillAmount = 1f;
                     }
 
+                    yield return StartCoroutine(FadeOutToNextScene());
+
                     operation.allowSceneActivation = true;
                 }
 
                 yield return null;
+            }
+        }
+
+        private IEnumerator FadeOutToNextScene()
+        {
+            // 검은 화면이 서서히 나타나도록 Alpha를 0에서 1로 올립니다.
+            float timer = 0f;
+
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+
+                float alpha = Mathf.Lerp(0f, 1f, timer / fadeDuration);
+
+                if (fadeOverlayImage != null)
+                {
+                    Color color = fadeOverlayImage.color;
+                    color.a = alpha;
+                    fadeOverlayImage.color = color;
+                }
+
+                yield return null;
+            }
+
+            if (fadeOverlayImage != null)
+            {
+                Color color = fadeOverlayImage.color;
+                color.a = 1f;
+                fadeOverlayImage.color = color;
             }
         }
     }
