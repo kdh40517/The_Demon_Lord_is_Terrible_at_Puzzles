@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 97828280}
   - component: {fileID: 97828283}
   - component: {fileID: 97828284}
+  - component: {fileID: 97828285}
   m_Layer: 5
   m_Name: PipeTile (1)
   m_TagString: Untagged
@@ -357,6 +358,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &97828285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97828278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 97828284}
+  isBGM: 1
 --- !u!1 &205987921
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +534,7 @@ GameObject:
   - component: {fileID: 679024726}
   - component: {fileID: 679024725}
   - component: {fileID: 679024727}
+  - component: {fileID: 679024728}
   m_Layer: 0
   m_Name: PuzzleManager
   m_TagString: Untagged
@@ -558,7 +574,9 @@ MonoBehaviour:
   clearUIGroup: {fileID: 1632242476}
   clearDelay: 2.5
   fadeDuration: 5
-  exitButton: {fileID: 1218779660}
+  autoReturnDelay: 3
+  loadingSceneName: 99_LoadingScene
+  stageSceneName: 03_StageScene
 --- !u!4 &679024726
 Transform:
   m_ObjectHideFlags: 0
@@ -671,6 +689,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &679024728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679024724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 679024727}
+  isBGM: 1
 --- !u!1 &714320321
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +717,7 @@ GameObject:
   - component: {fileID: 714320323}
   - component: {fileID: 714320326}
   - component: {fileID: 714320327}
+  - component: {fileID: 714320328}
   m_Layer: 5
   m_Name: PipeTile (5)
   m_TagString: Untagged
@@ -909,6 +942,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &714320328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714320321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 714320327}
+  isBGM: 1
 --- !u!1 &733516852
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1045,7 @@ GameObject:
   - component: {fileID: 842979219}
   - component: {fileID: 842979222}
   - component: {fileID: 842979223}
+  - component: {fileID: 842979224}
   m_Layer: 5
   m_Name: PipeTile (2)
   m_TagString: Untagged
@@ -1222,6 +1270,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &842979224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842979217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 842979223}
+  isBGM: 1
 --- !u!1 &915927385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,6 +1405,7 @@ GameObject:
   - component: {fileID: 946413438}
   - component: {fileID: 946413441}
   - component: {fileID: 946413442}
+  - component: {fileID: 946413443}
   m_Layer: 5
   m_Name: PipeTile (8)
   m_TagString: Untagged
@@ -1567,6 +1630,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &946413443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946413436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 946413442}
+  isBGM: 1
 --- !u!1 &1106086160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1658,7 @@ GameObject:
   - component: {fileID: 1106086162}
   - component: {fileID: 1106086165}
   - component: {fileID: 1106086166}
+  - component: {fileID: 1106086167}
   m_Layer: 5
   m_Name: PipeTile (10)
   m_TagString: Untagged
@@ -1805,6 +1883,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1106086167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106086160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 1106086166}
+  isBGM: 1
 --- !u!1 &1110850648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,138 +1971,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110850648}
-  m_CullTransparentMesh: 1
---- !u!1 &1218779660
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1218779661}
-  - component: {fileID: 1218779664}
-  - component: {fileID: 1218779663}
-  - component: {fileID: 1218779662}
-  m_Layer: 5
-  m_Name: ExitBtn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1218779661
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218779660}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1632242479}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 188}
-  m_SizeDelta: {x: 650, y: 500}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1218779662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218779660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1218779663}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 679024725}
-        m_TargetAssemblyTypeName: TM.PuzzleManager, Assembly-CSharp
-        m_MethodName: OnExitButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1218779663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218779660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 5912702713765834796, guid: abe6f5acbe7981f41acbbfddf949cffe, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1218779664
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218779660}
   m_CullTransparentMesh: 1
 --- !u!1 &1269638125
 GameObject:
@@ -6862,6 +6822,7 @@ GameObject:
   - component: {fileID: 1331542346}
   - component: {fileID: 1331542349}
   - component: {fileID: 1331542350}
+  - component: {fileID: 1331542351}
   m_Layer: 5
   m_Name: PipeTile (7)
   m_TagString: Untagged
@@ -7086,6 +7047,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1331542351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331542344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 1331542350}
+  isBGM: 1
 --- !u!1 &1366885709
 GameObject:
   m_ObjectHideFlags: 0
@@ -7100,6 +7075,7 @@ GameObject:
   - component: {fileID: 1366885711}
   - component: {fileID: 1366885714}
   - component: {fileID: 1366885715}
+  - component: {fileID: 1366885716}
   m_Layer: 5
   m_Name: PipeTile
   m_TagString: Untagged
@@ -7324,6 +7300,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1366885716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366885709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 1366885715}
+  isBGM: 1
 --- !u!1 &1479673750
 GameObject:
   m_ObjectHideFlags: 0
@@ -7338,6 +7328,7 @@ GameObject:
   - component: {fileID: 1479673752}
   - component: {fileID: 1479673755}
   - component: {fileID: 1479673756}
+  - component: {fileID: 1479673757}
   m_Layer: 5
   m_Name: PipeTile (9)
   m_TagString: Untagged
@@ -7562,6 +7553,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1479673757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479673750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 1479673756}
+  isBGM: 1
 --- !u!1 &1517408528
 GameObject:
   m_ObjectHideFlags: 0
@@ -7576,6 +7581,7 @@ GameObject:
   - component: {fileID: 1517408530}
   - component: {fileID: 1517408533}
   - component: {fileID: 1517408534}
+  - component: {fileID: 1517408535}
   m_Layer: 5
   m_Name: PipeTile (4)
   m_TagString: Untagged
@@ -7800,6 +7806,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1517408535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517408528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 1517408534}
+  isBGM: 1
 --- !u!1 &1576151301
 GameObject:
   m_ObjectHideFlags: 0
@@ -8025,6 +8045,7 @@ GameObject:
   - component: {fileID: 1632242477}
   - component: {fileID: 1632242476}
   - component: {fileID: 1632242480}
+  - component: {fileID: 1632242481}
   m_Layer: 5
   m_Name: ClearImg
   m_TagString: Untagged
@@ -8093,8 +8114,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1218779661}
+  m_Children: []
   m_Father: {fileID: 915927389}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8125,6 +8145,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 20
   m_TargetDisplay: 0
+--- !u!114 &1632242481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632242475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1651868830
 GameObject:
   m_ObjectHideFlags: 0
@@ -8135,6 +8172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651868832}
   - component: {fileID: 1651868831}
+  - component: {fileID: 1651868833}
   m_Layer: 0
   m_Name: BGMManger
   m_TagString: Untagged
@@ -8254,6 +8292,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1651868833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651868830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 1651868831}
+  isBGM: 1
 --- !u!1 &1658129594
 GameObject:
   m_ObjectHideFlags: 0
@@ -8268,6 +8320,7 @@ GameObject:
   - component: {fileID: 1658129596}
   - component: {fileID: 1658129599}
   - component: {fileID: 1658129600}
+  - component: {fileID: 1658129601}
   m_Layer: 5
   m_Name: PipeTile (6)
   m_TagString: Untagged
@@ -8492,6 +8545,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1658129601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658129594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 1658129600}
+  isBGM: 1
 --- !u!1 &1913417272
 GameObject:
   m_ObjectHideFlags: 0
@@ -8581,6 +8648,7 @@ GameObject:
   - component: {fileID: 2026153201}
   - component: {fileID: 2026153204}
   - component: {fileID: 2026153205}
+  - component: {fileID: 2026153206}
   m_Layer: 5
   m_Name: PipeTile (3)
   m_TagString: Untagged
@@ -8805,6 +8873,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2026153206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026153199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 2026153205}
+  isBGM: 1
 --- !u!1 &2047982171
 GameObject:
   m_ObjectHideFlags: 0
@@ -8819,6 +8901,7 @@ GameObject:
   - component: {fileID: 2047982173}
   - component: {fileID: 2047982172}
   - component: {fileID: 2047982177}
+  - component: {fileID: 2047982178}
   m_Layer: 5
   m_Name: PipeTile (11)
   m_TagString: Untagged
@@ -9043,6 +9126,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2047982178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047982171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 2047982177}
+  isBGM: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
