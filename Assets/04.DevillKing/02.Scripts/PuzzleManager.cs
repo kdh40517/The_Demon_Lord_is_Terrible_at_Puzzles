@@ -42,7 +42,6 @@ namespace DH
         {
             if (!GameManager.Instance.isGameStarted || GameManager.Instance.isGameOver) return;
 
-            // ★ 유고수 추가: 돌멩이는 터치해서 이을 수 없습니다! 딴딴해요!
             if (firstNote.instrumentType == NoteType.Stone) return;
 
             connectedNotes.Clear();
@@ -246,7 +245,6 @@ namespace DH
             lineRenderer.positionCount = 0;
         }
 
-        // ★ 유고수 추가: 이은 길 주변(8방향)에 돌멩이가 있으면 모조리 부수는 함수!
         void BreakAdjacentStones(List<Note> path)
         {
             int width = BoardManager.Instance.width;
@@ -279,30 +277,29 @@ namespace DH
             }
         }
 
-        IEnumerator ApplyGravity()
+        private System.Collections.IEnumerator ApplyGravity()
         {
+            yield return new WaitForSeconds(0.1f); // 터지는 이펙트 대기
+
             int width = BoardManager.Instance.width;
             int height = BoardManager.Instance.height;
-            float cellSize = BoardManager.Instance.cellSize;
-            float spacing = BoardManager.Instance.spacing;
             Note[,] board = BoardManager.Instance.board;
 
+            // 1. 논리적으로 조각들 밑으로 당기기 (데이터만 갱신)
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
                     if (board[x, y] == null)
                     {
-                        for (int upperY = y + 1; upperY < height; upperY++)
+                        for (int ny = y + 1; ny < height; ny++)
                         {
-                            if (board[x, upperY] != null)
+                            if (board[x, ny] != null)
                             {
-                                Note fallingNote = board[x, upperY];
-                                board[x, y] = fallingNote;
-                                board[x, upperY] = null;
-                                fallingNote.y = y;
-
-                                StartCoroutine(MoveBlock(fallingNote, x, y, cellSize, spacing, width, height));
+                                board[x, y] = board[x, ny];
+                                board[x, ny] = null;
+                                board[x, y].x = x;
+                                board[x, y].y = y;
                                 break;
                             }
                         }
@@ -310,19 +307,102 @@ namespace DH
                 }
             }
 
-            yield return new WaitForSeconds(0.2f);
-
+            // 2. 맨 위 빈칸들에 새 조각을 '하늘(+600)'에 소환 (데이터 갱신)
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
                     if (board[x, y] == null)
                     {
-                        BoardManager.Instance.SpawnNote(x, y, 800f);
-                        StartCoroutine(MoveBlock(board[x, y], x, y, cellSize, spacing, width, height));
+                        BoardManager.Instance.SpawnNote(x, y, 600f);
                     }
                 }
             }
+
+            // 3. ★ 핵심: 모든 조각을 스르륵~ 떨어뜨리기!
+            float duration = 0.25f; // 조각이 떨어지는데 걸리는 시간 (0.25초)
+            float elapsedTime = 0f;
+
+            // 출발점과 도착점 기록장
+            Vector2[,] startPos = new Vector2[width, height];
+            Vector2[,] targetPos = new Vector2[width, height];
+
+            float cellSize = BoardManager.Instance.cellSize;
+            float spacing = BoardManager.Instance.spacing;
+            float startXOffset = -(width * cellSize + (width - 1) * spacing) / 2f + cellSize / 2f;
+            float startYOffset = -(height * cellSize + (height - 1) * spacing) / 2f + cellSize / 2f;
+
+            // 각 조각의 현재 위치와 가야 할 위치 계산
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    Note note = board[x, y];
+                    if (note != null)
+                    {
+                        RectTransform rect = note.GetComponent<RectTransform>();
+                        startPos[x, y] = rect.anchoredPosition; // 지금 위치
+
+                        float targetX = startXOffset + x * (cellSize + spacing);
+                        float targetY = startYOffset + y * (cellSize + spacing);
+                        targetPos[x, y] = new Vector2(targetX, targetY); // 가야 할 정답 위치
+                    }
+                }
+            }
+
+            // 진짜로 스르륵 움직이는 애니메이션 시작!
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / duration;
+                t = t * t * (3f - 2f * t); // 부드럽게 멈추는 가속도 효과 (Smoothstep)
+
+                for (int x = 0; x < width; x++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        Note note = board[x, y];
+                        if (note != null)
+                        {
+                            // 출발점에서 도착점까지 t 비율만큼 부드럽게 이동
+                            note.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(startPos[x, y], targetPos[x, y], t);
+                        }
+                    }
+                }
+                yield return null; // 다음 프레임까지 대기
+            }
+
+            // 4. 애니메이션 끝난 뒤, 1픽셀의 오차도 없이 정답 위치에 찰칵! 꽂아넣기
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    Note note = board[x, y];
+                    if (note != null)
+                    {
+                        note.GetComponent<RectTransform>().anchoredPosition = targetPos[x, y];
+                    }
+                }
+            }
+        }
+
+        void UpdateNotePosition(Note note)
+        {
+            if (note == null) return;
+
+            float cellSize = BoardManager.Instance.cellSize;
+            float spacing = BoardManager.Instance.spacing;
+            int width = BoardManager.Instance.width;
+            int height = BoardManager.Instance.height;
+
+            // 보드 매니저와 똑같은 공식으로 오차 없이 타겟 위치 계산
+            float startX = -(width * cellSize + (width - 1) * spacing) / 2f + cellSize / 2f;
+            float startY = -(height * cellSize + (height - 1) * spacing) / 2f + cellSize / 2f;
+            float targetX = startX + note.x * (cellSize + spacing);
+            float targetY = startY + note.y * (cellSize + spacing);
+
+            // 해당 조각을 타겟 위치로 쾅! 하고 이동시킵니다.
+            note.GetComponent<RectTransform>().anchoredPosition = new Vector2(targetX, targetY);
         }
 
         IEnumerator MoveBlock(Note note, int x, int y, float cellSize, float spacing, int width, int height)
