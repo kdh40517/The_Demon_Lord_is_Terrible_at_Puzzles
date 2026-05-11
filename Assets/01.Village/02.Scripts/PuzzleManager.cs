@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement; // ★ 씬 관리를 위해 반드시 추가해야 합니다!
 
 namespace TM
 {
@@ -29,6 +30,10 @@ namespace TM
         public float fadeDuration = 1.5f;
         public GameObject exitButton;
 
+        [Header("Scene Settings")]
+        // ★ 새로 추가된 변수: 이동할 다음 씬의 이름을 인스펙터에서 설정할 수 있게 합니다.
+        public string nextSceneName = "NextSceneName";
+
         void Awake()
         {
             instance = this;
@@ -57,9 +62,11 @@ namespace TM
             CheckWaterFlow();
         }
 
+        // ★ 수정된 부분: 씬 이동 로직 추가
         public void OnExitButtonClicked()
         {
-            Debug.Log("나가기 버튼이 클릭되었습니다! 씬 이동 준비 완료!");
+            Debug.Log($"나가기 버튼이 클릭되었습니다! {nextSceneName} 씬으로 이동합니다!");
+            SceneManager.LoadScene(nextSceneName); // 지정된 이름의 씬을 로드합니다.
         }
 
         public void ShufflePipes()
@@ -123,7 +130,6 @@ namespace TM
 
         private IEnumerator FadeInClearUI()
         {
-            // ★ 새로 추가된 부분: 지정된 시간(clearDelay)만큼 아무것도 안 하고 멈춰서 기다립니다. ★
             yield return new WaitForSeconds(clearDelay);
 
             float elapsedTime = 0f;
