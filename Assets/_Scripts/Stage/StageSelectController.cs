@@ -1,270 +1,582 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace SeoAhn
 {
-    // StageScene에서 일자로 배치된 스테이지 카드들을 좌우 방향키로 이동하고,
-    // 잠금 상태에 따라 선택 가능 여부를 관리하는 스크립트입니다.
+    // 스테이지 선택 화면을 회전목마 방식으로 관리하는 스크립트입니다.
+    // 좌/우 방향키로 카드가 순환 이동하고, Space 키로 선택한 스테이지에 입장합니다.
     public class StageSelectController : MonoBehaviour
     {
-        [Header("카드 그룹")]
-        [SerializeField] private RectTransform stageCardGroup; // 카드 전체를 담고 있는 부모 오브젝트
+        [Header("스테이지 카드 RectTransform")]
+        [SerializeField] private RectTransform villageCard;
+        [SerializeField] private RectTransform forestCard;
+        [SerializeField] private RectTransform castleCard;
+        [SerializeField] private RectTransform devillCard;
 
-        [Header("스테이지 카드")]
-        [SerializeField] private GameObject villageCard; // Village 카드
-        [SerializeField] private GameObject forestCard;  // Forest 카드
-        [SerializeField] private GameObject castleCard;  // Castle 카드
-        [SerializeField] private GameObject devilCard;   // Devil 카드
+        [Header("스테이지 카드 CanvasGroup")]
+        [SerializeField] private CanvasGroup villageCanvasGroup;
+        [SerializeField] private CanvasGroup forestCanvasGroup;
+        [SerializeField] private CanvasGroup castleCanvasGroup;
+        [SerializeField] private CanvasGroup devillCanvasGroup;
 
-        [Header("선택 표시")]
-        [SerializeField] private GameObject villageSelectFrame; // Village 선택 테두리
-        [SerializeField] private GameObject forestSelectFrame;  // Forest 선택 테두리
-        [SerializeField] private GameObject castleSelectFrame;  // Castle 선택 테두리
-        [SerializeField] private GameObject devilSelectFrame;   // Devil 선택 테두리
+        [Header("스테이지 카드 이미지")]
+        [SerializeField] private Image villageCardImage;
+        [SerializeField] private Image forestCardImage;
+        [SerializeField] private Image castleCardImage;
+        [SerializeField] private Image devillCardImage;
 
-        [Header("카드 투명도")]
-        [SerializeField] private CanvasGroup villageCanvasGroup; // Village 카드 투명도 조절
-        [SerializeField] private CanvasGroup forestCanvasGroup;  // Forest 카드 투명도 조절
-        [SerializeField] private CanvasGroup castleCanvasGroup;  // Castle 카드 투명도 조절
-        [SerializeField] private CanvasGroup devilCanvasGroup;   // Devil 카드 투명도 조절
+        [Header("스테이지 카드 선택 효과")]
+        [SerializeField] private StageCardSelectEffect villageEffect;
+        [SerializeField] private StageCardSelectEffect forestEffect;
+        [SerializeField] private StageCardSelectEffect castleEffect;
+        [SerializeField] private StageCardSelectEffect devillEffect;
 
-        [Header("씬 이름")]
-        [SerializeField] private string villageSceneName = "01_VillageScene"; // Village 입장 씬
-        [SerializeField] private string forestSceneName = "02_ForestScene";   // Forest 입장 씬
-        [SerializeField] private string castleSceneName = "03_CastleScene";   // Castle 입장 씬
-        [SerializeField] private string devilSceneName = "04_DevilScene";     // Devil 입장 씬
+        [Header("흑백 Material")]
+        [SerializeField] private Material grayscaleMaterial;
 
-        [Header("카드 이동 설정")]
-        [SerializeField] private float cardSpacing = 600f;       // 카드 사이 간격
-        [SerializeField] private float slideSpeed = 8f;          // 카드 그룹이 이동하는 속도
-        [SerializeField] private float lockedAlpha = 0.35f;      // 잠긴 카드 투명도
-        [SerializeField] private float unlockedAlpha = 1f;       // 열린 카드 투명도
+        [Header("잠금 안내 메시지")]
+        [SerializeField] private GameObject lockedMessagePanel;
+        [SerializeField] private CanvasGroup lockedMessageCanvasGroup;
+        [SerializeField] private TMP_Text lockedMessageText;
+        [SerializeField] private float lockedMessageFadeTime = 0.25f;
+        [SerializeField] private float lockedMessageStayTime = 1.1f;
+
+        [Header("선택 효과음")]
+        [SerializeField] private AudioSource selectAudioSource; // Space로 스테이지 선택 시 재생할 AudioSource
+        [SerializeField] private AudioClip selectClip; // 선택 효과음 파일
+        [SerializeField] private float selectVolume = 0.5f; // 선택 효과음 볼륨
+        [SerializeField] private float sceneLoadDelay = 0.25f; // 효과음이 들릴 시간을 주고 씬 이동
+
+        [Header("이동할 씬 이름")]
+        [SerializeField] private string villageSceneName = "01_VillageScene";
+        [SerializeField] private string forestSceneName = "02_ForestScene";
+        [SerializeField] private string castleSceneName = "03_CastleScene";
+        [SerializeField] private string devillSceneName = "04_DevilScene";
 
         [Header("스테이지 잠금 상태")]
-        [SerializeField] private bool villageUnlocked = true; // 처음에는 Village만 열림
+        [SerializeField] private bool villageUnlocked = true;
         [SerializeField] private bool forestUnlocked = false;
         [SerializeField] private bool castleUnlocked = false;
-        [SerializeField] private bool devilUnlocked = false;
+        [SerializeField] private bool devillUnlocked = false;
 
-        private int currentIndex;           // 현재 화면 중앙에 있는 카드 번호
-        private Vector2 targetGroupPosition; // 카드 그룹이 이동해야 할 목표 위치
-        private bool isMoving;              // 카드 그룹이 이동 중인지 여부
+        [Header("회전목마 위치 설정")]
+        [SerializeField] private Vector2 centerPosition = new Vector2(0f, -20f);
+        [SerializeField] private Vector2 leftPosition = new Vector2(-560f, -60f);
+        [SerializeField] private Vector2 rightPosition = new Vector2(560f, -60f);
+        [SerializeField] private Vector2 backPosition = new Vector2(0f, -60f);
+
+        [Header("회전목마 크기 설정")]
+        [SerializeField] private float centerScale = 1.25f;
+        [SerializeField] private float sideScale = 0.75f;
+        [SerializeField] private float backScale = 0.1f;
+
+        [Header("회전목마 투명도 설정")]
+        [SerializeField] private float centerAlpha = 1f;
+        [SerializeField] private float sideAlpha = 0.85f;
+        [SerializeField] private float backAlpha = 0f;
+        [SerializeField] private float lockedAlphaMultiplier = 0.55f;
+
+        [Header("회전목마 이동 속도")]
+        [SerializeField] private float moveSpeed = 8f;
+        [SerializeField] private float scaleSpeed = 8f;
+        [SerializeField] private float alphaSpeed = 8f;
+
+        [Header("배경음")]
+        [SerializeField] private AudioSource bgmAudioSource; // 스테이지 선택 화면 배경음
+
+        private int currentIndex;
+        private bool isMoving;
+        private bool isEnteringStage;
+        private Coroutine lockedMessageCoroutine;
+
+        private RectTransform[] cardRects;
+        private CanvasGroup[] cardCanvasGroups;
+        private Image[] cardImages;
+        private StageCardSelectEffect[] cardEffects;
+        private bool[] unlockedStates;
+        private string[] sceneNames;
+
+        private Vector2[] targetPositions;
+        private Vector3[] targetScales;
+        private float[] targetAlphas;
+        private bool[] shouldHideImmediately;
+
+        private void Awake()
+        {
+            cardRects = new RectTransform[] { villageCard, forestCard, castleCard, devillCard };
+            cardCanvasGroups = new CanvasGroup[] { villageCanvasGroup, forestCanvasGroup, castleCanvasGroup, devillCanvasGroup };
+            cardImages = new Image[] { villageCardImage, forestCardImage, castleCardImage, devillCardImage };
+            cardEffects = new StageCardSelectEffect[] { villageEffect, forestEffect, castleEffect, devillEffect };
+            sceneNames = new string[] { villageSceneName, forestSceneName, castleSceneName, devillSceneName };
+
+            targetPositions = new Vector2[4];
+            targetScales = new Vector3[4];
+            targetAlphas = new float[4];
+            shouldHideImmediately = new bool[4];
+
+            if (lockedMessagePanel != null && lockedMessageCanvasGroup == null)
+            {
+                lockedMessageCanvasGroup = lockedMessagePanel.GetComponent<CanvasGroup>();
+
+                if (lockedMessageCanvasGroup == null)
+                {
+                    lockedMessageCanvasGroup = lockedMessagePanel.AddComponent<CanvasGroup>();
+                }
+            }
+        }
 
         private void Start()
         {
-            // 처음에는 Village 카드부터 보여줍니다.
             currentIndex = 0;
+            isEnteringStage = false;
 
-            // 카드 잠금 상태에 맞게 투명도를 적용합니다.
-            UpdateCardLockVisuals();
+            RefreshUnlockedStates();
 
-            // 선택 표시를 갱신합니다.
-            UpdateSelectFrames();
+            if (lockedMessagePanel != null)
+            {
+                lockedMessagePanel.SetActive(false);
+            }
 
-            // 카드 그룹 위치를 Village 기준으로 맞춥니다.
-            MoveGroupInstantly();
+            if (lockedMessageCanvasGroup != null)
+            {
+                lockedMessageCanvasGroup.alpha = 0f;
+            }
+
+            UpdateCardVisuals();
+            CalculateCarouselTargets();
+            ApplyTargetsInstantly();
+            BringSelectedCardToFront();
+            UpdateSelectionEffects();
         }
 
         private void Update()
         {
+            if (isEnteringStage)
+            {
+                return;
+            }
+
             HandleMoveInput();
             HandleSelectInput();
-            MoveCardGroupSmoothly();
+            MoveCardsSmoothly();
         }
 
         private void HandleMoveInput()
         {
-            // 카드가 이동 중이면 추가 입력을 잠시 막습니다.
             if (isMoving)
             {
                 return;
             }
 
-            // 오른쪽 방향키: 다음 카드로 이동합니다.
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                MoveToNextCard();
+                MoveRight();
             }
 
-            // 왼쪽 방향키: 이전 카드로 이동합니다.
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                MoveToPreviousCard();
+                MoveLeft();
             }
         }
 
         private void HandleSelectInput()
         {
-            // Space 키를 누르면 현재 카드가 열려 있을 때만 해당 씬으로 이동합니다.
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 EnterSelectedStage();
             }
         }
 
-        private void MoveToNextCard()
+        private void MoveRight()
         {
-            // 마지막 카드보다 오른쪽으로는 이동하지 않습니다.
-            if (currentIndex >= 3)
+            int nextIndex = currentIndex + 1;
+
+            if (nextIndex > 3)
+            {
+                nextIndex = 0;
+            }
+
+            TryChangeSelection(nextIndex);
+        }
+
+        private void MoveLeft()
+        {
+            int previousIndex = currentIndex - 1;
+
+            if (previousIndex < 0)
+            {
+                previousIndex = 3;
+            }
+
+            TryChangeSelection(previousIndex);
+        }
+
+        private void TryChangeSelection(int targetIndex)
+        {
+            if (targetIndex == currentIndex)
             {
                 return;
             }
 
-            currentIndex++;
-            UpdateSelectFrames();
-            SetTargetGroupPosition();
-        }
-
-        private void MoveToPreviousCard()
-        {
-            // 첫 번째 카드보다 왼쪽으로는 이동하지 않습니다.
-            if (currentIndex <= 0)
+            if (!IsStageUnlocked(targetIndex))
             {
+                ShowLockedMessage();
                 return;
             }
 
-            currentIndex--;
-            UpdateSelectFrames();
-            SetTargetGroupPosition();
-        }
+            currentIndex = targetIndex;
 
-        private void SetTargetGroupPosition()
-        {
-            // currentIndex가 0이면 X = 0,
-            // 1이면 X = -cardSpacing,
-            // 2이면 X = -cardSpacing * 2,
-            // 이런 방식으로 카드 그룹을 왼쪽으로 이동시켜 현재 카드를 중앙에 보이게 합니다.
-            targetGroupPosition = new Vector2(-cardSpacing * currentIndex, stageCardGroup.anchoredPosition.y);
+            CalculateCarouselTargets();
+            BringSelectedCardToFront();
+            HideBackCardsImmediately();
+            UpdateSelectionEffects();
+
             isMoving = true;
-        }
-
-        private void MoveGroupInstantly()
-        {
-            // 시작할 때는 부드러운 이동 없이 바로 위치를 맞춥니다.
-            if (stageCardGroup == null)
-            {
-                return;
-            }
-
-            targetGroupPosition = new Vector2(-cardSpacing * currentIndex, stageCardGroup.anchoredPosition.y);
-            stageCardGroup.anchoredPosition = targetGroupPosition;
-        }
-
-        private void MoveCardGroupSmoothly()
-        {
-            // 카드 그룹이 없거나 이동 중이 아니면 처리하지 않습니다.
-            if (stageCardGroup == null || !isMoving)
-            {
-                return;
-            }
-
-            // 목표 위치까지 부드럽게 이동합니다.
-            stageCardGroup.anchoredPosition = Vector2.Lerp(
-                stageCardGroup.anchoredPosition,
-                targetGroupPosition,
-                slideSpeed * Time.deltaTime
-            );
-
-            // 거의 도착하면 정확한 위치로 고정합니다.
-            if (Vector2.Distance(stageCardGroup.anchoredPosition, targetGroupPosition) < 0.5f)
-            {
-                stageCardGroup.anchoredPosition = targetGroupPosition;
-                isMoving = false;
-            }
-        }
-
-        private void UpdateCardLockVisuals()
-        {
-            // 열린 카드는 선명하게, 잠긴 카드는 회색처럼 반투명하게 보이도록 합니다.
-            SetCardAlpha(villageCanvasGroup, villageUnlocked);
-            SetCardAlpha(forestCanvasGroup, forestUnlocked);
-            SetCardAlpha(castleCanvasGroup, castleUnlocked);
-            SetCardAlpha(devilCanvasGroup, devilUnlocked);
-        }
-
-        private void SetCardAlpha(CanvasGroup canvasGroup, bool isUnlocked)
-        {
-            if (canvasGroup == null)
-            {
-                return;
-            }
-
-            canvasGroup.alpha = isUnlocked ? unlockedAlpha : lockedAlpha;
-        }
-
-        private void UpdateSelectFrames()
-        {
-            // 현재 선택된 카드에만 선택 표시를 켭니다.
-            // 단, 잠긴 카드는 선택 표시가 켜지지 않게 합니다.
-            SetSelectFrame(villageSelectFrame, currentIndex == 0 && villageUnlocked);
-            SetSelectFrame(forestSelectFrame, currentIndex == 1 && forestUnlocked);
-            SetSelectFrame(castleSelectFrame, currentIndex == 2 && castleUnlocked);
-            SetSelectFrame(devilSelectFrame, currentIndex == 3 && devilUnlocked);
-        }
-
-        private void SetSelectFrame(GameObject selectFrame, bool active)
-        {
-            if (selectFrame == null)
-            {
-                return;
-            }
-
-            selectFrame.SetActive(active);
         }
 
         private void EnterSelectedStage()
         {
-            // 현재 카드가 잠겨 있으면 입장하지 않습니다.
-            if (!IsCurrentStageUnlocked())
+            if (!IsStageUnlocked(currentIndex))
             {
-                Debug.Log("아직 열리지 않은 스테이지입니다.");
+                ShowLockedMessage();
                 return;
             }
 
-            // 열린 카드라면 해당 씬으로 이동합니다.
-            if (currentIndex == 0)
+            StartCoroutine(EnterSelectedStageRoutine());
+        }
+
+        private IEnumerator EnterSelectedStageRoutine()
+        {
+            // 스테이지 입장 중에는 추가 입력을 막습니다.
+            isEnteringStage = true;
+
+            // 배경음을 끕니다.
+            if (bgmAudioSource != null)
             {
-                SceneManager.LoadScene(villageSceneName);
+                bgmAudioSource.Stop();
             }
-            else if (currentIndex == 1)
+
+            // 선택 효과음만 재생합니다.
+            PlaySelectSound();
+
+            // 효과음이 들릴 시간을 줍니다.
+            yield return new WaitForSeconds(sceneLoadDelay);
+
+            // 로딩씬이 불러올 실제 목적지 씬 이름을 저장합니다.
+            PlayerPrefs.SetString("NextSceneName", sceneNames[currentIndex]);
+            PlayerPrefs.Save();
+
+            // 로딩씬으로 이동합니다.
+            SceneManager.LoadScene("99_LoadingScene");
+        }
+
+        private void PlaySelectSound()
+        {
+            if (selectAudioSource == null || selectClip == null)
             {
-                SceneManager.LoadScene(forestSceneName);
+                return;
             }
-            else if (currentIndex == 2)
+
+            selectAudioSource.PlayOneShot(selectClip, selectVolume);
+        }
+
+        private void RefreshUnlockedStates()
+        {
+            unlockedStates = new bool[] { villageUnlocked, forestUnlocked, castleUnlocked, devillUnlocked };
+        }
+
+        private bool IsStageUnlocked(int index)
+        {
+            if (unlockedStates == null || index < 0 || index >= unlockedStates.Length)
             {
-                SceneManager.LoadScene(castleSceneName);
+                return false;
             }
-            else if (currentIndex == 3)
+
+            return unlockedStates[index];
+        }
+
+        private void UpdateCardVisuals()
+        {
+            for (int i = 0; i < cardImages.Length; i++)
             {
-                SceneManager.LoadScene(devilSceneName);
+                if (cardImages[i] == null)
+                {
+                    continue;
+                }
+
+                cardImages[i].material = IsStageUnlocked(i) ? null : grayscaleMaterial;
             }
         }
 
-        private bool IsCurrentStageUnlocked()
+        private void CalculateCarouselTargets()
         {
-            // 현재 선택된 스테이지가 열려 있는지 확인합니다.
-            if (currentIndex == 0)
+            for (int i = 0; i < cardRects.Length; i++)
             {
-                return villageUnlocked;
+                shouldHideImmediately[i] = false;
+
+                int relativeIndex = GetRelativeIndex(i);
+
+                if (relativeIndex == 0)
+                {
+                    SetTarget(i, centerPosition, centerScale, centerAlpha, false);
+                }
+                else if (relativeIndex == -1)
+                {
+                    SetTarget(i, leftPosition, sideScale, sideAlpha, false);
+                }
+                else if (relativeIndex == 1)
+                {
+                    SetTarget(i, rightPosition, sideScale, sideAlpha, false);
+                }
+                else
+                {
+                    SetTarget(i, backPosition, backScale, backAlpha, true);
+                }
+            }
+        }
+
+        private int GetRelativeIndex(int cardIndex)
+        {
+            int relative = cardIndex - currentIndex;
+
+            if (relative > 2)
+            {
+                relative -= 4;
             }
 
-            if (currentIndex == 1)
+            if (relative < -2)
             {
-                return forestUnlocked;
+                relative += 4;
             }
 
-            if (currentIndex == 2)
+            return relative;
+        }
+
+        private void SetTarget(int cardIndex, Vector2 position, float scale, float alpha, bool hideImmediately)
+        {
+            if (!IsStageUnlocked(cardIndex))
             {
-                return castleUnlocked;
+                alpha *= lockedAlphaMultiplier;
             }
 
-            if (currentIndex == 3)
+            targetPositions[cardIndex] = position;
+            targetScales[cardIndex] = Vector3.one * scale;
+            targetAlphas[cardIndex] = alpha;
+            shouldHideImmediately[cardIndex] = hideImmediately;
+        }
+
+        private void BringSelectedCardToFront()
+        {
+            if (cardRects == null)
             {
-                return devilUnlocked;
+                return;
             }
 
-            return false;
+            int leftIndex = GetWrappedIndex(currentIndex - 1);
+            int rightIndex = GetWrappedIndex(currentIndex + 1);
+            int backIndex = GetWrappedIndex(currentIndex + 2);
+
+            if (cardRects[backIndex] != null)
+            {
+                cardRects[backIndex].SetAsFirstSibling();
+            }
+
+            if (cardRects[leftIndex] != null)
+            {
+                cardRects[leftIndex].SetAsLastSibling();
+            }
+
+            if (cardRects[rightIndex] != null)
+            {
+                cardRects[rightIndex].SetAsLastSibling();
+            }
+
+            if (cardRects[currentIndex] != null)
+            {
+                cardRects[currentIndex].SetAsLastSibling();
+            }
+        }
+
+        private int GetWrappedIndex(int index)
+        {
+            if (index < 0)
+            {
+                return 3;
+            }
+
+            if (index > 3)
+            {
+                return 0;
+            }
+
+            return index;
+        }
+
+        private void HideBackCardsImmediately()
+        {
+            for (int i = 0; i < cardCanvasGroups.Length; i++)
+            {
+                if (cardCanvasGroups[i] == null)
+                {
+                    continue;
+                }
+
+                if (shouldHideImmediately[i])
+                {
+                    cardCanvasGroups[i].alpha = 0f;
+                }
+            }
+        }
+
+        private void ApplyTargetsInstantly()
+        {
+            for (int i = 0; i < cardRects.Length; i++)
+            {
+                if (cardRects[i] == null)
+                {
+                    continue;
+                }
+
+                cardRects[i].anchoredPosition = targetPositions[i];
+                cardRects[i].localScale = targetScales[i];
+                cardRects[i].localRotation = Quaternion.identity;
+
+                SetCardAlpha(i, targetAlphas[i]);
+            }
+        }
+
+        private void MoveCardsSmoothly()
+        {
+            if (!isMoving)
+            {
+                return;
+            }
+
+            bool allArrived = true;
+
+            for (int i = 0; i < cardRects.Length; i++)
+            {
+                if (cardRects[i] == null)
+                {
+                    continue;
+                }
+
+                cardRects[i].anchoredPosition = Vector2.Lerp(cardRects[i].anchoredPosition, targetPositions[i], moveSpeed * Time.deltaTime);
+                cardRects[i].localScale = Vector3.Lerp(cardRects[i].localScale, targetScales[i], scaleSpeed * Time.deltaTime);
+                cardRects[i].localRotation = Quaternion.identity;
+
+                if (shouldHideImmediately[i])
+                {
+                    SetCardAlpha(i, 0f);
+                }
+                else
+                {
+                    float nextAlpha = Mathf.Lerp(GetCardAlpha(i), targetAlphas[i], alphaSpeed * Time.deltaTime);
+                    SetCardAlpha(i, nextAlpha);
+                }
+
+                if (Vector2.Distance(cardRects[i].anchoredPosition, targetPositions[i]) > 0.5f)
+                {
+                    allArrived = false;
+                }
+            }
+
+            if (allArrived)
+            {
+                ApplyTargetsInstantly();
+                BringSelectedCardToFront();
+                isMoving = false;
+            }
+        }
+
+        private void SetCardAlpha(int index, float alpha)
+        {
+            if (cardCanvasGroups[index] == null)
+            {
+                return;
+            }
+
+            cardCanvasGroups[index].alpha = alpha;
+        }
+
+        private float GetCardAlpha(int index)
+        {
+            if (cardCanvasGroups[index] == null)
+            {
+                return 1f;
+            }
+
+            return cardCanvasGroups[index].alpha;
+        }
+
+        private void UpdateSelectionEffects()
+        {
+            for (int i = 0; i < cardEffects.Length; i++)
+            {
+                if (cardEffects[i] == null)
+                {
+                    continue;
+                }
+
+                cardEffects[i].SetSelected(i == currentIndex);
+            }
+        }
+
+        private void ShowLockedMessage()
+        {
+            if (lockedMessagePanel == null || lockedMessageText == null || lockedMessageCanvasGroup == null)
+            {
+                return;
+            }
+
+            if (lockedMessageCoroutine != null)
+            {
+                StopCoroutine(lockedMessageCoroutine);
+            }
+
+            lockedMessageCoroutine = StartCoroutine(ShowLockedMessageRoutine());
+        }
+
+        private IEnumerator ShowLockedMessageRoutine()
+        {
+            lockedMessageText.text = "아직 스테이지가 열리지 않았어요!";
+            lockedMessagePanel.SetActive(true);
+
+            yield return StartCoroutine(FadeLockedMessage(0f, 1f));
+
+            yield return new WaitForSeconds(lockedMessageStayTime);
+
+            yield return StartCoroutine(FadeLockedMessage(1f, 0f));
+
+            lockedMessagePanel.SetActive(false);
+            lockedMessageCoroutine = null;
+        }
+
+        private IEnumerator FadeLockedMessage(float startAlpha, float endAlpha)
+        {
+            float timer = 0f;
+
+            while (timer < lockedMessageFadeTime)
+            {
+                timer += Time.deltaTime;
+
+                float alpha = Mathf.Lerp(startAlpha, endAlpha, timer / lockedMessageFadeTime);
+
+                if (lockedMessageCanvasGroup != null)
+                {
+                    lockedMessageCanvasGroup.alpha = alpha;
+                }
+
+                yield return null;
+            }
+
+            if (lockedMessageCanvasGroup != null)
+            {
+                lockedMessageCanvasGroup.alpha = endAlpha;
+            }
         }
     }
 }

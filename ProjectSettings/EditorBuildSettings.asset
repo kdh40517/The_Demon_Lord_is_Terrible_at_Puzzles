@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/03_StageScene.unity
     guid: 8e19721973fd0d3459f31590716ab24a
+  - enabled: 1
+    path: Assets/01.Village/01.Scene/Village.unity
+    guid: 07aee606e83d1f342b2a7f9a11b9195a
+  - enabled: 1
+    path: Assets/02.Forest/01.Scene/Forest.unity
+    guid: 10691037c8e5c8240bfc08ed06493249
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
