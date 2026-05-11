@@ -262,12 +262,10 @@ namespace SeoAhn
             // 선택 효과음만 재생합니다.
             PlaySelectSound();
 
-            // 효과음이 들릴 시간을 줍니다.
             yield return new WaitForSeconds(sceneLoadDelay);
 
-            // 로딩씬이 불러올 실제 목적지 씬 이름을 저장합니다.
-            PlayerPrefs.SetString("NextSceneName", sceneNames[currentIndex]);
-            PlayerPrefs.Save();
+            // 로딩씬이 이동할 목적지 씬을 임시 저장합니다.
+            SceneTransitionData.SetNextScene(sceneNames[currentIndex]);
 
             // 로딩씬으로 이동합니다.
             SceneManager.LoadScene("99_LoadingScene");

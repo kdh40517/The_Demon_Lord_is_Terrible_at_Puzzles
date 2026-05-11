@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 248151835}
   - component: {fileID: 248151834}
+  - component: {fileID: 248151836}
   m_Layer: 0
   m_Name: StoryBGM
   m_TagString: Untagged
@@ -248,6 +249,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &248151836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248151833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 248151834}
+  isBGM: 1
 --- !u!1 &264772407
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +752,7 @@ GameObject:
   - component: {fileID: 489619279}
   - component: {fileID: 489619278}
   - component: {fileID: 489619280}
+  - component: {fileID: 489619281}
   m_Layer: 0
   m_Name: StoryIntroManager
   m_TagString: Untagged
@@ -888,6 +904,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &489619281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489619277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9dbb1d08102484daa61a8bfb1d57e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeoAhn.SavedVolumeAudioSource
+  audioSource: {fileID: 489619280}
+  isBGM: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

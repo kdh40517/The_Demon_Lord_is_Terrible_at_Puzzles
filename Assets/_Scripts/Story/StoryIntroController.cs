@@ -127,7 +127,7 @@ namespace SeoAhn
             if (introMessages != null && introMessages.Length > 3)
             {
                 introMessages[3] =
-                    playerName + "는(은) 공주의 낭군이 되기 위해\n" +
+                    playerName + "은(는) 공주의 낭군이 되기 위해\n" +
                     "마왕앞에 당당히 서게 되는데..";
             }
         }
