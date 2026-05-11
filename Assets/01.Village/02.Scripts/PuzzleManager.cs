@@ -4,88 +4,60 @@ using UnityEngine.SceneManagement;
 
 namespace TM
 {
-    // 마을 퍼즐의 클리어 판정, 클리어 UI 표시,
-    // 클리어 후 자동으로 스테이지 선택 씬으로 복귀하는 스크립트입니다.
     public class PuzzleManager : MonoBehaviour
     {
-        // 핵심 1: 언제 어디서든 PuzzleManager.instance 로 쉽게 접근할 수 있게 만드는 싱글톤 패턴입니다.
+        // [핵심 1. 싱글톤 패턴]
+        // 게임 내에 퍼즐 매니저는 딱 1개만 존재하므로, 다른 스크립트(예: 파이프 클릭 스크립트)에서
+        // GetComponent로 귀찮게 찾을 필요 없이 PuzzleManager.instance 로 바로 접근하기 위해 만듭니다.
         public static PuzzleManager instance;
 
         [Header("퍼즐 보드에 있는 모든 파이프 타일들")]
-        public Pipe[] allPipes; // 퍼즐에 배치된 모든 파이프
+        public Pipe[] allPipes;
 
-<<<<<<< Updated upstream
-        private Pipe[,] grid = new Pipe[4, 3]; // 4x3 퍼즐 배열
-        public bool isCleared = false; // 클리어 여부
-=======
-        // 핵심 2: 일렬로 된 파이프들을 (x, y) 좌표로 쉽게 찾기 위해 4x3 크기의 2차원 표(grid)로 만듭니다.
+        // [핵심 2. 2차원 배열 (그리드)]
+        // 하이어라키에 일렬로 나열된 파이프들을 (x, y) 좌표계로 관리하기 위한 배열입니다.
+        // 상하좌우 파이프가 서로 이어져 있는지 수학적으로 계산하려면 2차원 형태가 훨씬 편합니다.
         private Pipe[,] grid = new Pipe[4, 3];
         public bool isCleared = false;
->>>>>>> Stashed changes
 
         [Header("Audio Settings")]
-        public AudioSource audioSource; // 효과음 재생용 AudioSource
-        public AudioClip clearSound; // 클리어 효과음
+        public AudioSource audioSource;
+        public AudioClip clearSound;
 
         [Header("Effect Settings")]
-        public ParticleSystem waterParticle; // 클리어 파티클
+        public ParticleSystem waterParticle;
 
         [Header("UI Settings")]
-<<<<<<< Updated upstream
-        public CanvasGroup clearUIGroup; // 클리어 이미지(CanvasGroup 필요)
+        public CanvasGroup clearUIGroup;
 
         [Header("타이밍 설정")]
-        public float clearDelay = 2.5f; // 클리어 후 UI 등장 전 대기
-        public float fadeDuration = 1.5f; // 클리어 이미지 페이드 시간
-        public float autoReturnDelay = 3f; // 클리어 이미지 완전히 뜬 뒤 자동 복귀 대기
-
-        [Header("Scene Settings")]
-        public string loadingSceneName = "99_LoadingScene"; // 로딩씬 이름
-        public string stageSceneName = "03_StageScene"; // 돌아갈 스테이지씬 이름
-=======
-        public CanvasGroup clearUIGroup;
         public float clearDelay = 2.5f;
         public float fadeDuration = 1.5f;
-        public GameObject exitButton;
+        public float autoReturnDelay = 3f;
 
         [Header("Scene Settings")]
-        public string nextSceneName = "NextSceneName";
->>>>>>> Stashed changes
+        public string loadingSceneName = "99_LoadingScene";
+        public string stageSceneName = "03_StageScene";
 
         private void Awake()
         {
-            // 다른 스크립트에서 접근할 수 있도록 instance 저장
             instance = this;
         }
 
         private void Start()
         {
-<<<<<<< Updated upstream
-            // 클리어 UI 초기 상태
             if (clearUIGroup != null)
-=======
-            // 시작할 때 나가기 버튼은 일단 숨겨둡니다.
-            if (exitButton != null)
->>>>>>> Stashed changes
             {
                 clearUIGroup.alpha = 0f;
                 clearUIGroup.interactable = false;
                 clearUIGroup.blocksRaycasts = false;
             }
 
-            // 파이프 개수가 부족하면 종료
-            if (allPipes == null || allPipes.Length < 12)
-            {
-                return;
-            }
+            if (allPipes == null || allPipes.Length < 12) return;
 
-<<<<<<< Updated upstream
-            // 1차원 배열을 2차원 grid로 변환
-=======
-            // 핵심 3: 1차원 배열(allPipes)에 들어있는 파이프들을 4x3 2차원 배열(grid)에 차곡차곡 정리해 넣습니다.
->>>>>>> Stashed changes
+            // 1차원 배열(allPipes)의 데이터를 4x3 크기의 2차원 배열(grid)로 차곡차곡 옮겨 담습니다.
+            // 이렇게 하면 grid[0, 0]은 왼쪽 맨 위, grid[3, 2]는 오른쪽 맨 아래 파이프가 됩니다.
             int index = 0;
-
             for (int y = 0; y < 3; y++)
             {
                 for (int x = 0; x < 4; x++)
@@ -95,37 +67,17 @@ namespace TM
                 }
             }
 
-<<<<<<< Updated upstream
-            // 퍼즐 섞기
-=======
-            // 게임이 시작되면 파이프를 무작위로 섞고, 처음 물길이 어떻게 되어있는지 검사합니다.
->>>>>>> Stashed changes
             ShufflePipes();
-
-<<<<<<< Updated upstream
-            // 물길 검사
             CheckWaterFlow();
-=======
-        public void OnExitButtonClicked()
-        {
-            Debug.Log($"나가기 버튼이 클릭되었습니다! {nextSceneName} 씬으로 이동합니다!");
-            SceneManager.LoadScene(nextSceneName);
->>>>>>> Stashed changes
         }
 
-        // 모든 파이프를 0~3번 랜덤하게 회전시켜서 퍼즐을 섞는 함수입니다.
         public void ShufflePipes()
         {
-            // 모든 파이프를 랜덤하게 회전시켜 퍼즐 생성
             foreach (Pipe pipe in allPipes)
             {
-                if (pipe == null)
-                {
-                    continue;
-                }
+                if (pipe == null) continue;
 
                 int randomRotationCount = Random.Range(0, 4);
-
                 for (int i = 0; i < randomRotationCount; i++)
                 {
                     pipe.RotatePipe();
@@ -133,250 +85,112 @@ namespace TM
             }
         }
 
-        // 핵심 4: 퍼즐의 가장 중요한 로직! 파이프가 돌아갈 때마다 물이 끝까지 통하는지 확인합니다.
         public void CheckWaterFlow()
         {
-<<<<<<< Updated upstream
-            // 기존 물 상태 초기화
+            // 물길을 새로 계산하기 전에 모든 파이프의 물을 말라있는 상태(false)로 초기화합니다.
             foreach (Pipe pipe in allPipes)
             {
-                if (pipe != null)
-                {
-                    pipe.SetWater(false);
-                }
+                if (pipe != null) pipe.SetWater(false);
             }
-=======
-            // 1. 일단 모든 파이프의 물을 쫙 뺍니다 (초기화)
-            foreach (Pipe pipe in allPipes) { if (pipe != null) pipe.SetWater(false); }
->>>>>>> Stashed changes
 
-            // 2. 시작점(왼쪽) 파이프가 왼쪽[3]으로 뚫려있다면, 거기서부터 물을 흘려보냅니다.
+            // 물이 출발하는 시작점 파이프 (왼쪽 가운데)
             Pipe startPipe = grid[0, 1];
-
-            // 시작 파이프에서 물 탐색 시작
+            // 시작점 파이프의 왼쪽 구멍(isOpened[3])이 뚫려있어야 물이 들어오기 시작합니다.
             if (startPipe != null && startPipe.isOpened[3])
             {
+                // DFS(깊이 우선 탐색) 알고리즘 시작! 여기서부터 물이 연결된 길을 따라 쫙 퍼져나갑니다.
                 DFS_CheckConnection(0, 1);
             }
 
-            // 3. 도착점(오른쪽) 파이프를 확인합니다.
+            // 물이 최종적으로 도착해야 하는 목표점 파이프 (오른쪽 가운데)
             Pipe goalPipe = grid[3, 1];
-
-<<<<<<< Updated upstream
-            // 목표 파이프까지 연결되었는지 검사
-=======
-            // 4. 도착점에 물이 도달했고 && 오른쪽[1]으로 뚫려있다면? -> 퍼즐 클리어!
->>>>>>> Stashed changes
+            // 목표 파이프에 물이 도달했고(hasWater), 오른쪽 구멍(isOpened[1])으로 물이 빠져나갈 수 있다면 클리어 판정!
             if (goalPipe != null && goalPipe.hasWater && goalPipe.isOpened[1])
             {
-                if (!isCleared) // 중복 클리어 방지
+                if (!isCleared)
                 {
                     isCleared = true;
-
-<<<<<<< Updated upstream
                     Debug.Log("퍼즐 클리어!");
 
-                    // 효과음 재생
-                    if (audioSource != null && clearSound != null)
-                    {
-                        audioSource.PlayOneShot(clearSound);
-                    }
+                    if (audioSource != null && clearSound != null) audioSource.PlayOneShot(clearSound);
+                    if (waterParticle != null) waterParticle.Play();
 
-                    // 파티클 재생
-                    if (waterParticle != null)
-                    {
-                        waterParticle.Play();
-                    }
-
-                    // 클리어 UI 표시 후 자동 복귀
                     if (clearUIGroup != null)
                     {
                         StartCoroutine(FadeInClearUIAndReturn());
                     }
-=======
-                    // 팡파레 효과음과 분수 파티클을 재생합니다.
-                    if (audioSource != null && clearSound != null) audioSource.PlayOneShot(clearSound);
-                    if (waterParticle != null) waterParticle.Play();
-
-                    // 클리어 UI를 스르륵 나타나게 합니다.
-                    if (clearUIGroup != null) StartCoroutine(FadeInClearUI());
->>>>>>> Stashed changes
                 }
             }
             else
             {
-                isCleared = false;
+                isCleared = false; // 연결이 끊어지면 클리어 상태 해제
             }
         }
 
-        // 핵심 5: 물이 번져나가는 원리 (깊이 우선 탐색 - DFS)
-        // 현재 파이프에서 상하좌우를 살펴보고, 파이프가 서로 이어져 있다면 그쪽으로도 물을 채우는 함수입니다.
+        // [핵심 3. DFS (깊이 우선 탐색) 알고리즘]
+        // 현재 위치(x, y)에서 상/하/좌/우를 살펴보고, 길이 뚫려있으면 그쪽 방향의 파이프로 넘어가서 다시 탐색하는 재귀 함수입니다.
         private void DFS_CheckConnection(int x, int y)
         {
-<<<<<<< Updated upstream
-            if (x < 0 || x >= 4 || y < 0 || y >= 3)
-            {
-                return;
-            }
-
-            Pipe currentPipe = grid[x, y];
-
-            if (currentPipe == null || currentPipe.hasWater)
-            {
-                return;
-            }
-=======
-            // 보드판 밖으로 나가면 무시합니다.
+            // 보드판 범위를 벗어나면 에러가 나므로 탐색 중지
             if (x < 0 || x >= 4 || y < 0 || y >= 3) return;
 
             Pipe currentPipe = grid[x, y];
-            // 파이프가 없거나 이미 물이 차있으면 돌아갑니다.
+            // 파이프가 비어있거나, 이미 물이 차있는 파이프면 중복해서 검사할 필요가 없으므로 탐색 중지
             if (currentPipe == null || currentPipe.hasWater) return;
->>>>>>> Stashed changes
 
             // 현재 파이프에 물을 채웁니다.
             currentPipe.SetWater(true);
 
-<<<<<<< Updated upstream
-            // 위
-            if (currentPipe.isOpened[0] &&
-                y > 0 &&
-                grid[x, y - 1] != null &&
-                grid[x, y - 1].isOpened[2])
-            {
-                DFS_CheckConnection(x, y - 1);
-            }
+            // 주의: 배열 인덱스 매칭 -> 0: 위, 1: 오른쪽, 2: 아래, 3: 왼쪽
 
-            // 오른쪽
-            if (currentPipe.isOpened[1] &&
-                x < 3 &&
-                grid[x + 1, y] != null &&
-                grid[x + 1, y].isOpened[3])
-            {
-                DFS_CheckConnection(x + 1, y);
-            }
-
-            // 아래
-            if (currentPipe.isOpened[2] &&
-                y < 2 &&
-                grid[x, y + 1] != null &&
-                grid[x, y + 1].isOpened[0])
-            {
-                DFS_CheckConnection(x, y + 1);
-            }
-
-            // 왼쪽
-            if (currentPipe.isOpened[3] &&
-                x > 0 &&
-                grid[x - 1, y] != null &&
-                grid[x - 1, y].isOpened[1])
-            {
-=======
-            // 북쪽[0]이 뚫려있고, 윗 파이프의 남쪽[2]이 뚫려있다면 -> 위로 물이 번짐!
+            // [위쪽 방향 검사]
+            // 내 파이프 윗부분(0)이 뚫림 && 위쪽 칸이 존재함 && 위쪽 파이프가 존재함 && 위쪽 파이프의 아랫부분(2)이 뚫림
             if (currentPipe.isOpened[0] && y > 0 && grid[x, y - 1] != null && grid[x, y - 1].isOpened[2])
-                DFS_CheckConnection(x, y - 1);
-            // 동쪽[1]이 뚫려있고, 오른쪽 파이프의 서쪽[3]이 뚫려있다면 -> 오른쪽으로 물이 번짐!
+                DFS_CheckConnection(x, y - 1); // 위쪽 파이프로 이동해서 다시 탐색
+
+            // [오른쪽 방향 검사]
+            // 내 파이프 오른쪽(1)이 뚫림 && 오른쪽 칸이 존재함 && 오른쪽 파이프가 존재함 && 오른쪽 파이프의 왼쪽(3)이 뚫림
             if (currentPipe.isOpened[1] && x < 3 && grid[x + 1, y] != null && grid[x + 1, y].isOpened[3])
                 DFS_CheckConnection(x + 1, y);
-            // 남쪽[2]이 뚫려있고, 아랫 파이프의 북쪽[0]이 뚫려있다면 -> 아래로 물이 번짐!
+
+            // [아래쪽 방향 검사]
+            // 내 파이프 아랫부분(2)이 뚫림 && 아래쪽 칸이 존재함 && 아래쪽 파이프가 존재함 && 아래쪽 파이프의 윗부분(0)이 뚫림
             if (currentPipe.isOpened[2] && y < 2 && grid[x, y + 1] != null && grid[x, y + 1].isOpened[0])
                 DFS_CheckConnection(x, y + 1);
-            // 서쪽[3]이 뚫려있고, 왼쪽 파이프의 동쪽[1]이 뚫려있다면 -> 왼쪽으로 물이 번짐!
+
+            // [왼쪽 방향 검사]
+            // 내 파이프 왼쪽(3)이 뚫림 && 왼쪽 칸이 존재함 && 왼쪽 파이프가 존재함 && 왼쪽 파이프의 오른쪽(1)이 뚫림
             if (currentPipe.isOpened[3] && x > 0 && grid[x - 1, y] != null && grid[x - 1, y].isOpened[1])
->>>>>>> Stashed changes
                 DFS_CheckConnection(x - 1, y);
-            }
         }
 
-<<<<<<< Updated upstream
+        // [핵심 4. 코루틴을 이용한 시간 제어 및 연출]
+        // 클리어 직후 UI를 부드럽게 띄우고, 일정 시간 뒤에 씬을 넘어가는 등 '시간의 흐름'이 필요한 연출을 담당합니다.
         private IEnumerator FadeInClearUIAndReturn()
         {
-            // 클리어 직후 잠깐 대기
+            // 클리어 이펙트(물 뿜기 등)를 볼 수 있게 잠시 대기
             yield return new WaitForSeconds(clearDelay);
 
             float elapsedTime = 0f;
-
-            // 클리어 이미지 페이드인
-=======
-        // 핵심 6: 클리어 성공 시 연출을 담당하는 코루틴 (시간의 흐름을 제어합니다)
-        private IEnumerator FadeInClearUI()
-        {
-            // 분수 물줄기가 시원하게 나오는 걸 감상할 수 있게 잠시 대기합니다.
-            yield return new WaitForSeconds(clearDelay);
-
-            float elapsedTime = 0f;
-            // 정해진 시간(fadeDuration) 동안 투명도를 0에서 1로 서서히 올립니다. (스르륵 나타나는 효과)
->>>>>>> Stashed changes
+            // fadeDuration 시간 동안 서서히 투명도(alpha)를 0에서 1로 올립니다. (페이드 인 효과)
             while (elapsedTime < fadeDuration)
             {
                 elapsedTime += Time.deltaTime;
-
-                clearUIGroup.alpha = Mathf.Lerp(
-                    0f,
-                    1f,
-                    elapsedTime / fadeDuration
-                );
-
-                yield return null;
+                clearUIGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+                yield return null; // 다음 프레임까지 대기
             }
+            clearUIGroup.alpha = 1f; // 확실하게 100% 보이게 고정
 
-            clearUIGroup.alpha = 1f;
-<<<<<<< Updated upstream
-
-            // 클리어 이미지가 완전히 뜬 후 3초 대기
+            // UI가 완전히 다 뜨고 난 뒤, 플레이어가 상황을 인지할 수 있게 잠시 대기
             yield return new WaitForSeconds(autoReturnDelay);
 
-            // Village 클리어 저장
+            // [데이터 저장 및 씬 전환]
+            // 외부 스크립트(SeoAhn 패키지/네임스페이스)를 참조하여 현재 스테이지 클리어를 세이브합니다.
             SeoAhn.StageClearManager.SetVillageClear();
-
-            // 로딩씬 끝나면 StageScene으로 가도록 지정
             SeoAhn.SceneTransitionData.SetNextScene(stageSceneName);
 
-            // 로딩씬 이동
+            // 로딩 씬으로 넘어갑니다. (이후 로딩 씬에서 자동으로 stageSceneName으로 이동하게 됩니다)
             SceneManager.LoadScene(loadingSceneName);
-=======
-            clearUIGroup.interactable = true;
-            clearUIGroup.blocksRaycasts = true; // 이제 UI를 마우스로 누를 수 있습니다.
-
-            // 마지막으로 '나가기' 버튼을 귀엽게 통! 하고 튕겨 나오게 띄웁니다.
-            if (exitButton != null)
-            {
-                exitButton.SetActive(true);
-                StartCoroutine(PopUpAnimation(exitButton.transform));
-            }
-        }
-
-        // 버튼이 나타날 때 살짝 커졌다가 원래 크기로 돌아오는 '띠용~' 하는 팝업 애니메이션입니다.
-        private IEnumerator PopUpAnimation(Transform target)
-        {
-            float popDuration = 0.3f;
-            float time = 0f;
-
-            target.localScale = Vector3.zero; // 안 보이는 상태에서 시작
-
-            while (time < popDuration)
-            {
-                time += Time.deltaTime;
-                float progress = time / popDuration;
-                float scale;
-
-                // 70% 시점까지는 원래 크기보다 조금 더 크게(1.1배) 부풀립니다.
-                if (progress < 0.7f)
-                {
-                    scale = Mathf.Lerp(0f, 1.1f, progress / 0.7f);
-                }
-                // 나머지 30% 시점 동안 원래 크기(1배)로 쏙 돌아옵니다.
-                else
-                {
-                    scale = Mathf.Lerp(1.1f, 1f, (progress - 0.7f) / 0.3f);
-                }
-
-                target.localScale = new Vector3(scale, scale, scale);
-                yield return null;
-            }
-
-            target.localScale = Vector3.one; // 오차 보정을 위해 마지막엔 정확히 1로 맞춰줍니다.
->>>>>>> Stashed changes
         }
     }
 }

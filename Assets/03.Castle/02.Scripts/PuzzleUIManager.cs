@@ -16,6 +16,8 @@ namespace TM
         public Sprite leftArrow;
         public Sprite rightArrow;
 
+
+
         // --- NEW: Space bar icon sprite ---
         [Tooltip("스페이스바 아이콘 ( runic 'SPACE' key)")]
         public Sprite spaceBar;

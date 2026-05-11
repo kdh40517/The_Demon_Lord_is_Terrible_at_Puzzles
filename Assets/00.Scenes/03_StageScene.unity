@@ -1968,9 +1968,9 @@ MonoBehaviour:
   castleSceneName: Castle
   devillSceneName: DevillKing
   villageUnlocked: 1
-  forestUnlocked: 0
-  castleUnlocked: 0
-  devillUnlocked: 0
+  forestUnlocked: 1
+  castleUnlocked: 1
+  devillUnlocked: 1
   centerPosition: {x: 0, y: -60}
   leftPosition: {x: -560, y: -60}
   rightPosition: {x: 560, y: -60}
@@ -1990,6 +1990,7 @@ MonoBehaviour:
   forestStampEffect: {fileID: 777935598}
   castleStampEffect: {fileID: 926755106}
   devillStampEffect: {fileID: 333405104}
+  autoSelectNextDelay: 0.8
 --- !u!4 &1704425101
 Transform:
   m_ObjectHideFlags: 0
