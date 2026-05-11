@@ -79,9 +79,9 @@ namespace SeoAhn
             SetupSlider(sfxSlider);
 
             // 시작 볼륨은 전부 100%로 맞춥니다.
-            SetSliderValue(masterSlider, PlayerPrefs.GetFloat("MasterVolume", 1f));
-            SetSliderValue(bgmSlider, PlayerPrefs.GetFloat("BGMVolume", 1f));
-            SetSliderValue(sfxSlider, PlayerPrefs.GetFloat("SFXVolume", 1f));
+            SetSliderValue(masterSlider, AudioVolumeData.MasterVolume);
+            SetSliderValue(bgmSlider, AudioVolumeData.BGMVolume);
+            SetSliderValue(sfxSlider, AudioVolumeData.SFXVolume);
 
             ChangeMasterVolume(masterSlider.value);
             ChangeBGMVolume(bgmSlider.value);

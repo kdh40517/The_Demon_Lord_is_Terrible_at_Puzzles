@@ -8,6 +8,7 @@ namespace SeoAhn
 {
     // 스테이지 선택 화면을 회전목마 방식으로 관리하는 스크립트입니다.
     // 좌/우 방향키로 카드가 순환 이동하고, Space 키로 선택한 스테이지에 입장합니다.
+    // 클리어한 스테이지에는 도장을 표시하고, 방금 클리어한 스테이지는 "쿵!" 도장 효과를 재생합니다.
     public class StageSelectController : MonoBehaviour
     {
         [Header("스테이지 카드 RectTransform")]
@@ -87,6 +88,15 @@ namespace SeoAhn
         [Header("배경음")]
         [SerializeField] private AudioSource bgmAudioSource; // 스테이지 선택 화면 배경음
 
+        [Header("클리어 도장")]
+        [SerializeField] private StampPopEffect villageStampEffect; // Village 클리어 도장 효과
+        [SerializeField] private StampPopEffect forestStampEffect; // Forest 클리어 도장 효과
+        [SerializeField] private StampPopEffect castleStampEffect; // Castle 클리어 도장 효과
+        [SerializeField] private StampPopEffect devillStampEffect; // Devill 클리어 도장 효과
+
+        [Header("도장 후 자동 선택 이동")]
+        [SerializeField] private float autoSelectNextDelay = 0.8f; // 도장이 찍힌 뒤 다음 카드로 이동하기 전 대기 시간
+
         private int currentIndex;
         private bool isMoving;
         private bool isEnteringStage;
@@ -133,8 +143,6 @@ namespace SeoAhn
             currentIndex = 0;
             isEnteringStage = false;
 
-            RefreshUnlockedStates();
-
             if (lockedMessagePanel != null)
             {
                 lockedMessagePanel.SetActive(false);
@@ -144,6 +152,8 @@ namespace SeoAhn
             {
                 lockedMessageCanvasGroup.alpha = 0f;
             }
+
+            LoadStageClearState();
 
             UpdateCardVisuals();
             CalculateCarouselTargets();
@@ -250,24 +260,18 @@ namespace SeoAhn
 
         private IEnumerator EnterSelectedStageRoutine()
         {
-            // 스테이지 입장 중에는 추가 입력을 막습니다.
             isEnteringStage = true;
 
-            // 배경음을 끕니다.
             if (bgmAudioSource != null)
             {
                 bgmAudioSource.Stop();
             }
 
-            // 선택 효과음만 재생합니다.
             PlaySelectSound();
 
             yield return new WaitForSeconds(sceneLoadDelay);
 
-            // 로딩씬이 이동할 목적지 씬을 임시 저장합니다.
             SceneTransitionData.SetNextScene(sceneNames[currentIndex]);
-
-            // 로딩씬으로 이동합니다.
             SceneManager.LoadScene("99_LoadingScene");
         }
 
@@ -574,6 +578,117 @@ namespace SeoAhn
             if (lockedMessageCanvasGroup != null)
             {
                 lockedMessageCanvasGroup.alpha = endAlpha;
+            }
+        }
+
+        private void LoadStageClearState()
+        {
+            // 저장된 클리어 상태를 읽습니다.
+            bool villageClear = StageClearManager.IsVillageClear();
+            bool forestClear = StageClearManager.IsForestClear();
+            bool castleClear = StageClearManager.IsCastleClear();
+            bool devillClear = StageClearManager.IsDevillClear();
+
+            // 클리어 상태에 따라 다음 스테이지를 해금합니다.
+            villageUnlocked = true;
+            forestUnlocked = villageClear;
+            castleUnlocked = forestClear;
+            devillUnlocked = castleClear;
+
+            RefreshUnlockedStates();
+
+            // 방금 클리어하고 돌아온 스테이지 이름을 가져옵니다.
+            string recentlyClearedStage = StageClearManager.GetRecentlyClearedStage();
+
+            ApplyStampState(villageStampEffect, villageClear, recentlyClearedStage == "Village");
+            ApplyStampState(forestStampEffect, forestClear, recentlyClearedStage == "Forest");
+            ApplyStampState(castleStampEffect, castleClear, recentlyClearedStage == "Castle");
+            ApplyStampState(devillStampEffect, devillClear, recentlyClearedStage == "Devill");
+
+            // 방금 클리어한 스테이지가 있다면,
+            // 도장이 찍힌 후 다음 스테이지 카드로 자동 이동합니다.
+            if (!string.IsNullOrEmpty(recentlyClearedStage))
+            {
+                int nextIndex = GetNextStageIndexAfterClear(recentlyClearedStage);
+                StartCoroutine(AutoSelectNextStageAfterStamp(nextIndex));
+            }
+
+            // 한 번 도장 애니메이션을 재생한 뒤에는 최근 클리어 정보를 지웁니다.
+            StageClearManager.ClearRecentlyClearedStage();
+        }
+
+        private int GetNextStageIndexAfterClear(string clearedStageName)
+        {
+            // 방금 클리어한 스테이지에 따라 다음에 선택할 카드 번호를 반환합니다.
+            // 0 = Village, 1 = Forest, 2 = Castle, 3 = Devill
+
+            if (clearedStageName == "Village")
+            {
+                return 1; // Village 클리어 후 Forest 선택
+            }
+
+            if (clearedStageName == "Forest")
+            {
+                return 2; // Forest 클리어 후 Castle 선택
+            }
+
+            if (clearedStageName == "Castle")
+            {
+                return 3; // Castle 클리어 후 Devill 선택
+            }
+
+            return currentIndex;
+        }
+
+        private IEnumerator AutoSelectNextStageAfterStamp(int nextIndex)
+        {
+            // 도장 찍히는 효과가 보일 시간을 줍니다.
+            yield return new WaitForSeconds(autoSelectNextDelay);
+
+            // 다음 스테이지가 잠겨 있으면 이동하지 않습니다.
+            if (!IsStageUnlocked(nextIndex))
+            {
+                yield break;
+            }
+
+            // 이미 현재 카드라면 이동하지 않습니다.
+            if (nextIndex == currentIndex)
+            {
+                yield break;
+            }
+
+            // 다음 스테이지를 선택 상태로 바꿉니다.
+            currentIndex = nextIndex;
+
+            // 회전목마 위치를 다시 계산하고 이동시킵니다.
+            CalculateCarouselTargets();
+            BringSelectedCardToFront();
+            HideBackCardsImmediately();
+            UpdateSelectionEffects();
+
+            isMoving = true;
+        }
+
+        private void ApplyStampState(StampPopEffect stampEffect, bool isClear, bool shouldPlayStampAnimation)
+        {
+            if (stampEffect == null)
+            {
+                return;
+            }
+
+            if (!isClear)
+            {
+                stampEffect.Hide();
+                return;
+            }
+
+            if (shouldPlayStampAnimation)
+            {
+                stampEffect.PlayStamp();
+            }
+            else
+            {
+                stampEffect.ShowInstantly();
             }
         }
     }
