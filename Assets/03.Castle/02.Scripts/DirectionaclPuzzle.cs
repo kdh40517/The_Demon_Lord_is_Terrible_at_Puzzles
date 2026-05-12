@@ -21,18 +21,18 @@ namespace TM
         public float drainPerSecond = 5f;
 
         [Header("악마 기믹 설정")]
-        public Image devilImage;               // 씬에 있는 Devil UI 이미지 컴포넌트
-        public Sprite devilEyesClosed;         // 눈 감은 이미지 (안전)
-        public Sprite devilEyesOpen;           // 눈 뜬 이미지 (위험)
-        public float penaltyWhenCaught = 30f;  // 눈 떴을 때 누르면 깎이는 뼈아픈 페널티
+        public Image devilImage;
+        public Sprite devilEyesClosed;
+        public Sprite devilEyesOpen;
+        public float penaltyWhenCaught = 30f;
         [Space]
-        public float minCloseTime = 2f;        // 눈 감고 있는 최소 시간
-        public float maxCloseTime = 5f;        // 눈 감고 있는 최대 시간
-        public float minOpenTime = 1f;         // 눈 뜨고 있는 최소 시간
-        public float maxOpenTime = 3f;         // 눈 뜨고 있는 최대 시간
+        public float minCloseTime = 2f;
+        public float maxCloseTime = 5f;
+        public float minOpenTime = 1f;
+        public float maxOpenTime = 3f;
 
-        private bool isDevilWatching = false;  // 현재 악마가 보고 있는지 여부
-        private float devilTimer = 0f;         // 악마 상태 전환 타이머
+        private bool isDevilWatching = false;
+        private float devilTimer = 0f;
 
         [Header("이벤트")]
         public UnityEvent<KeyCode> onArrowAdded;
@@ -51,13 +51,13 @@ namespace TM
 
             UpdateGaugeUI();
 
-            // 악마 기믹 초기화 (처음엔 눈 감은 상태로 시작)
             isDevilWatching = false;
             if (devilImage != null && devilEyesClosed != null)
             {
                 devilImage.sprite = devilEyesClosed;
             }
-            devilTimer = Random.Range(minCloseTime, maxCloseTime);
+
+            SetDevilTimer(false);
         }
 
         void Update()
@@ -80,17 +80,16 @@ namespace TM
             {
                 KeyCode pressedKey = GetPressedArrowKey();
 
-                // 지정된 방향키나 스페이스바가 눌렸을 때만 반응
                 if (pressedKey != KeyCode.None)
                 {
                     if (isDevilWatching)
                     {
-                        // 🚨 악마가 보고 있을 때 움직임 -> 대참사!
+                        // 🚨 악마가 보고 있을 때 움직임 -> 대참사! 페널티 적용
                         currentGauge -= penaltyWhenCaught;
                         currentGauge = Mathf.Max(currentGauge, 0f);
                         UpdateGaugeUI();
-                        onWrongInput.Invoke(); // 틀림 효과음 재생용
-                        Debug.Log("악마에게 걸렸습니다! 멈춰!");
+                        onWrongInput.Invoke();
+                        Debug.Log("악마에게 걸렸습니다!");
                     }
                     else
                     {
@@ -101,27 +100,37 @@ namespace TM
             }
         }
 
-        // 악마가 무작위 시간마다 눈을 뜨고 감게 하는 함수
         private void UpdateDevilState()
         {
             devilTimer -= Time.deltaTime;
 
             if (devilTimer <= 0f)
             {
-                isDevilWatching = !isDevilWatching; // 상태 반전 (눈 뜸 <-> 눈 감음)
+                isDevilWatching = !isDevilWatching;
 
                 if (isDevilWatching)
                 {
-                    // 눈 뜸!
                     if (devilImage != null) devilImage.sprite = devilEyesOpen;
-                    devilTimer = Random.Range(minOpenTime, maxOpenTime);
+                    SetDevilTimer(true);
                 }
                 else
                 {
-                    // 눈 감음!
                     if (devilImage != null) devilImage.sprite = devilEyesClosed;
-                    devilTimer = Random.Range(minCloseTime, maxCloseTime);
+                    SetDevilTimer(false);
                 }
+            }
+        }
+
+        private void SetDevilTimer(bool isOpeningEyes)
+        {
+            // 게이지와 상관없이 설정된 고정된 시간 내에서 랜덤하게 타이머 설정
+            if (isOpeningEyes)
+            {
+                devilTimer = Random.Range(minOpenTime, maxOpenTime);
+            }
+            else
+            {
+                devilTimer = Random.Range(minCloseTime, maxCloseTime);
             }
         }
 
@@ -130,7 +139,9 @@ namespace TM
         {
             if (pressedKey == activeSequence[0])
             {
+                // 맞췄을 때: 게이지 증가
                 currentGauge += fillPerCorrect;
+
                 activeSequence.RemoveAt(0);
                 onCorrectInput.Invoke();
                 AddNewArrow();
@@ -145,9 +156,11 @@ namespace TM
             }
             else
             {
+                // 틀렸을 때: 페널티 적용
                 currentGauge -= penaltyPerWrong;
                 currentGauge = Mathf.Max(currentGauge, 0f);
                 onWrongInput.Invoke();
+                Debug.Log("틀렸습니다!");
             }
 
             UpdateGaugeUI();
