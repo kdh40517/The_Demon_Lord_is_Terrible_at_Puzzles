@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: c3f2c5286ba8cb74d969d201efdaf337
+guid: e169ce8814c3f9146819a21ed0a511c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -308768284582399924
-    second: ForestBack (2)_0
+      213: 304731973124306853
+    second: XLineB_0
+  - first:
+      213: 4943447317641510933
+    second: XLineB_1
+  - first:
+      213: 3568139187748293435
+    second: XLineB_2
+  - first:
+      213: -8093484857859369532
+    second: XLineB_3
+  - first:
+      213: -6943339171740246557
+    second: XLineB_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +125,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ForestBack (2)_0
+      name: XLineB_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1672
-        height: 941
+        x: 340
+        y: 65
+        width: 855
+        height: 889
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c403f8f81e807bbf0800000000000000
-      internalID: -308768284582399924
+      spriteID: b3b43eabfa3948130800000000000000
+      internalID: 3568139187748293435
       vertices: []
       indices: 
       edges: []
@@ -138,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a44e15275b3a7854e924a0a3dc55cd44
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +160,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ForestBack (2)_0: -308768284582399924
+      XLineB_0: 304731973124306853
+      XLineB_1: 4943447317641510933
+      XLineB_2: 3568139187748293435
+      XLineB_3: -8093484857859369532
+      XLineB_4: -6943339171740246557
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

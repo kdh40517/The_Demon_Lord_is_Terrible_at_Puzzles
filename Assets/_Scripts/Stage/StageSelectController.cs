@@ -589,31 +589,32 @@ namespace SeoAhn
             bool castleClear = StageClearManager.IsCastleClear();
             bool devillClear = StageClearManager.IsDevillClear();
 
-            // 클리어 상태에 따라 다음 스테이지를 해금합니다.
+            // 이미 클리어한 스테이지는 다시 입장 가능해야 하므로
+            // 자기 자신의 클리어 상태도 해금 조건에 포함합니다.
             villageUnlocked = true;
-            forestUnlocked = villageClear;
-            castleUnlocked = forestClear;
-            devillUnlocked = castleClear;
+            forestUnlocked = villageClear || forestClear;
+            castleUnlocked = forestClear || castleClear;
+            devillUnlocked = castleClear || devillClear;
 
             RefreshUnlockedStates();
 
-            // 방금 클리어하고 돌아온 스테이지 이름을 가져옵니다.
+            // 방금 클리어하고 돌아온 스테이지 정보
             string recentlyClearedStage = StageClearManager.GetRecentlyClearedStage();
 
+            // 도장 상태 적용
             ApplyStampState(villageStampEffect, villageClear, recentlyClearedStage == "Village");
             ApplyStampState(forestStampEffect, forestClear, recentlyClearedStage == "Forest");
             ApplyStampState(castleStampEffect, castleClear, recentlyClearedStage == "Castle");
             ApplyStampState(devillStampEffect, devillClear, recentlyClearedStage == "Devill");
 
-            // 방금 클리어한 스테이지가 있다면,
-            // 도장이 찍힌 후 다음 스테이지 카드로 자동 이동합니다.
+            // 방금 클리어한 스테이지면 다음 카드 자동 선택
             if (!string.IsNullOrEmpty(recentlyClearedStage))
             {
                 int nextIndex = GetNextStageIndexAfterClear(recentlyClearedStage);
                 StartCoroutine(AutoSelectNextStageAfterStamp(nextIndex));
             }
 
-            // 한 번 도장 애니메이션을 재생한 뒤에는 최근 클리어 정보를 지웁니다.
+            // 최근 클리어 정보 초기화
             StageClearManager.ClearRecentlyClearedStage();
         }
 
