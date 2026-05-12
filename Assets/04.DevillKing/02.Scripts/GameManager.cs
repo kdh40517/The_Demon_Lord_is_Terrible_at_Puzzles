@@ -17,6 +17,11 @@ namespace DH
         public Slider playerHPBar;
         public TextMeshProUGUI shieldText;
 
+        [Header("턴 UI 연결")]
+        public GameObject poisonCloudUI;       // 독구름 이미지(부모) - 켜고 끄기용!
+        public TextMeshProUGUI poisonTurnText; // 독 남은 턴 숫자
+        public TextMeshProUGUI bossTurnText;   // (미리 준비!) 보스 공격 남은 턴 숫자
+
         [Header("보스 & 플레이어 설정")]
         public int bossHP = 100;
         public int bossMaxHP = 100;
@@ -106,6 +111,8 @@ namespace DH
             if (isGameOver) return;
             turnCount++;
             if (poisonTurnsLeft > 0) poisonTurnsLeft--;
+
+            UpdateHPUI();
 
             if (turnCount % 3 == 0)
             {
@@ -208,6 +215,26 @@ namespace DH
             {
                 shieldText.text = playerShield.ToString();
             }
+            // 1. 독구름 UI 켜고 끄기
+            if (poisonCloudUI != null && poisonTurnText != null)
+            {
+                if (poisonTurnsLeft > 0)
+                {
+                    poisonCloudUI.SetActive(true); // 독에 걸려있으면 아이콘을 화면에 띄웁니다!
+                    poisonTurnText.text = poisonTurnsLeft.ToString(); // 남은 턴 숫자 갱신
+                }
+                else
+                {
+                    poisonCloudUI.SetActive(false); // 독이 안 걸려있거나 끝나면 아이콘을 싹 숨깁니다.
+                }
+            }
+
+            // 2. 보스 공격 남은 턴 계산 (3턴마다 공격이니까 3으로 나눈 나머지를 이용합니다)
+            if (bossTurnText != null)
+            {
+                int turnsUntilAttack = 3 - (turnCount % 3);
+                bossTurnText.text = $"{turnsUntilAttack}";
+            }
         }
 
         public void GameOver(bool isWin)
@@ -222,46 +249,46 @@ namespace DH
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        //void OnGUI()
-        //{
-        //    // 화면 왼쪽 위에 가로 150, 세로 300 크기의 메뉴판을 엽니다.
-        //    GUILayout.BeginArea(new Rect(20, 20, 150, 300));
+        void OnGUI()
+        {
+            // 화면 왼쪽 위에 가로 150, 세로 300 크기의 메뉴판을 엽니다.
+            GUILayout.BeginArea(new Rect(20, 20, 150, 300));
 
-        //    // 메뉴 제목
-        //    GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
-        //    titleStyle.fontSize = 15;
-        //    titleStyle.normal.textColor = Color.white;
-        //    GUILayout.Label("🛠️ 테스트 메뉴", titleStyle);
+            // 메뉴 제목
+            GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
+            titleStyle.fontSize = 15;
+            titleStyle.normal.textColor = Color.white;
+            GUILayout.Label("🛠️ 테스트 메뉴", titleStyle);
 
-        //    // 1. 방패 부수기 버튼
-        //    if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
-        //    {
-        //        if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
-        //        Debug.Log("[디버그] 강제로 방패를 부쉈습니다!");
-        //    }
+            // 1. 방패 부수기 버튼
+            if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
+            {
+                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
+                Debug.Log("[디버그] 강제로 방패를 부쉈습니다!");
+            }
 
-        //    // 2. 돌멩이 투척 버튼
-        //    if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
-        //    {
-        //        if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
-        //        Debug.Log("[디버그] 강제로 돌멩이를 소환했습니다!");
-        //    }
+            // 2. 돌멩이 투척 버튼
+            if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
+            {
+                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
+                Debug.Log("[디버그] 강제로 돌멩이를 소환했습니다!");
+            }
 
-        //    // 3. 독 패턴 ON 버튼
-        //    if (GUILayout.Button("☠️ 독 패턴 켜기", GUILayout.Height(40)))
-        //    {
-        //        poisonTurnsLeft = 3;
-        //        Debug.Log("[디버그] 독 패턴이 켜졌습니다! (빈칸이 생기면 독이 떨어집니다)");
-        //    }
+            // 3. 독 패턴 ON 버튼
+            if (GUILayout.Button("☠️ 독 패턴 켜기", GUILayout.Height(40)))
+            {
+                poisonTurnsLeft = 3;
+                Debug.Log("[디버그] 독 패턴이 켜졌습니다! (빈칸이 생기면 독이 떨어집니다)");
+            }
 
-        //    // 4. 강제 보스 공격 버튼
-        //    if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
-        //    {
-        //        turnCount = 2; // 턴을 2로 조작하고
-        //        NextTurn();    // 턴을 넘기면 무조건 3의 배수가 되어 보스가 공격합니다!
-        //    }
+            // 4. 강제 보스 공격 버튼
+            if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
+            {
+                turnCount = 2; // 턴을 2로 조작하고
+                NextTurn();    // 턴을 넘기면 무조건 3의 배수가 되어 보스가 공격합니다!
+            }
 
-        //    GUILayout.EndArea();
-        //}
+            GUILayout.EndArea();
+        }
     }
 }
