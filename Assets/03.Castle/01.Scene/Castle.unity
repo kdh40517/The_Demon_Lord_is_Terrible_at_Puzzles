@@ -921,15 +921,21 @@ MonoBehaviour:
   devilEyesOpen: {fileID: -7328301092794642872, guid: 3649f8aca5a40714bb03137fa3eb0673, type: 3}
   penaltyWhenCaught: 10
 <<<<<<< HEAD
+<<<<<<< HEAD
   minCloseTime: 4
   maxCloseTime: 7
   minOpenTime: 2
   maxOpenTime: 4
 =======
+=======
+>>>>>>> parent of 37a0f12 (2026-05-13 정태민)
   minCloseTime: 2
   maxCloseTime: 4
   minOpenTime: 1
   maxOpenTime: 3
+<<<<<<< HEAD
+>>>>>>> parent of 37a0f12 (2026-05-13 정태민)
+=======
 >>>>>>> parent of 37a0f12 (2026-05-13 정태민)
   onArrowAdded:
     m_PersistentCalls:
