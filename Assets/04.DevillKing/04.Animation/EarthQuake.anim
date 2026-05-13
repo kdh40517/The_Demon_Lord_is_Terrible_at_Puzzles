@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack
+  m_Name: EarthQuake
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -28,8 +28,8 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -42,27 +42,19 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1187189588359113162, guid: 34bfa8081c90a834a9dad8ef508e9a57, type: 3}
-    - time: 0.071428575
-      value: {fileID: 6005116700366277692, guid: 91ae8dae924cc3f45914c152149dc94e, type: 3}
-    - time: 0.14285715
-      value: {fileID: -5104885110717255208, guid: 1d352b3cf9efbf04eb2839dfa2690705, type: 3}
-    - time: 0.21428572
-      value: {fileID: 1536208930320791727, guid: 4ca36e7c36a38934db228ac0737dc67a, type: 3}
-    - time: 0.2857143
-      value: {fileID: 2355724372870774716, guid: 772e8892558387a41a843f3e267cdc7c, type: 3}
-    - time: 0.35714287
-      value: {fileID: 1773081562506332313, guid: 126e49098484cb244a5f79f37872a1e4, type: 3}
-    - time: 0.42857143
-      value: {fileID: 3858294307300175262, guid: f6e452714b8dbc649829431a92f66d78, type: 3}
-    - time: 0.5
-      value: {fileID: 5446324594192502739, guid: 92cd710d0ff4b89468df4ba698a170e4, type: 3}
+      value: {fileID: -8364658926169876035, guid: 779ca6e66d6404940b2a1be1ba0b5533, type: 3}
+    - time: 0.125
+      value: {fileID: -2401702361851837052, guid: 052ad7969d2d9d246a27df35f0683a64, type: 3}
+    - time: 0.25
+      value: {fileID: 4193183835205257582, guid: e26bc2d492e322946b4ea9c385b2c058, type: 3}
+    - time: 0.375
+      value: {fileID: 8505696595333143310, guid: a2c1b927eddde0b4c9e211cbc6a1a2da, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
     flags: 2
-  m_SampleRate: 14
+  m_SampleRate: 8
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -88,20 +80,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1187189588359113162, guid: 34bfa8081c90a834a9dad8ef508e9a57, type: 3}
-    - {fileID: 6005116700366277692, guid: 91ae8dae924cc3f45914c152149dc94e, type: 3}
-    - {fileID: -5104885110717255208, guid: 1d352b3cf9efbf04eb2839dfa2690705, type: 3}
-    - {fileID: 1536208930320791727, guid: 4ca36e7c36a38934db228ac0737dc67a, type: 3}
-    - {fileID: 2355724372870774716, guid: 772e8892558387a41a843f3e267cdc7c, type: 3}
-    - {fileID: 1773081562506332313, guid: 126e49098484cb244a5f79f37872a1e4, type: 3}
-    - {fileID: 3858294307300175262, guid: f6e452714b8dbc649829431a92f66d78, type: 3}
-    - {fileID: 5446324594192502739, guid: 92cd710d0ff4b89468df4ba698a170e4, type: 3}
+    - {fileID: -8364658926169876035, guid: 779ca6e66d6404940b2a1be1ba0b5533, type: 3}
+    - {fileID: -2401702361851837052, guid: 052ad7969d2d9d246a27df35f0683a64, type: 3}
+    - {fileID: 4193183835205257582, guid: e26bc2d492e322946b4ea9c385b2c058, type: 3}
+    - {fileID: 8505696595333143310, guid: a2c1b927eddde0b4c9e211cbc6a1a2da, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5714286
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -128,8 +116,8 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

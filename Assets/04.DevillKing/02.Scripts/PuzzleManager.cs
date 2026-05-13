@@ -55,6 +55,10 @@ namespace DH
 
         void Update()
         {
+            // ★ 유고수 추가: 테이프 무늬를 시간에 따라 옆으로 쓱쓱 밀어줍니다! (-2f 숫자를 바꾸면 속도가 바뀝니다)
+            if (lineRenderer != null) lineRenderer.material.mainTextureOffset = new Vector2(Time.time * -5000f, 0f);
+            if (dragLineRenderer != null) dragLineRenderer.material.mainTextureOffset = new Vector2(Time.time * -2f, 0f);
+
             if (isDrawing && connectedNotes.Count > 0)
             {
                 Vector3 startPos = connectedNotes[connectedNotes.Count - 1].transform.position;
@@ -79,12 +83,12 @@ namespace DH
                 }
             }
         }
+            
 
         public void OnNoteEnter(Note enteredNote)
         {
             if (!GameManager.Instance.isGameStarted || GameManager.Instance.isGameOver) return;
 
-            // ★ 유고수 추가: 드래그 하다가 돌멩이를 만나면 연결 안 됨! 막혀버립니다!
             if (enteredNote.instrumentType == NoteType.Stone) return;
 
             lastHoveredNote = enteredNote;
@@ -127,12 +131,10 @@ namespace DH
             if (floatingText == null || connectedNotes.Count == 0) return;
 
             int validScore = 0;
-            int poisonDamage = 0;
 
             foreach (Note note in connectedNotes)
             {
-                if (!note.isBroken) validScore++; // 고장 안 난 조각만 점수로 인정!
-                if (note.isPoisoned) poisonDamage++; // 독 조각은 플레이어 HP 데미지로 누적!
+                if (!note.isBroken) validScore++;
             }
 
             NoteType currentType = connectedNotes[0].instrumentType;
@@ -142,14 +144,7 @@ namespace DH
             else if (currentType == NoteType.Armor) statName = "HP";
             else if (currentType == NoteType.Shield) statName = "DEF";
 
-            // 1. 기본 점수 텍스트 (예: DMG 5)
             string textOut = $"<color=white>{statName} {validScore}</color>";
-
-            // 2. 독을 밟았다면 그 아래에 빨간 글씨로 덧붙이기 (예: (HP -1))
-            if (poisonDamage > 0)
-            {
-                textOut += $"\n<size=60%><color=red>(HP -{poisonDamage})</color></size>";
-            }
 
             floatingText.text = textOut;
             floatingText.gameObject.SetActive(true);
@@ -181,38 +176,29 @@ namespace DH
             if (connectedNotes.Count >= 3 && releasedNote == connectedNotes[connectedNotes.Count - 1])
             {
                 int validScore = 0;
-                int poisonDamage = 0;
 
                 foreach (Note note in connectedNotes)
                 {
                     if (!note.isBroken) validScore++;
-                    if (note.isPoisoned) poisonDamage++;
                 }
 
                 if (GameManager.Instance != null)
                 {
-                    // 1. 독 데미지 먼저 입기!
-                    if (poisonDamage > 0)
-                    {
-                        GameManager.Instance.TakePoisonDamage(poisonDamage);
-                    }
-
-                    // 2. 유효한 공격 점수가 있다면 종류에 맞게 발동! (★ 이 부분이 수정되었습니다!)
                     if (validScore > 0)
                     {
                         NoteType firstType = connectedNotes[0].instrumentType;
 
                         if (firstType == NoteType.Club)
                         {
-                            GameManager.Instance.AttackBoss(validScore); // 몽둥이: 보스 공격
+                            GameManager.Instance.AttackBoss(validScore);
                         }
                         else if (firstType == NoteType.Armor)
                         {
-                            GameManager.Instance.HealPlayer(validScore); // 갑옷: 내 피 회복
+                            GameManager.Instance.HealPlayer(validScore);
                         }
                         else if (firstType == NoteType.Shield)
                         {
-                            GameManager.Instance.AddShield(validScore);  // 방패: 방어도 증가
+                            GameManager.Instance.AddShield(validScore);
                         }
                     }
                 }
@@ -251,13 +237,11 @@ namespace DH
             int height = BoardManager.Instance.height;
             Note[,] board = BoardManager.Instance.board;
 
-            // ★ 대각선을 뺀 상, 하, 좌, 우 4방향 좌표값만 남깁니다.
             int[] dx = { -1, 1, 0, 0 };
             int[] dy = { 0, 0, -1, 1 };
 
             foreach (Note node in path)
             {
-                // 체크 횟수를 8회에서 4회로 변경!
                 for (int i = 0; i < 4; i++)
                 {
                     int nx = node.x + dx[i];
@@ -279,13 +263,12 @@ namespace DH
 
         private System.Collections.IEnumerator ApplyGravity()
         {
-            yield return new WaitForSeconds(0.1f); // 터지는 이펙트 대기
+            yield return new WaitForSeconds(0.1f);
 
             int width = BoardManager.Instance.width;
             int height = BoardManager.Instance.height;
             Note[,] board = BoardManager.Instance.board;
 
-            // 1. 논리적으로 조각들 밑으로 당기기 (데이터만 갱신)
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
@@ -307,7 +290,6 @@ namespace DH
                 }
             }
 
-            // 2. 맨 위 빈칸들에 새 조각을 '하늘(+600)'에 소환 (데이터 갱신)
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
@@ -319,11 +301,9 @@ namespace DH
                 }
             }
 
-            // 3. ★ 핵심: 모든 조각을 스르륵~ 떨어뜨리기!
-            float duration = 0.25f; // 조각이 떨어지는데 걸리는 시간 (0.25초)
+            float duration = 0.25f;
             float elapsedTime = 0f;
 
-            // 출발점과 도착점 기록장
             Vector2[,] startPos = new Vector2[width, height];
             Vector2[,] targetPos = new Vector2[width, height];
 
@@ -332,7 +312,6 @@ namespace DH
             float startXOffset = -(width * cellSize + (width - 1) * spacing) / 2f + cellSize / 2f;
             float startYOffset = -(height * cellSize + (height - 1) * spacing) / 2f + cellSize / 2f;
 
-            // 각 조각의 현재 위치와 가야 할 위치 계산
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
@@ -341,21 +320,20 @@ namespace DH
                     if (note != null)
                     {
                         RectTransform rect = note.GetComponent<RectTransform>();
-                        startPos[x, y] = rect.anchoredPosition; // 지금 위치
+                        startPos[x, y] = rect.anchoredPosition;
 
                         float targetX = startXOffset + x * (cellSize + spacing);
                         float targetY = startYOffset + y * (cellSize + spacing);
-                        targetPos[x, y] = new Vector2(targetX, targetY); // 가야 할 정답 위치
+                        targetPos[x, y] = new Vector2(targetX, targetY);
                     }
                 }
             }
 
-            // 진짜로 스르륵 움직이는 애니메이션 시작!
             while (elapsedTime < duration)
             {
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / duration;
-                t = t * t * (3f - 2f * t); // 부드럽게 멈추는 가속도 효과 (Smoothstep)
+                t = t * t * (3f - 2f * t);
 
                 for (int x = 0; x < width; x++)
                 {
@@ -364,15 +342,13 @@ namespace DH
                         Note note = board[x, y];
                         if (note != null)
                         {
-                            // 출발점에서 도착점까지 t 비율만큼 부드럽게 이동
                             note.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(startPos[x, y], targetPos[x, y], t);
                         }
                     }
                 }
-                yield return null; // 다음 프레임까지 대기
+                yield return null;
             }
 
-            // 4. 애니메이션 끝난 뒤, 1픽셀의 오차도 없이 정답 위치에 찰칵! 꽂아넣기
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
@@ -395,13 +371,11 @@ namespace DH
             int width = BoardManager.Instance.width;
             int height = BoardManager.Instance.height;
 
-            // 보드 매니저와 똑같은 공식으로 오차 없이 타겟 위치 계산
             float startX = -(width * cellSize + (width - 1) * spacing) / 2f + cellSize / 2f;
             float startY = -(height * cellSize + (height - 1) * spacing) / 2f + cellSize / 2f;
             float targetX = startX + note.x * (cellSize + spacing);
             float targetY = startY + note.y * (cellSize + spacing);
 
-            // 해당 조각을 타겟 위치로 쾅! 하고 이동시킵니다.
             note.GetComponent<RectTransform>().anchoredPosition = new Vector2(targetX, targetY);
         }
 
@@ -430,6 +404,91 @@ namespace DH
                 if (soundToPlay != null)
                 {
                     sfxPlayer.PlayOneShot(soundToPlay);
+                }
+            }
+        }
+
+        public void ShuffleBoard()
+        {
+            StartCoroutine(ShuffleBoardRoutine());
+        }
+
+        private System.Collections.IEnumerator ShuffleBoardRoutine()
+        {
+            int width = BoardManager.Instance.width;
+            int height = BoardManager.Instance.height;
+            Note[,] board = BoardManager.Instance.board;
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    int randomX = Random.Range(0, width);
+                    int randomY = Random.Range(0, height);
+
+                    Note temp = board[x, y];
+                    board[x, y] = board[randomX, randomY];
+                    board[randomX, randomY] = temp;
+
+                    if (board[x, y] != null) { board[x, y].x = x; board[x, y].y = y; }
+                    if (board[randomX, randomY] != null) { board[randomX, randomY].x = randomX; board[randomX, randomY].y = randomY; }
+                }
+            }
+
+            float cellSize = BoardManager.Instance.cellSize;
+            float spacing = BoardManager.Instance.spacing;
+            float startXOffset = -(width * cellSize + (width - 1) * spacing) / 2f + cellSize / 2f;
+            float startYOffset = -(height * cellSize + (height - 1) * spacing) / 2f + cellSize / 2f;
+
+            Vector2[,] startPositions = new Vector2[width, height];
+            Vector2[,] targetPositions = new Vector2[width, height];
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (board[x, y] != null)
+                    {
+                        startPositions[x, y] = board[x, y].GetComponent<RectTransform>().anchoredPosition;
+
+                        float targetX = startXOffset + x * (cellSize + spacing);
+                        float targetY = startYOffset + y * (cellSize + spacing);
+                        targetPositions[x, y] = new Vector2(targetX, targetY);
+                    }
+                }
+            }
+
+            float duration = 0.3f;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / duration;
+                t = t * t * (3f - 2f * t);
+
+                for (int x = 0; x < width; x++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        if (board[x, y] != null)
+                        {
+                            board[x, y].GetComponent<RectTransform>().anchoredPosition =
+                                Vector2.Lerp(startPositions[x, y], targetPositions[x, y], t);
+                        }
+                    }
+                }
+                yield return null;
+            }
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (board[x, y] != null)
+                    {
+                        board[x, y].GetComponent<RectTransform>().anchoredPosition = targetPositions[x, y];
+                    }
                 }
             }
         }
