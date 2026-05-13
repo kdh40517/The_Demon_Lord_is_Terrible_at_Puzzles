@@ -31,8 +31,8 @@ namespace TM
         public float minOpenTime = 1f;
         public float maxOpenTime = 3f;
 
-        public bool isDevilWatching = false;
-        public float devilTimer = 0f;
+        private bool isDevilWatching = false;
+        private float devilTimer = 0f;
 
         [Header("이벤트")]
         public UnityEvent<KeyCode> onArrowAdded;
@@ -152,8 +152,6 @@ namespace TM
                     isGameClear = true;
                     Debug.Log("게이지 100% 달성! 퍼즐 클리어!");
                     onGaugeFull.Invoke();
-
-                    GameManager.instance.TriggerClearSequence();
                 }
             }
             else
