@@ -922,6 +922,7 @@ MonoBehaviour:
   penaltyWhenCaught: 10
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   minCloseTime: 4
   maxCloseTime: 7
   minOpenTime: 2
@@ -929,11 +930,16 @@ MonoBehaviour:
 =======
 =======
 >>>>>>> parent of 37a0f12 (2026-05-13 정태민)
+=======
+>>>>>>> parent of 37a0f12 (2026-05-13 정태민)
   minCloseTime: 2
   maxCloseTime: 4
   minOpenTime: 1
   maxOpenTime: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 37a0f12 (2026-05-13 정태민)
+=======
 >>>>>>> parent of 37a0f12 (2026-05-13 정태민)
 =======
 >>>>>>> parent of 37a0f12 (2026-05-13 정태민)
