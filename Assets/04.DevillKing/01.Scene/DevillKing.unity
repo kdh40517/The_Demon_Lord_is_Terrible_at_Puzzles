@@ -1398,6 +1398,7 @@ MonoBehaviour:
   bossHPBar: {fileID: 1281604746}
   playerHPBar: {fileID: 1918793474}
   shieldText: {fileID: 1767255453}
+
   bossHP: 100
   bossMaxHP: 100
   bossAnimator: {fileID: 2111243701}
