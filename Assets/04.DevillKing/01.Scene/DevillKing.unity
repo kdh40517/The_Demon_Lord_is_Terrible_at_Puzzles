@@ -1398,9 +1398,6 @@ MonoBehaviour:
   bossHPBar: {fileID: 1281604746}
   playerHPBar: {fileID: 1918793474}
   shieldText: {fileID: 1767255453}
-  poisonCloudUI: {fileID: 1490794998}
-  poisonTurnText: {fileID: 888453618}
-  bossTurnText: {fileID: 1662600630}
   bossHP: 100
   bossMaxHP: 100
   bossAnimator: {fileID: 2111243701}
@@ -2036,8 +2033,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: eaec0a3484c0fd94ea82524a69cc2315, type: 2}
-  m_sharedMaterial: {fileID: -4545582009568472864, guid: eaec0a3484c0fd94ea82524a69cc2315, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
