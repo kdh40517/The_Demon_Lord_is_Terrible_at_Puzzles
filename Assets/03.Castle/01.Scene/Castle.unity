@@ -920,10 +920,10 @@ MonoBehaviour:
   devilEyesClosed: {fileID: -8458232874239842143, guid: 699200aade64ee34c8a7f51853351c8e, type: 3}
   devilEyesOpen: {fileID: -7328301092794642872, guid: 3649f8aca5a40714bb03137fa3eb0673, type: 3}
   penaltyWhenCaught: 10
-  minCloseTime: 2
-  maxCloseTime: 4
-  minOpenTime: 1
-  maxOpenTime: 3
+  minCloseTime: 4
+  maxCloseTime: 7
+  minOpenTime: 2
+  maxOpenTime: 4
   onArrowAdded:
     m_PersistentCalls:
       m_Calls:
@@ -1214,7 +1214,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
