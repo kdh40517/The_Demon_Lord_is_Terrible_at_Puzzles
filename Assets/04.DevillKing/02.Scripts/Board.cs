@@ -14,6 +14,11 @@ namespace DH
         public GameObject stonePrefab;
 
         private List<GameObject> normalPrefabs = new List<GameObject>();
+        private List<GameObject> poisonPrefabs = new List<GameObject>();
+
+        [Header("확률 설정")]
+        [Range(0, 100)]
+        public int poisonChance = 15;
 
         public int width = 6;
         public int height = 6;
@@ -41,7 +46,8 @@ namespace DH
                 Note noteScript = prefab.GetComponent<Note>();
                 if (noteScript != null)
                 {
-                    normalPrefabs.Add(prefab); // 독 검사 없이 무조건 기본 조각으로 쏙!
+                    if (noteScript.isPoisoned) poisonPrefabs.Add(prefab);
+                    else normalPrefabs.Add(prefab);
                 }
             }
         }
@@ -60,9 +66,15 @@ namespace DH
         public void SpawnNote(int x, int y, float dropOffset)
         {
             GameObject newNoteObj = null;
+            int dice = Random.Range(1, 101);
+            bool isPoisonActive = GameManager.Instance != null && GameManager.Instance.poisonTurnsLeft > 0;
 
-            // 독 확률 계산 없이 바로 기본 조각 소환!
-            if (normalPrefabs.Count > 0)
+            if (isPoisonActive && dice <= poisonChance && poisonPrefabs.Count > 0)
+            {
+                int randomIndex = Random.Range(0, poisonPrefabs.Count);
+                newNoteObj = Instantiate(poisonPrefabs[randomIndex], boardPanel);
+            }
+            else if (normalPrefabs.Count > 0)
             {
                 int randomIndex = Random.Range(0, normalPrefabs.Count);
                 newNoteObj = Instantiate(normalPrefabs[randomIndex], boardPanel);
@@ -155,6 +167,7 @@ namespace DH
                 int randomIndex = Random.Range(0, targets.Count);
                 Note targetNote = targets[randomIndex];
                 targets.RemoveAt(randomIndex);
+
 
                 targetNote.isBroken = true;
             }
