@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/03.Castle/01.Scene/Castle.unity
     guid: bb9c7b12376e5ae4d9348aa67cb89565
+  - enabled: 1
+    path: Assets/04.DevillKing/01.Scene/DevillKing.unity
+    guid: b69be5148f04f0348bd5cb0294c41c77
+  - enabled: 1
+    path: Assets/00.Scenes/04_EndingScene.unity
+    guid: 4f3a1ad1a2ee38f48860fcfc1fb88d27
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
