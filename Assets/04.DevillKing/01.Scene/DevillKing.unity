@@ -270,6 +270,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: acf56e88e8fb9924fa51fe52268734a9, type: 3}
   - {fileID: 8300000, guid: acf56e88e8fb9924fa51fe52268734a9, type: 3}
   - {fileID: 8300000, guid: acf56e88e8fb9924fa51fe52268734a9, type: 3}
+  finishAttackSound: {fileID: 8300000, guid: 366332e3111018f4cbe4aceaa60921f6, type: 3}
+  finishArmorSound: {fileID: 8300000, guid: cc47724695a775c4da7ef8f285b8f602, type: 3}
+  finishShieldSound: {fileID: 8300000, guid: a7d9f116d3ef386459d451a94cfe8fe7, type: 3}
 --- !u!4 &252129944
 Transform:
   m_ObjectHideFlags: 0
@@ -1611,6 +1614,13 @@ MonoBehaviour:
   playerHP: 20
   playerShield: 0
   turnCount: 0
+  sfxPlayer: {fileID: 1227598899}
+  bossAttackSound: {fileID: 8300000, guid: f68f8fd11cf68324fbe85fa06bb1510d, type: 3}
+  patternSounds:
+  - {fileID: 8300000, guid: 2c25269a124955a4ba509a7889215722, type: 3}
+  - {fileID: 8300000, guid: 84c0da52d65ed134498affd68ddcca35, type: 3}
+  - {fileID: 8300000, guid: b3a03cb39c316da428e85dc6da545fa1, type: 3}
+  - {fileID: 8300000, guid: 7220b74426b8f2d4aae14685560a6339, type: 3}
 --- !u!4 &1227598898
 Transform:
   m_ObjectHideFlags: 0

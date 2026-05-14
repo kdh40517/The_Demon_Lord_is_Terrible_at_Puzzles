@@ -33,6 +33,11 @@ namespace DH
         public AudioSource sfxPlayer;
         public AudioClip[] instrumentSounds;
 
+        [Header("연결 완성 사운드")]
+        public AudioClip finishAttackSound; // 몽둥이 완성 소리
+        public AudioClip finishArmorSound;  // 갑옷 완성 소리
+        public AudioClip finishShieldSound; // 방패 완성 소리
+
         private Note lastHoveredNote;
         private bool isDrawing = false;
 
@@ -191,14 +196,20 @@ namespace DH
                         if (firstType == NoteType.Club)
                         {
                             GameManager.Instance.AttackBoss(validScore);
+                            // 👇 몽둥이 소리 추가!
+                            if (sfxPlayer != null && finishAttackSound != null) sfxPlayer.PlayOneShot(finishAttackSound);
                         }
                         else if (firstType == NoteType.Armor)
                         {
                             GameManager.Instance.HealPlayer(validScore);
+                            // 👇 갑옷(회복) 소리 추가!
+                            if (sfxPlayer != null && finishArmorSound != null) sfxPlayer.PlayOneShot(finishArmorSound);
                         }
                         else if (firstType == NoteType.Shield)
                         {
                             GameManager.Instance.AddShield(validScore);
+                            // 👇 방패 소리 추가!
+                            if (sfxPlayer != null && finishShieldSound != null) sfxPlayer.PlayOneShot(finishShieldSound);
                         }
                     }
                 }
