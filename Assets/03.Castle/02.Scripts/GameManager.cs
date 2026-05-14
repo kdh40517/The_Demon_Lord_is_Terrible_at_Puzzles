@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
@@ -8,23 +8,28 @@ namespace TM
     {
         public static GameManager instance;
 
-        [Header("UI ¼³Á¤")]
-        public CanvasGroup clearUIGroup; // È°Â¦ ¿­¸° ¹®(½Ç·ç¿§) ÀÌ¹ÌÁö°¡ ÀÖ´Â CanvasGroup
+        [Header("UI ì„¤ì •")]
+        public CanvasGroup clearUIGroup; // í™œì§ ì—´ë¦° ë¬¸(ì‹¤ë£¨ì—£) ì´ë¯¸ì§€ê°€ ìˆëŠ” CanvasGroup
 
-        [Header("Å¸ÀÌ¹Ö ¼³Á¤")]
-        public float clearDelay = 1.0f;     // Å¬¸®¾î Á÷ÈÄ ´ë±â ½Ã°£
-        public float fadeDuration = 1.5f;   // ÀÌ¹ÌÁö°¡ ¼­¼­È÷ ³ªÅ¸³ª´Â ½Ã°£
-        public float autoReturnDelay = 3f;  // ÀÌ¹ÌÁö°¡ ¿ÏÀüÈ÷ ¶á ÈÄ ¾À ÀÌµ¿ Àü ´ë±â ½Ã°£
+        [Header("íƒ€ì´ë° ì„¤ì •")]
+        public float clearDelay = 1.0f;     // í´ë¦¬ì–´ ì§í›„ ëŒ€ê¸° ì‹œê°„
+        public float fadeDuration = 1.5f;   // ì´ë¯¸ì§€ê°€ ì„œì„œíˆ ë‚˜íƒ€ë‚˜ëŠ” ì‹œê°„
+        public float autoReturnDelay = 3f;  // ì´ë¯¸ì§€ê°€ ì™„ì „íˆ ëœ¬ í›„ ì”¬ ì´ë™ ì „ ëŒ€ê¸° ì‹œê°„
 
-        [Header("¾À ÀÌµ¿ ¼³Á¤")]
+        [Header("ì”¬ ì´ë™ ì„¤ì •")]
         public string loadingSceneName = "99_LoadingScene";
         public string stageSceneName = "03_StageScene";
+
+        // âœ… ì˜¤ë””ì˜¤ ì„¤ì •ì„ ìœ„í•œ ë³€ìˆ˜ ì¶”ê°€
+        [Header("ì˜¤ë””ì˜¤ ì„¤ì •")]
+        public AudioSource audioSource;
+        public AudioClip clearUIRevealSound; // ì´ë¯¸ì§€ê°€ ë– ì˜¤ë¥¼ ë•Œ ì¬ìƒí•  íš¨ê³¼ìŒ
 
         private bool isCleared = false;
 
         private void Awake()
         {
-            // ½Ì±ÛÅæ ¼¼ÆÃ: ´Ù¸¥ ½ºÅ©¸³Æ®¿¡¼­ GameManager.instance ·Î ¹Ù·Î Á¢±ÙÇÒ ¼ö ÀÖ°Ô ÇÕ´Ï´Ù.
+            // ì‹±ê¸€í†¤ ì„¸íŒ…
             if (instance == null)
             {
                 instance = this;
@@ -33,7 +38,7 @@ namespace TM
 
         private void Start()
         {
-            // ½ÃÀÛÇÒ ¶§ Å¬¸®¾î ÀÌ¹ÌÁö¸¦ ¿ÏÀüÈ÷ ¼û±é´Ï´Ù.
+            // ì‹œì‘í•  ë•Œ í´ë¦¬ì–´ ì´ë¯¸ì§€ë¥¼ ì™„ì „íˆ ìˆ¨ê¹ë‹ˆë‹¤.
             if (clearUIGroup != null)
             {
                 clearUIGroup.alpha = 0f;
@@ -42,10 +47,9 @@ namespace TM
             }
         }
 
-        // ÆÛÁñ Å¬¸®¾î ½Ã ¿ÜºÎ¿¡¼­ È£ÃâÇÒ ÇÔ¼ö
         public void TriggerClearSequence()
         {
-            if (isCleared) return; // Áßº¹ ½ÇÇà ¹æÁö
+            if (isCleared) return; // ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
             isCleared = true;
 
             if (clearUIGroup != null)
@@ -56,10 +60,10 @@ namespace TM
 
         private IEnumerator FadeInClearUIAndReturn()
         {
-            // 1. ÆÛÁñÀ» ¸· Ç¬ Á÷ÈÄ ¾à°£ÀÇ ¿©¿îÀ» À§ÇØ ´ë±â
+            // 1. í¼ì¦ì„ ë§‰ í‘¼ ì§í›„ ì•½ê°„ì˜ ì—¬ìš´ì„ ìœ„í•´ ëŒ€ê¸°
             yield return new WaitForSeconds(clearDelay);
 
-            // 2. Åõ¸íµµ¸¦ 0¿¡¼­ 1·Î ¼­¼­È÷ ¿Ã¸² (ÆäÀÌµå ÀÎ È¿°ú)
+            // 2. íˆ¬ëª…ë„ë¥¼ 0ì—ì„œ 1ë¡œ ì„œì„œíˆ ì˜¬ë¦¼ (í˜ì´ë“œ ì¸ íš¨ê³¼)
             float elapsedTime = 0f;
             while (elapsedTime < fadeDuration)
             {
@@ -67,12 +71,18 @@ namespace TM
                 clearUIGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
                 yield return null;
             }
-            clearUIGroup.alpha = 1f;
+            clearUIGroup.alpha = 1f; // í˜ì´ë“œ ì¸ ì™„ë£Œ!
 
-            // 3. ¹®ÀÌ È°Â¦ ¿­¸®°í ½Ç·ç¿§ÀÌ º¸ÀÌ´Â »óÅÂ·Î Àá½Ã ´ë±â
+            // ğŸ”Š 3. í˜ì´ë“œ ì¸ì´ ì™„ì „íˆ ëë‚œ ì§í›„ íš¨ê³¼ìŒ ì¬ìƒ
+            if (audioSource != null && clearUIRevealSound != null)
+            {
+                audioSource.PlayOneShot(clearUIRevealSound);
+            }
+
+            // 4. ë¬¸ì´ í™œì§ ì—´ë¦¬ê³  ì‹¤ë£¨ì—£ì´ ë³´ì´ëŠ” ìƒíƒœë¡œ ì ì‹œ ëŒ€ê¸°
             yield return new WaitForSeconds(autoReturnDelay);
 
-            // 4. µ¥ÀÌÅÍ ÀúÀå ¹× ¾À ÀüÈ¯
+            // 5. ë°ì´í„° ì €ì¥ ë° ì”¬ ì „í™˜
             SeoAhn.StageClearManager.SetVillageClear();
             SeoAhn.SceneTransitionData.SetNextScene(stageSceneName);
             SceneManager.LoadScene(loadingSceneName);
