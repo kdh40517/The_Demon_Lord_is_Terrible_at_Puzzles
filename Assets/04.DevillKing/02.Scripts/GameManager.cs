@@ -37,8 +37,9 @@ namespace DH
         public int turnCount = 0;
 
         [Header("사운드 설정")]
-        public AudioSource sfxPlayer; // 방금 만든 스피커 연결용
-        public AudioClip bossAttackSound; // 보스 공격 소리 파일용
+        public AudioSource sfxPlayer;
+        public AudioClip bossAttackSound;
+        public AudioClip[] patternSounds;
 
         void Awake() { Instance = this; }
 
@@ -148,6 +149,7 @@ namespace DH
             if (dice <= 20)
             {
                 if (healEffect != null) healEffect.SetTrigger("Heal");
+                if (sfxPlayer != null && patternSounds.Length > 0) sfxPlayer.PlayOneShot(patternSounds[0]);
                 yield return new WaitForSeconds(1.0f);
                 bossHP += 20;
                 if (bossHP > bossMaxHP) bossHP = bossMaxHP;
@@ -156,6 +158,7 @@ namespace DH
             else if (dice <= 40)
             {
                 if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
+                if (sfxPlayer != null && patternSounds.Length > 1) sfxPlayer.PlayOneShot(patternSounds[1]);
                 yield return new WaitForSeconds(1.0f);
                 if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
                 Debug.Log("🌍 추가 패턴: 지진 발생! 퍼즐 조각이 뒤죽박죽 섞입니다!");
@@ -163,6 +166,7 @@ namespace DH
             else if (dice <= 70)
             {
                 if (stoneEffect != null) stoneEffect.SetTrigger("Stone");
+                if (sfxPlayer != null && patternSounds.Length > 2) sfxPlayer.PlayOneShot(patternSounds[2]);
                 yield return new WaitForSeconds(1.0f);
                 if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(8);
                 Debug.Log("🪨 추가 패턴: 바위 투척!");
@@ -170,6 +174,7 @@ namespace DH
             else
             {
                 if (breakEffect != null) breakEffect.SetTrigger("Break");
+                if (sfxPlayer != null && patternSounds.Length > 3) sfxPlayer.PlayOneShot(patternSounds[3]);
                 yield return new WaitForSeconds(1.0f);
                 if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
                 Debug.Log("🔨 추가 패턴: 방패 부수기!");
@@ -204,37 +209,37 @@ namespace DH
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        void OnGUI()
-        {
-            GUILayout.BeginArea(new Rect(20, 20, 150, 300));
-            GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
-            titleStyle.fontSize = 15;
-            titleStyle.normal.textColor = Color.white;
-            GUILayout.Label("🛠️ 테스트 메뉴", titleStyle);
+        //void OnGUI()
+        //{
+        //    GUILayout.BeginArea(new Rect(20, 20, 150, 300));
+        //    GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
+        //    titleStyle.fontSize = 15;
+        //    titleStyle.normal.textColor = Color.white;
+        //    GUILayout.Label("🛠️ 테스트 메뉴", titleStyle);
 
-            if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
-            {
-                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
-            }
-            if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
-            {
-                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
-            }
+        //    if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
+        //    {
+        //        if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
+        //    }
+        //    if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
+        //    {
+        //        if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
+        //    }
 
-            // 👇 새로 추가된 지진 발생 버튼!
-            if (GUILayout.Button("🌍 지진 발생", GUILayout.Height(40)))
-            {
-                if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
-                if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
-                Debug.Log("🌍 테스트: 지진 발생!");
-            }
+        //    // 👇 새로 추가된 지진 발생 버튼!
+        //    if (GUILayout.Button("🌍 지진 발생", GUILayout.Height(40)))
+        //    {
+        //        if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
+        //        if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
+        //        Debug.Log("🌍 테스트: 지진 발생!");
+        //    }
 
-            if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
-            {
-                turnCount = 2;
-                NextTurn();
-            }
-            GUILayout.EndArea();
-        }
+        //    if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
+        //    {
+        //        turnCount = 2;
+        //        NextTurn();
+        //    }
+        //    GUILayout.EndArea();
+        //}
     }
 }
