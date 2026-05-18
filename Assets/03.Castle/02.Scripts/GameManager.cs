@@ -24,6 +24,10 @@ namespace TM
         public AudioSource audioSource;
         public AudioClip clearUIRevealSound;
 
+        [Header("경고 연출")]
+        public CanvasGroup warningPanel;
+        private Coroutine warningCoroutine;
+
         private bool isCleared = false;
 
         private void Awake()

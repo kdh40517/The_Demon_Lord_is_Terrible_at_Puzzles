@@ -41,7 +41,7 @@ namespace DH
                 Note noteScript = prefab.GetComponent<Note>();
                 if (noteScript != null)
                 {
-                    normalPrefabs.Add(prefab); // 독 검사 없이 무조건 기본 조각으로 쏙!
+                    normalPrefabs.Add(prefab);
                 }
             }
         }
@@ -61,7 +61,6 @@ namespace DH
         {
             GameObject newNoteObj = null;
 
-            // 독 확률 계산 없이 바로 기본 조각 소환!
             if (normalPrefabs.Count > 0)
             {
                 int randomIndex = Random.Range(0, normalPrefabs.Count);

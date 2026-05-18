@@ -52,6 +52,10 @@ namespace DH
         public float clearPanelFadeTime = 3.0f;
         public float clearMoveDelay = 1.5f;
 
+        [Header("경고 연출")]
+        public CanvasGroup warningPanel;
+        private Coroutine warningCoroutine;
+
         private bool isClearMoving = false;
 
         void Awake()
@@ -220,7 +224,7 @@ namespace DH
 
                 Debug.Log("💖 추가 패턴: 보스 회복 +20!");
             }
-            else if (dice <= 40)
+            else if (dice <= 50)
             {
                 if (EarthQuakeEffect != null)
                 {
@@ -241,7 +245,7 @@ namespace DH
 
                 Debug.Log("🌍 추가 패턴: 지진 발생! 퍼즐 조각이 뒤죽박죽 섞입니다!");
             }
-            else if (dice <= 70)
+            else if (dice <= 80)
             {
                 if (stoneEffect != null)
                 {
@@ -308,6 +312,32 @@ namespace DH
             {
                 int turnsUntilAttack = 3 - (turnCount % 3);
                 bossTurnText.text = $"{turnsUntilAttack}";
+
+                // 👇 경고 연출 추가!
+                if (turnsUntilAttack == 1 && !isGameOver)
+                {
+                    // 코루틴이 안 돌고 있을 때만 실행
+                    if (warningCoroutine == null && warningPanel != null)
+                    {
+                        warningPanel.gameObject.SetActive(true);
+                        warningCoroutine = StartCoroutine(WarningRoutine());
+                    }
+                }
+                else
+                {
+                    // 1턴이 아니면 끄기
+                    if (warningCoroutine != null)
+                    {
+                        StopCoroutine(warningCoroutine);
+                        warningCoroutine = null;
+                    }
+
+                    if (warningPanel != null)
+                    {
+                        warningPanel.alpha = 0f;
+                        warningPanel.gameObject.SetActive(false);
+                    }
+                }
             }
         }
 
@@ -361,6 +391,19 @@ namespace DH
             yield return new WaitForSeconds(clearMoveDelay);
 
             SceneManager.LoadScene(stageSceneName);
+        }
+
+        IEnumerator WarningRoutine()
+        {
+            float timer = 0f;
+            while (true)
+            {
+                timer += Time.deltaTime;
+                // PingPong(시간 * 속도, 최대 투명도)
+                // 속도를 2f로, 최대 진하기를 0.4f (40%)로 설정했습니다.
+                warningPanel.alpha = Mathf.PingPong(timer * 2f, 0.4f);
+                yield return null; // 프레임마다 반복
+            }
         }
 
         public void RestartGame()
