@@ -1971,6 +1971,7 @@ MonoBehaviour:
   playerHPBar: {fileID: 1918793474}
   shieldText: {fileID: 1767255453}
   bossTurnText: {fileID: 1662600630}
+  clearPanel: {fileID: 812065330}
   bossHP: 100
   bossMaxHP: 100
   playerMaxHP: 20
@@ -1990,11 +1991,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b3a03cb39c316da428e85dc6da545fa1, type: 3}
   - {fileID: 8300000, guid: 7220b74426b8f2d4aae14685560a6339, type: 3}
   mainMixer: {fileID: 24100000, guid: f9ebeee85d53e344ea7fff9383f2fa94, type: 2}
-  clearPanel: {fileID: 812065330}
   stageSceneName: 03_StageScene
-  endingSceneName: 04_EndingScene
-  clearStampKey: DevillKing_Clear
-  nextSceneKey: NextSceneAfterStage
+  clearPanelFadeTime: 3
   clearMoveDelay: 1.5
 --- !u!4 &1227598898
 Transform:
@@ -2817,7 +2815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 198, y: 0}
+  m_AnchoredPosition: {x: 198, y: 15.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662600630
@@ -2867,8 +2865,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

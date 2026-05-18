@@ -589,6 +589,9 @@ namespace SeoAhn
 
         private IEnumerator MoveEndingAfterDevillClearRoutine()
         {
+            // 카드가 가운데로 자연스럽게 이동할 시간 확보
+            yield return new WaitForSeconds(1.0f);
+
             isEnteringStage = true;
 
             yield return new WaitForSeconds(endingMoveDelay);

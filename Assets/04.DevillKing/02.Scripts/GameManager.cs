@@ -19,6 +19,7 @@ namespace DH
         public Slider playerHPBar;
         public TextMeshProUGUI shieldText;
         public TextMeshProUGUI bossTurnText;
+        public CanvasGroup clearPanel;
 
         [Header("보스 & 플레이어 설정")]
         public int bossHP = 100;
@@ -46,14 +47,9 @@ namespace DH
         [Header("오디오 믹서")]
         public AudioMixer mainMixer;
 
-        [Header("UI 연결")]
-        public CanvasGroup clearPanel;
-
         [Header("클리어 후 씬 이동 설정")]
         public string stageSceneName = "03_StageScene";
-        public string endingSceneName = "04_EndingScene";
-        public string clearStampKey = "DevillKing_Clear";
-        public string nextSceneKey = "NextSceneAfterStage";
+        public float clearPanelFadeTime = 3.0f;
         public float clearMoveDelay = 1.5f;
 
         private bool isClearMoving = false;
@@ -66,6 +62,13 @@ namespace DH
         void Start()
         {
             isGameStarted = true;
+
+            if (clearPanel != null)
+            {
+                clearPanel.gameObject.SetActive(false);
+                clearPanel.alpha = 0f;
+            }
+
             InitializeUI();
         }
 
@@ -166,14 +169,12 @@ namespace DH
                 {
                     playerShield -= incomingDamage;
                     incomingDamage = 0;
-
                     Debug.Log($"🛡️ 방패로 막음! (남은 방어도: {playerShield})");
                 }
                 else
                 {
                     incomingDamage -= playerShield;
                     playerShield = 0;
-
                     Debug.Log("🛡️ 방패가 깨짐!");
                 }
             }
@@ -181,7 +182,6 @@ namespace DH
             if (incomingDamage > 0)
             {
                 playerHP -= incomingDamage;
-
                 Debug.Log($"⚔️ 명치 타격! {incomingDamage} 데미지! (남은 체력: {playerHP})");
             }
 
@@ -320,7 +320,7 @@ namespace DH
 
             if (isWin)
             {
-                Debug.Log("🎉 마왕성 정복 성공! 스테이지 씬으로 이동 후 엔딩으로 이동합니다!");
+                Debug.Log("🎉 Devill 클리어! 스테이지 씬으로 이동합니다.");
 
                 if (!isClearMoving)
                 {
@@ -337,33 +337,29 @@ namespace DH
         {
             isClearMoving = true;
 
-            // 👇 빠져있던 페이드인(서서히 나타나는 효과) 추가!
             if (clearPanel != null)
             {
                 clearPanel.gameObject.SetActive(true);
                 clearPanel.alpha = 0f;
 
                 float timer = 0f;
-                float fadeTime = 3.0f; // 1초 동안 스르륵 나타납니다.
 
-                while (timer < fadeTime)
+                while (timer < clearPanelFadeTime)
                 {
                     timer += Time.deltaTime;
-                    clearPanel.alpha = timer / fadeTime;
+                    clearPanel.alpha = timer / clearPanelFadeTime;
                     yield return null;
                 }
+
                 clearPanel.alpha = 1f;
             }
 
-            // 클리어 도장 찍고 다음 갈 곳 저장
-            PlayerPrefs.SetInt(clearStampKey, 1);
-            PlayerPrefs.SetString(nextSceneKey, endingSceneName);
-            PlayerPrefs.Save();
+            SeoAhn.StageClearManager.SetDevillClear();
 
-            // 그림이 다 나타난 상태로 잠시 대기
+            Debug.Log("✅ Devill 클리어 저장 완료!");
+
             yield return new WaitForSeconds(clearMoveDelay);
 
-            // 진짜로 씬 이동!
             SceneManager.LoadScene(stageSceneName);
         }
 
@@ -374,39 +370,57 @@ namespace DH
 
         void OnGUI()
         {
-            // 메뉴 길이가 길어져서 높이를 300 -> 350으로 살짝 늘렸습니다!
             GUILayout.BeginArea(new Rect(20, 20, 150, 350));
+
             GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
             titleStyle.fontSize = 15;
             titleStyle.normal.textColor = Color.white;
+
             GUILayout.Label("🛠️ 테스트 메뉴", titleStyle);
 
-            // 👇 새로 추가된 게임 클리어 테스트 버튼!
             if (GUILayout.Button("🎉 게임 클리어", GUILayout.Height(40)))
             {
-                GameOver(true); // true = 승리(클리어) 상태로 GameOver 함수 실행
+                GameOver(true);
                 Debug.Log("🎉 테스트: 게임 클리어 강제 실행!");
             }
 
             if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
             {
-                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
+                if (BoardManager.Instance != null)
+                {
+                    BoardManager.Instance.BreakDefenseNotes();
+                }
             }
+
             if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
             {
-                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
+                if (BoardManager.Instance != null)
+                {
+                    BoardManager.Instance.SpawnStones(6);
+                }
             }
+
             if (GUILayout.Button("🌍 지진 발생", GUILayout.Height(40)))
             {
-                if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
-                if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
+                if (EarthQuakeEffect != null)
+                {
+                    EarthQuakeEffect.SetTrigger("EarthQuake");
+                }
+
+                if (PuzzleManager.Instance != null)
+                {
+                    PuzzleManager.Instance.ShuffleBoard();
+                }
+
                 Debug.Log("🌍 테스트: 지진 발생!");
             }
+
             if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
             {
                 turnCount = 2;
                 NextTurn();
             }
+
             GUILayout.EndArea();
         }
     }
