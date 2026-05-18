@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 namespace DH
 {
@@ -41,6 +42,11 @@ namespace DH
         public AudioClip bossAttackSound;
         public AudioClip[] patternSounds;
 
+        [Header("오디오 믹서")]
+        public AudioMixer mainMixer;
+
+        [Header("UI 연결")]
+        public CanvasGroup clearPanel;
         void Awake() { Instance = this; }
 
         void Start()
@@ -200,8 +206,35 @@ namespace DH
         {
             isGameOver = true;
             isGameStarted = false;
-            if (isWin) Debug.Log("🎉 마왕성 정복 성공! 공주님 진정 완료!");
-            else Debug.Log("💀 용사 파티 전멸...");
+
+            if (isWin)
+            {
+                Debug.Log("🎉 마왕성 정복 성공! 공주님 진정 완료!");
+                // 👇 승리하면 페이드인 시작!
+                if (clearPanel != null) StartCoroutine(FadeInClearScreen());
+            }
+            else
+            {
+                Debug.Log("💀 용사 파티 전멸...");
+            }
+        }
+
+        System.Collections.IEnumerator FadeInClearScreen()
+        {
+            clearPanel.gameObject.SetActive(true); // 혹시 꺼져있다면 켜줍니다.
+            clearPanel.alpha = 0f; // 완전 투명 상태에서 시작
+
+            float timer = 0f;
+            float fadeTime = 3f; // 1.5초 동안 서서히 나타납니다. (숫자를 바꾸면 속도 조절 가능!)
+
+            while (timer < fadeTime)
+            {
+                timer += Time.deltaTime;
+                clearPanel.alpha = timer / fadeTime; // 시간에 따라 알파값이 0에서 1로 올라감
+                yield return null; // 다음 프레임까지 대기
+            }
+
+            clearPanel.alpha = 1f; // 마지막에 확실하게 1로 고정!
         }
 
         public void RestartGame()
@@ -209,37 +242,49 @@ namespace DH
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        //void OnGUI()
-        //{
-        //    GUILayout.BeginArea(new Rect(20, 20, 150, 300));
-        //    GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
-        //    titleStyle.fontSize = 15;
-        //    titleStyle.normal.textColor = Color.white;
-        //    GUILayout.Label("🛠️ 테스트 메뉴", titleStyle);
+        public void SetMasterVolume(float sliderValue)
+        {
+            // 슬라이더 값(0~1)을 믹서 값(-40~0)으로 변환해서 적용합니다.
+            float volume = Mathf.Log10(Mathf.Max(sliderValue, 0.0001f)) * 20f;
+            mainMixer.SetFloat("MasterVol", volume);
+        }
 
-        //    if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
-        //    {
-        //        if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
-        //    }
-        //    if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
-        //    {
-        //        if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
-        //    }
+        void OnGUI()
+        {
+            // 메뉴 길이가 길어져서 높이를 300 -> 350으로 살짝 늘렸습니다!
+            GUILayout.BeginArea(new Rect(20, 20, 150, 350));
+            GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
+            titleStyle.fontSize = 15;
+            titleStyle.normal.textColor = Color.white;
+            GUILayout.Label("🛠️ 테스트 메뉴", titleStyle);
 
-        //    // 👇 새로 추가된 지진 발생 버튼!
-        //    if (GUILayout.Button("🌍 지진 발생", GUILayout.Height(40)))
-        //    {
-        //        if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
-        //        if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
-        //        Debug.Log("🌍 테스트: 지진 발생!");
-        //    }
+            // 👇 새로 추가된 게임 클리어 테스트 버튼!
+            if (GUILayout.Button("🎉 게임 클리어", GUILayout.Height(40)))
+            {
+                GameOver(true); // true = 승리(클리어) 상태로 GameOver 함수 실행
+                Debug.Log("🎉 테스트: 게임 클리어 강제 실행!");
+            }
 
-        //    if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
-        //    {
-        //        turnCount = 2;
-        //        NextTurn();
-        //    }
-        //    GUILayout.EndArea();
-        //}
+            if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
+            {
+                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
+            }
+            if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
+            {
+                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
+            }
+            if (GUILayout.Button("🌍 지진 발생", GUILayout.Height(40)))
+            {
+                if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
+                if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
+                Debug.Log("🌍 테스트: 지진 발생!");
+            }
+            if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
+            {
+                turnCount = 2;
+                NextTurn();
+            }
+            GUILayout.EndArea();
+        }
     }
 }
