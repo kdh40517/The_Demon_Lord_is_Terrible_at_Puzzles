@@ -78,6 +78,9 @@ namespace SeoAhn
         [Header("다음 씬")]
         [SerializeField] private string titleSceneName = "01_TitleScene";
 
+        [Header("엔딩 크레딧")]
+        [SerializeField] private EndingCreditController endingCreditController;
+
         private int currentPageIndex;
         private int currentIntroIndex;
 
@@ -89,6 +92,7 @@ namespace SeoAhn
         private bool isFinalTextShowing;
         private bool isFinalFadePlaying;
         private bool hasStoppedBgmOnFinalFade;
+        private bool isCreditStarted;
 
         private RectTransform currentPageRect;
         private RectTransform nextPageRect;
@@ -137,6 +141,7 @@ namespace SeoAhn
             isFinalTextShowing = false;
             isFinalFadePlaying = false;
             hasStoppedBgmOnFinalFade = false;
+            isCreditStarted = false;
 
             if (endingPages == null || endingPages.Length == 0)
             {
@@ -227,6 +232,11 @@ namespace SeoAhn
 
         private void Update()
         {
+            if (isCreditStarted)
+            {
+                return;
+            }
+
             if (!Input.GetKeyDown(KeyCode.Space) && !Input.GetMouseButtonDown(0))
             {
                 return;
@@ -246,7 +256,7 @@ namespace SeoAhn
                     return;
                 }
 
-                SceneManager.LoadScene(titleSceneName);
+                StartEndingCredits();
                 return;
             }
 
@@ -522,7 +532,7 @@ namespace SeoAhn
 
             if (finalImageCanvasGroup == null)
             {
-                SceneManager.LoadScene(titleSceneName);
+                StartEndingCredits();
                 yield break;
             }
 
@@ -709,6 +719,34 @@ namespace SeoAhn
 
             isFinalTextShowing = true;
             isTransitioning = false;
+        }
+
+        private void StartEndingCredits()
+        {
+            if (isCreditStarted)
+            {
+                return;
+            }
+
+            isCreditStarted = true;
+            isTransitioning = true;
+            isFinalImageShowing = false;
+            isFinalTextShowing = false;
+
+            if (guideText != null)
+            {
+                guideText.SetActive(false);
+            }
+
+            if (endingCreditController != null)
+            {
+                endingCreditController.PlayCredits();
+            }
+            else
+            {
+                Debug.LogWarning("EndingCreditController가 연결되지 않았습니다. 타이틀 씬으로 이동합니다.");
+                SceneManager.LoadScene(titleSceneName);
+            }
         }
 
         private IEnumerator FadeBlack(float startAlpha, float endAlpha, float duration)
