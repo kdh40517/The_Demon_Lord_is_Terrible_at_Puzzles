@@ -575,16 +575,26 @@ namespace SeoAhn
                 nextPageImage.gameObject.SetActive(false);
             }
 
+            PlayFinalBGM();
+
+            Coroutine moveCoroutine = null;
+
+            if (finalImageRect != null)
+            {
+                moveCoroutine = StartCoroutine(MoveFinalImageUpRoutine());
+            }
+
             if (blackFadeCanvasGroup != null)
             {
                 yield return StartCoroutine(FadeBlack(1f, 0f, blackFadeDuration));
             }
 
-            PlayFinalBGM();
-
             isFinalFadePlaying = false;
 
-            yield return StartCoroutine(MoveFinalImageUpRoutine());
+            if (moveCoroutine != null)
+            {
+                yield return moveCoroutine;
+            }
 
             if (guideText != null)
             {

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.Audio;
 
 namespace DH
@@ -23,16 +24,16 @@ namespace DH
         public int bossHP = 100;
         public int bossMaxHP = 100;
 
+        [SerializeField] private int playerMaxHP = 20;
+        public int playerHP = 20;
+        public int playerShield = 0;
+
         [Header("개별 이펙트 화면 연결")]
         public Animator attackEffect;
         public Animator healEffect;
         public Animator stoneEffect;
         public Animator breakEffect;
         public Animator EarthQuakeEffect;
-
-        [SerializeField] private int playerMaxHP = 20;
-        public int playerHP = 20;
-        public int playerShield = 0;
 
         [Header("턴제 시스템")]
         public int turnCount = 0;
@@ -47,7 +48,20 @@ namespace DH
 
         [Header("UI 연결")]
         public CanvasGroup clearPanel;
-        void Awake() { Instance = this; }
+
+        [Header("클리어 후 씬 이동 설정")]
+        public string stageSceneName = "03_StageScene";
+        public string endingSceneName = "04_EndingScene";
+        public string clearStampKey = "DevillKing_Clear";
+        public string nextSceneKey = "NextSceneAfterStage";
+        public float clearMoveDelay = 1.5f;
+
+        private bool isClearMoving = false;
+
+        void Awake()
+        {
+            Instance = this;
+        }
 
         void Start()
         {
@@ -62,74 +76,104 @@ namespace DH
                 bossHPBar.maxValue = bossMaxHP;
                 bossHPBar.value = bossHP;
             }
+
             if (playerHPBar != null)
             {
                 playerHPBar.maxValue = playerMaxHP;
                 playerHPBar.value = playerHP;
             }
+
             UpdateHPUI();
         }
 
         public void AttackBoss(int damage)
         {
             if (isGameOver) return;
+
             bossHP -= damage;
-            if (bossHP < 0) bossHP = 0;
+
+            if (bossHP < 0)
+            {
+                bossHP = 0;
+            }
+
             UpdateHPUI();
+
             Debug.Log($"💥 보스 데미지: {damage} / 남은 체력: {bossHP}");
-            if (bossHP <= 0) GameOver(true);
+
+            if (bossHP <= 0)
+            {
+                GameOver(true);
+            }
         }
 
         public void HealPlayer(int healAmount)
         {
             if (isGameOver) return;
+
             playerHP = Mathf.Min(playerHP + healAmount, playerMaxHP);
             UpdateHPUI();
+
             Debug.Log($"💊 체력을 {healAmount} 회복! (현재: {playerHP}/{playerMaxHP})");
         }
 
         public void AddShield(int shieldAmount)
         {
             if (isGameOver) return;
+
             playerShield += shieldAmount;
             UpdateHPUI();
+
             Debug.Log($"🛡️ 방어도 +{shieldAmount} (현재: {playerShield})");
         }
 
         public void NextTurn()
         {
             if (isGameOver) return;
+
             turnCount++;
             UpdateHPUI();
+
             if (turnCount % 3 == 0)
             {
                 StartCoroutine(BossAttackRoutine());
             }
         }
 
-        System.Collections.IEnumerator BossAttackRoutine()
+        IEnumerator BossAttackRoutine()
         {
             if (isGameOver) yield break;
+
             Debug.Log("👿 보스의 공격 시작!");
 
-            if (sfxPlayer != null && bossAttackSound != null) sfxPlayer.PlayOneShot(bossAttackSound);
+            if (sfxPlayer != null && bossAttackSound != null)
+            {
+                sfxPlayer.PlayOneShot(bossAttackSound);
+            }
 
-            if (attackEffect != null) attackEffect.SetTrigger("Attack");
+            if (attackEffect != null)
+            {
+                attackEffect.SetTrigger("Attack");
+            }
+
             yield return new WaitForSeconds(1.0f);
 
             int incomingDamage = 10;
+
             if (playerShield > 0)
             {
                 if (playerShield >= incomingDamage)
                 {
                     playerShield -= incomingDamage;
                     incomingDamage = 0;
+
                     Debug.Log($"🛡️ 방패로 막음! (남은 방어도: {playerShield})");
                 }
                 else
                 {
                     incomingDamage -= playerShield;
                     playerShield = 0;
+
                     Debug.Log("🛡️ 방패가 깨짐!");
                 }
             }
@@ -137,6 +181,7 @@ namespace DH
             if (incomingDamage > 0)
             {
                 playerHP -= incomingDamage;
+
                 Debug.Log($"⚔️ 명치 타격! {incomingDamage} 데미지! (남은 체력: {playerHP})");
             }
 
@@ -154,35 +199,88 @@ namespace DH
 
             if (dice <= 20)
             {
-                if (healEffect != null) healEffect.SetTrigger("Heal");
-                if (sfxPlayer != null && patternSounds.Length > 0) sfxPlayer.PlayOneShot(patternSounds[0]);
+                if (healEffect != null)
+                {
+                    healEffect.SetTrigger("Heal");
+                }
+
+                if (sfxPlayer != null && patternSounds.Length > 0)
+                {
+                    sfxPlayer.PlayOneShot(patternSounds[0]);
+                }
+
                 yield return new WaitForSeconds(1.0f);
+
                 bossHP += 20;
-                if (bossHP > bossMaxHP) bossHP = bossMaxHP;
+
+                if (bossHP > bossMaxHP)
+                {
+                    bossHP = bossMaxHP;
+                }
+
                 Debug.Log("💖 추가 패턴: 보스 회복 +20!");
             }
             else if (dice <= 40)
             {
-                if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
-                if (sfxPlayer != null && patternSounds.Length > 1) sfxPlayer.PlayOneShot(patternSounds[1]);
+                if (EarthQuakeEffect != null)
+                {
+                    EarthQuakeEffect.SetTrigger("EarthQuake");
+                }
+
+                if (sfxPlayer != null && patternSounds.Length > 1)
+                {
+                    sfxPlayer.PlayOneShot(patternSounds[1]);
+                }
+
                 yield return new WaitForSeconds(1.0f);
-                if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
+
+                if (PuzzleManager.Instance != null)
+                {
+                    PuzzleManager.Instance.ShuffleBoard();
+                }
+
                 Debug.Log("🌍 추가 패턴: 지진 발생! 퍼즐 조각이 뒤죽박죽 섞입니다!");
             }
             else if (dice <= 70)
             {
-                if (stoneEffect != null) stoneEffect.SetTrigger("Stone");
-                if (sfxPlayer != null && patternSounds.Length > 2) sfxPlayer.PlayOneShot(patternSounds[2]);
+                if (stoneEffect != null)
+                {
+                    stoneEffect.SetTrigger("Stone");
+                }
+
+                if (sfxPlayer != null && patternSounds.Length > 2)
+                {
+                    sfxPlayer.PlayOneShot(patternSounds[2]);
+                }
+
                 yield return new WaitForSeconds(1.0f);
-                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(8);
+
+                if (BoardManager.Instance != null)
+                {
+                    BoardManager.Instance.SpawnStones(8);
+                }
+
                 Debug.Log("🪨 추가 패턴: 바위 투척!");
             }
             else
             {
-                if (breakEffect != null) breakEffect.SetTrigger("Break");
-                if (sfxPlayer != null && patternSounds.Length > 3) sfxPlayer.PlayOneShot(patternSounds[3]);
+                if (breakEffect != null)
+                {
+                    breakEffect.SetTrigger("Break");
+                }
+
+                if (sfxPlayer != null && patternSounds.Length > 3)
+                {
+                    sfxPlayer.PlayOneShot(patternSounds[3]);
+                }
+
                 yield return new WaitForSeconds(1.0f);
-                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
+
+                if (BoardManager.Instance != null)
+                {
+                    BoardManager.Instance.BreakDefenseNotes();
+                }
+
                 Debug.Log("🔨 추가 패턴: 방패 부수기!");
             }
 
@@ -191,9 +289,20 @@ namespace DH
 
         void UpdateHPUI()
         {
-            if (bossHPBar != null) bossHPBar.value = bossHP;
-            if (playerHPBar != null) playerHPBar.value = playerHP;
-            if (shieldText != null) shieldText.text = playerShield.ToString();
+            if (bossHPBar != null)
+            {
+                bossHPBar.value = bossHP;
+            }
+
+            if (playerHPBar != null)
+            {
+                playerHPBar.value = playerHP;
+            }
+
+            if (shieldText != null)
+            {
+                shieldText.text = playerShield.ToString();
+            }
 
             if (bossTurnText != null)
             {
@@ -204,14 +313,19 @@ namespace DH
 
         public void GameOver(bool isWin)
         {
+            if (isGameOver) return;
+
             isGameOver = true;
             isGameStarted = false;
 
             if (isWin)
             {
-                Debug.Log("🎉 마왕성 정복 성공! 공주님 진정 완료!");
-                // 👇 승리하면 페이드인 시작!
-                if (clearPanel != null) StartCoroutine(FadeInClearScreen());
+                Debug.Log("🎉 마왕성 정복 성공! 스테이지 씬으로 이동 후 엔딩으로 이동합니다!");
+
+                if (!isClearMoving)
+                {
+                    StartCoroutine(ClearMoveRoutine());
+                }
             }
             else
             {
@@ -219,34 +333,43 @@ namespace DH
             }
         }
 
-        System.Collections.IEnumerator FadeInClearScreen()
+        IEnumerator ClearMoveRoutine()
         {
-            clearPanel.gameObject.SetActive(true); // 혹시 꺼져있다면 켜줍니다.
-            clearPanel.alpha = 0f; // 완전 투명 상태에서 시작
+            isClearMoving = true;
 
-            float timer = 0f;
-            float fadeTime = 3f; // 1.5초 동안 서서히 나타납니다. (숫자를 바꾸면 속도 조절 가능!)
-
-            while (timer < fadeTime)
+            // 👇 빠져있던 페이드인(서서히 나타나는 효과) 추가!
+            if (clearPanel != null)
             {
-                timer += Time.deltaTime;
-                clearPanel.alpha = timer / fadeTime; // 시간에 따라 알파값이 0에서 1로 올라감
-                yield return null; // 다음 프레임까지 대기
+                clearPanel.gameObject.SetActive(true);
+                clearPanel.alpha = 0f;
+
+                float timer = 0f;
+                float fadeTime = 3.0f; // 1초 동안 스르륵 나타납니다.
+
+                while (timer < fadeTime)
+                {
+                    timer += Time.deltaTime;
+                    clearPanel.alpha = timer / fadeTime;
+                    yield return null;
+                }
+                clearPanel.alpha = 1f;
             }
 
-            clearPanel.alpha = 1f; // 마지막에 확실하게 1로 고정!
+            // 클리어 도장 찍고 다음 갈 곳 저장
+            PlayerPrefs.SetInt(clearStampKey, 1);
+            PlayerPrefs.SetString(nextSceneKey, endingSceneName);
+            PlayerPrefs.Save();
+
+            // 그림이 다 나타난 상태로 잠시 대기
+            yield return new WaitForSeconds(clearMoveDelay);
+
+            // 진짜로 씬 이동!
+            SceneManager.LoadScene(stageSceneName);
         }
 
         public void RestartGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        public void SetMasterVolume(float sliderValue)
-        {
-            // 슬라이더 값(0~1)을 믹서 값(-40~0)으로 변환해서 적용합니다.
-            float volume = Mathf.Log10(Mathf.Max(sliderValue, 0.0001f)) * 20f;
-            mainMixer.SetFloat("MasterVol", volume);
         }
 
         void OnGUI()

@@ -1973,14 +1973,14 @@ MonoBehaviour:
   bossTurnText: {fileID: 1662600630}
   bossHP: 100
   bossMaxHP: 100
+  playerMaxHP: 20
+  playerHP: 20
+  playerShield: 0
   attackEffect: {fileID: 2111243701}
   healEffect: {fileID: 401055839}
   stoneEffect: {fileID: 1581014618}
   breakEffect: {fileID: 1309505828}
   EarthQuakeEffect: {fileID: 1107448487}
-  playerMaxHP: 20
-  playerHP: 20
-  playerShield: 0
   turnCount: 0
   sfxPlayer: {fileID: 1227598899}
   bossAttackSound: {fileID: 8300000, guid: f68f8fd11cf68324fbe85fa06bb1510d, type: 3}
@@ -1990,6 +1990,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b3a03cb39c316da428e85dc6da545fa1, type: 3}
   - {fileID: 8300000, guid: 7220b74426b8f2d4aae14685560a6339, type: 3}
   mainMixer: {fileID: 24100000, guid: f9ebeee85d53e344ea7fff9383f2fa94, type: 2}
+  clearPanel: {fileID: 812065330}
+  stageSceneName: 03_StageScene
+  endingSceneName: 04_EndingScene
+  clearStampKey: DevillKing_Clear
+  nextSceneKey: NextSceneAfterStage
+  clearMoveDelay: 1.5
 --- !u!4 &1227598898
 Transform:
   m_ObjectHideFlags: 0

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 namespace SeoAhn
 {
-    // 스테이지 선택 화면을 회전목마 방식으로 관리하는 스크립트입니다.
-    // 좌/우 방향키로 카드가 순환 이동하고, Space 키로 선택한 스테이지에 입장합니다.
-    // 클리어한 스테이지에는 도장을 표시하고, 방금 클리어한 스테이지는 "쿵!" 도장 효과를 재생합니다.
     public class StageSelectController : MonoBehaviour
     {
         [Header("스테이지 카드 RectTransform")]
@@ -46,16 +43,17 @@ namespace SeoAhn
         [SerializeField] private float lockedMessageStayTime = 1.1f;
 
         [Header("선택 효과음")]
-        [SerializeField] private AudioSource selectAudioSource; // Space로 스테이지 선택 시 재생할 AudioSource
-        [SerializeField] private AudioClip selectClip; // 선택 효과음 파일
-        [SerializeField] private float selectVolume = 0.5f; // 선택 효과음 볼륨
-        [SerializeField] private float sceneLoadDelay = 0.25f; // 효과음이 들릴 시간을 주고 씬 이동
+        [SerializeField] private AudioSource selectAudioSource;
+        [SerializeField] private AudioClip selectClip;
+        [SerializeField] private float selectVolume = 0.5f;
+        [SerializeField] private float sceneLoadDelay = 0.25f;
 
         [Header("이동할 씬 이름")]
         [SerializeField] private string villageSceneName = "01_VillageScene";
         [SerializeField] private string forestSceneName = "02_ForestScene";
         [SerializeField] private string castleSceneName = "03_CastleScene";
         [SerializeField] private string devillSceneName = "04_DevilScene";
+        [SerializeField] private string endingSceneName = "04_EndingScene";
 
         [Header("스테이지 잠금 상태")]
         [SerializeField] private bool villageUnlocked = true;
@@ -86,16 +84,17 @@ namespace SeoAhn
         [SerializeField] private float alphaSpeed = 8f;
 
         [Header("배경음")]
-        [SerializeField] private AudioSource bgmAudioSource; // 스테이지 선택 화면 배경음
+        [SerializeField] private AudioSource bgmAudioSource;
 
         [Header("클리어 도장")]
-        [SerializeField] private StampPopEffect villageStampEffect; // Village 클리어 도장 효과
-        [SerializeField] private StampPopEffect forestStampEffect; // Forest 클리어 도장 효과
-        [SerializeField] private StampPopEffect castleStampEffect; // Castle 클리어 도장 효과
-        [SerializeField] private StampPopEffect devillStampEffect; // Devill 클리어 도장 효과
+        [SerializeField] private StampPopEffect villageStampEffect;
+        [SerializeField] private StampPopEffect forestStampEffect;
+        [SerializeField] private StampPopEffect castleStampEffect;
+        [SerializeField] private StampPopEffect devillStampEffect;
 
-        [Header("도장 후 자동 선택 이동")]
-        [SerializeField] private float autoSelectNextDelay = 0.8f; // 도장이 찍힌 뒤 다음 카드로 이동하기 전 대기 시간
+        [Header("도장 후 자동 이동")]
+        [SerializeField] private float autoSelectNextDelay = 0.8f;
+        [SerializeField] private float endingMoveDelay = 2.0f;
 
         private int currentIndex;
         private bool isMoving;
@@ -372,48 +371,20 @@ namespace SeoAhn
 
         private void BringSelectedCardToFront()
         {
-            if (cardRects == null)
-            {
-                return;
-            }
-
             int leftIndex = GetWrappedIndex(currentIndex - 1);
             int rightIndex = GetWrappedIndex(currentIndex + 1);
             int backIndex = GetWrappedIndex(currentIndex + 2);
 
-            if (cardRects[backIndex] != null)
-            {
-                cardRects[backIndex].SetAsFirstSibling();
-            }
-
-            if (cardRects[leftIndex] != null)
-            {
-                cardRects[leftIndex].SetAsLastSibling();
-            }
-
-            if (cardRects[rightIndex] != null)
-            {
-                cardRects[rightIndex].SetAsLastSibling();
-            }
-
-            if (cardRects[currentIndex] != null)
-            {
-                cardRects[currentIndex].SetAsLastSibling();
-            }
+            if (cardRects[backIndex] != null) cardRects[backIndex].SetAsFirstSibling();
+            if (cardRects[leftIndex] != null) cardRects[leftIndex].SetAsLastSibling();
+            if (cardRects[rightIndex] != null) cardRects[rightIndex].SetAsLastSibling();
+            if (cardRects[currentIndex] != null) cardRects[currentIndex].SetAsLastSibling();
         }
 
         private int GetWrappedIndex(int index)
         {
-            if (index < 0)
-            {
-                return 3;
-            }
-
-            if (index > 3)
-            {
-                return 0;
-            }
-
+            if (index < 0) return 3;
+            if (index > 3) return 0;
             return index;
         }
 
@@ -421,10 +392,7 @@ namespace SeoAhn
         {
             for (int i = 0; i < cardCanvasGroups.Length; i++)
             {
-                if (cardCanvasGroups[i] == null)
-                {
-                    continue;
-                }
+                if (cardCanvasGroups[i] == null) continue;
 
                 if (shouldHideImmediately[i])
                 {
@@ -437,10 +405,7 @@ namespace SeoAhn
         {
             for (int i = 0; i < cardRects.Length; i++)
             {
-                if (cardRects[i] == null)
-                {
-                    continue;
-                }
+                if (cardRects[i] == null) continue;
 
                 cardRects[i].anchoredPosition = targetPositions[i];
                 cardRects[i].localScale = targetScales[i];
@@ -461,10 +426,7 @@ namespace SeoAhn
 
             for (int i = 0; i < cardRects.Length; i++)
             {
-                if (cardRects[i] == null)
-                {
-                    continue;
-                }
+                if (cardRects[i] == null) continue;
 
                 cardRects[i].anchoredPosition = Vector2.Lerp(cardRects[i].anchoredPosition, targetPositions[i], moveSpeed * Time.deltaTime);
                 cardRects[i].localScale = Vector3.Lerp(cardRects[i].localScale, targetScales[i], scaleSpeed * Time.deltaTime);
@@ -496,21 +458,13 @@ namespace SeoAhn
 
         private void SetCardAlpha(int index, float alpha)
         {
-            if (cardCanvasGroups[index] == null)
-            {
-                return;
-            }
-
+            if (cardCanvasGroups[index] == null) return;
             cardCanvasGroups[index].alpha = alpha;
         }
 
         private float GetCardAlpha(int index)
         {
-            if (cardCanvasGroups[index] == null)
-            {
-                return 1f;
-            }
-
+            if (cardCanvasGroups[index] == null) return 1f;
             return cardCanvasGroups[index].alpha;
         }
 
@@ -518,11 +472,7 @@ namespace SeoAhn
         {
             for (int i = 0; i < cardEffects.Length; i++)
             {
-                if (cardEffects[i] == null)
-                {
-                    continue;
-                }
-
+                if (cardEffects[i] == null) continue;
                 cardEffects[i].SetSelected(i == currentIndex);
             }
         }
@@ -548,9 +498,7 @@ namespace SeoAhn
             lockedMessagePanel.SetActive(true);
 
             yield return StartCoroutine(FadeLockedMessage(0f, 1f));
-
             yield return new WaitForSeconds(lockedMessageStayTime);
-
             yield return StartCoroutine(FadeLockedMessage(1f, 0f));
 
             lockedMessagePanel.SetActive(false);
@@ -583,14 +531,11 @@ namespace SeoAhn
 
         private void LoadStageClearState()
         {
-            // 저장된 클리어 상태를 읽습니다.
             bool villageClear = StageClearManager.IsVillageClear();
             bool forestClear = StageClearManager.IsForestClear();
             bool castleClear = StageClearManager.IsCastleClear();
             bool devillClear = StageClearManager.IsDevillClear();
 
-            // 이미 클리어한 스테이지는 다시 입장 가능해야 하므로
-            // 자기 자신의 클리어 상태도 해금 조건에 포함합니다.
             villageUnlocked = true;
             forestUnlocked = villageClear || forestClear;
             castleUnlocked = forestClear || castleClear;
@@ -598,70 +543,91 @@ namespace SeoAhn
 
             RefreshUnlockedStates();
 
-            // 방금 클리어하고 돌아온 스테이지 정보
             string recentlyClearedStage = StageClearManager.GetRecentlyClearedStage();
 
-            // 도장 상태 적용
+            SetCurrentIndexByRecentlyClearedStage(recentlyClearedStage);
+
             ApplyStampState(villageStampEffect, villageClear, recentlyClearedStage == "Village");
             ApplyStampState(forestStampEffect, forestClear, recentlyClearedStage == "Forest");
             ApplyStampState(castleStampEffect, castleClear, recentlyClearedStage == "Castle");
             ApplyStampState(devillStampEffect, devillClear, recentlyClearedStage == "Devill");
 
-            // 방금 클리어한 스테이지면 다음 카드 자동 선택
+            if (recentlyClearedStage == "Devill")
+            {
+                StartCoroutine(MoveEndingAfterDevillClearRoutine());
+                return;
+            }
+
             if (!string.IsNullOrEmpty(recentlyClearedStage))
             {
                 int nextIndex = GetNextStageIndexAfterClear(recentlyClearedStage);
                 StartCoroutine(AutoSelectNextStageAfterStamp(nextIndex));
             }
 
-            // 최근 클리어 정보 초기화
             StageClearManager.ClearRecentlyClearedStage();
+        }
+
+        private void SetCurrentIndexByRecentlyClearedStage(string recentlyClearedStage)
+        {
+            if (recentlyClearedStage == "Village")
+            {
+                currentIndex = 0;
+            }
+            else if (recentlyClearedStage == "Forest")
+            {
+                currentIndex = 1;
+            }
+            else if (recentlyClearedStage == "Castle")
+            {
+                currentIndex = 2;
+            }
+            else if (recentlyClearedStage == "Devill")
+            {
+                currentIndex = 3;
+            }
+        }
+
+        private IEnumerator MoveEndingAfterDevillClearRoutine()
+        {
+            isEnteringStage = true;
+
+            yield return new WaitForSeconds(endingMoveDelay);
+
+            StageClearManager.ClearRecentlyClearedStage();
+
+            if (bgmAudioSource != null)
+            {
+                bgmAudioSource.Stop();
+            }
+
+            SceneManager.LoadScene(endingSceneName);
         }
 
         private int GetNextStageIndexAfterClear(string clearedStageName)
         {
-            // 방금 클리어한 스테이지에 따라 다음에 선택할 카드 번호를 반환합니다.
-            // 0 = Village, 1 = Forest, 2 = Castle, 3 = Devill
-
-            if (clearedStageName == "Village")
-            {
-                return 1; // Village 클리어 후 Forest 선택
-            }
-
-            if (clearedStageName == "Forest")
-            {
-                return 2; // Forest 클리어 후 Castle 선택
-            }
-
-            if (clearedStageName == "Castle")
-            {
-                return 3; // Castle 클리어 후 Devill 선택
-            }
+            if (clearedStageName == "Village") return 1;
+            if (clearedStageName == "Forest") return 2;
+            if (clearedStageName == "Castle") return 3;
 
             return currentIndex;
         }
 
         private IEnumerator AutoSelectNextStageAfterStamp(int nextIndex)
         {
-            // 도장 찍히는 효과가 보일 시간을 줍니다.
             yield return new WaitForSeconds(autoSelectNextDelay);
 
-            // 다음 스테이지가 잠겨 있으면 이동하지 않습니다.
             if (!IsStageUnlocked(nextIndex))
             {
                 yield break;
             }
 
-            // 이미 현재 카드라면 이동하지 않습니다.
             if (nextIndex == currentIndex)
             {
                 yield break;
             }
 
-            // 다음 스테이지를 선택 상태로 바꿉니다.
             currentIndex = nextIndex;
 
-            // 회전목마 위치를 다시 계산하고 이동시킵니다.
             CalculateCarouselTargets();
             BringSelectedCardToFront();
             HideBackCardsImmediately();
