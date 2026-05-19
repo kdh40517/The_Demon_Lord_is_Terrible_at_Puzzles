@@ -3,8 +3,8 @@ guid: 73e0aef7024df2e4580c74b571ffea08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3329509183866651237
-    second: BoardImg_0
+      213: 6743204960864597533
+    second: VillageFrame_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BoardImg_0
+      name: VillageFrame_0
       rect:
         serializedVersion: 2
-        x: 11
+        x: 0
         y: 0
-        width: 1515
-        height: 1024
+        width: 1447
+        height: 1087
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9d3a3ba9053bc1d0800000000000000
-      internalID: -3329509183866651237
+      spriteID: d167cf35f2da49d50800000000000000
+      internalID: 6743204960864597533
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BoardImg_0: -3329509183866651237
+      VillageFrame_0: 6743204960864597533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -312,6 +312,7 @@ MonoBehaviour:
   stageSceneName: 03_StageScene
   audioSource: {fileID: 173155602}
   clearUIRevealSound: {fileID: 8300000, guid: f80ca36b5eb4f6b43b6ea1a3fe5b2aa8, type: 3}
+  warningPanel: {fileID: 0}
 --- !u!4 &173155600
 Transform:
   m_ObjectHideFlags: 0
@@ -958,8 +959,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 155, y: 338}
-  m_SizeDelta: {x: 1800, y: 1750}
+  m_AnchoredPosition: {x: 0, y: 15}
+  m_SizeDelta: {x: 1730, y: 1120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &486966596
 MonoBehaviour:
@@ -981,7 +982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3484493956378267237, guid: 34843aa983330bf449ecd068e1fc9a7b, type: 3}
+  m_Sprite: {fileID: 393141524705285387, guid: 34843aa983330bf449ecd068e1fc9a7b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1424,7 +1425,7 @@ Transform:
   m_GameObject: {fileID: 1051733765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -346.72302, y: -251.91742, z: 0}
+  m_LocalPosition: {x: -346.72302, y: -206, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
