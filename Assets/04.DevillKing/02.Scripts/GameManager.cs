@@ -20,6 +20,8 @@ namespace DH
         public TextMeshProUGUI shieldText;
         public TextMeshProUGUI bossTurnText;
         public CanvasGroup clearPanel;
+        // 👇 게임 오버 패널 추가!
+        public CanvasGroup gameOverPanel;
 
         [Header("보스 & 플레이어 설정")]
         public int bossHP = 100;
@@ -47,8 +49,10 @@ namespace DH
         [Header("오디오 믹서")]
         public AudioMixer mainMixer;
 
-        [Header("클리어 후 씬 이동 설정")]
+        [Header("씬 이동 설정")]
         public string stageSceneName = "03_StageScene";
+        // 👇 타이틀 씬 이름 추가!
+        public string titleSceneName = "01_TitleScene";
         public float clearPanelFadeTime = 3.0f;
         public float clearMoveDelay = 1.5f;
 
@@ -71,6 +75,14 @@ namespace DH
             {
                 clearPanel.gameObject.SetActive(false);
                 clearPanel.alpha = 0f;
+            }
+
+            // 👇 시작할 때 게임 오버 패널도 숨겨줍니다.
+            if (gameOverPanel != null)
+            {
+                gameOverPanel.gameObject.SetActive(false);
+                gameOverPanel.alpha = 0f;
+                gameOverPanel.blocksRaycasts = false; // 숨겨져 있을 땐 클릭 안 되게!
             }
 
             InitializeUI();
@@ -193,7 +205,7 @@ namespace DH
             {
                 playerHP = 0;
                 UpdateHPUI();
-                GameOver(false);
+                GameOver(false); // 💀 여기서 패배로 게임오버 실행!
                 yield break;
             }
 
@@ -203,88 +215,35 @@ namespace DH
 
             if (dice <= 20)
             {
-                if (healEffect != null)
-                {
-                    healEffect.SetTrigger("Heal");
-                }
-
-                if (sfxPlayer != null && patternSounds.Length > 0)
-                {
-                    sfxPlayer.PlayOneShot(patternSounds[0]);
-                }
-
+                if (healEffect != null) healEffect.SetTrigger("Heal");
+                if (sfxPlayer != null && patternSounds.Length > 0) sfxPlayer.PlayOneShot(patternSounds[0]);
                 yield return new WaitForSeconds(1.0f);
-
                 bossHP += 20;
-
-                if (bossHP > bossMaxHP)
-                {
-                    bossHP = bossMaxHP;
-                }
-
+                if (bossHP > bossMaxHP) bossHP = bossMaxHP;
                 Debug.Log("💖 추가 패턴: 보스 회복 +20!");
             }
             else if (dice <= 50)
             {
-                if (EarthQuakeEffect != null)
-                {
-                    EarthQuakeEffect.SetTrigger("EarthQuake");
-                }
-
-                if (sfxPlayer != null && patternSounds.Length > 1)
-                {
-                    sfxPlayer.PlayOneShot(patternSounds[1]);
-                }
-
+                if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
+                if (sfxPlayer != null && patternSounds.Length > 1) sfxPlayer.PlayOneShot(patternSounds[1]);
                 yield return new WaitForSeconds(1.0f);
-
-                if (PuzzleManager.Instance != null)
-                {
-                    PuzzleManager.Instance.ShuffleBoard();
-                }
-
+                if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
                 Debug.Log("🌍 추가 패턴: 지진 발생! 퍼즐 조각이 뒤죽박죽 섞입니다!");
             }
             else if (dice <= 80)
             {
-                if (stoneEffect != null)
-                {
-                    stoneEffect.SetTrigger("Stone");
-                }
-
-                if (sfxPlayer != null && patternSounds.Length > 2)
-                {
-                    sfxPlayer.PlayOneShot(patternSounds[2]);
-                }
-
+                if (stoneEffect != null) stoneEffect.SetTrigger("Stone");
+                if (sfxPlayer != null && patternSounds.Length > 2) sfxPlayer.PlayOneShot(patternSounds[2]);
                 yield return new WaitForSeconds(1.0f);
-
-                if (BoardManager.Instance != null)
-                {
-                    BoardManager.Instance.SpawnStones(8);
-                }
-
+                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(8);
                 Debug.Log("🪨 추가 패턴: 바위 투척!");
             }
             else
             {
-                if (breakEffect != null)
-                {
-                    breakEffect.SetTrigger("Break");
-                }
-
-                if (sfxPlayer != null && patternSounds.Length > 3)
-                {
-                    sfxPlayer.PlayOneShot(patternSounds[3]);
-                }
-
+                if (breakEffect != null) breakEffect.SetTrigger("Break");
+                if (sfxPlayer != null && patternSounds.Length > 3) sfxPlayer.PlayOneShot(patternSounds[3]);
                 yield return new WaitForSeconds(1.0f);
-
-                if (BoardManager.Instance != null)
-                {
-                    BoardManager.Instance.BreakDefenseNotes();
-                }
-
+                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
                 Debug.Log("🔨 추가 패턴: 방패 부수기!");
             }
 
@@ -293,30 +252,17 @@ namespace DH
 
         void UpdateHPUI()
         {
-            if (bossHPBar != null)
-            {
-                bossHPBar.value = bossHP;
-            }
-
-            if (playerHPBar != null)
-            {
-                playerHPBar.value = playerHP;
-            }
-
-            if (shieldText != null)
-            {
-                shieldText.text = playerShield.ToString();
-            }
+            if (bossHPBar != null) bossHPBar.value = bossHP;
+            if (playerHPBar != null) playerHPBar.value = playerHP;
+            if (shieldText != null) shieldText.text = playerShield.ToString();
 
             if (bossTurnText != null)
             {
                 int turnsUntilAttack = 3 - (turnCount % 3);
                 bossTurnText.text = $"{turnsUntilAttack}";
 
-                // 👇 경고 연출 추가!
                 if (turnsUntilAttack == 1 && !isGameOver)
                 {
-                    // 코루틴이 안 돌고 있을 때만 실행
                     if (warningCoroutine == null && warningPanel != null)
                     {
                         warningPanel.gameObject.SetActive(true);
@@ -325,7 +271,6 @@ namespace DH
                 }
                 else
                 {
-                    // 1턴이 아니면 끄기
                     if (warningCoroutine != null)
                     {
                         StopCoroutine(warningCoroutine);
@@ -351,7 +296,6 @@ namespace DH
             if (isWin)
             {
                 Debug.Log("🎉 Devill 클리어! 스테이지 씬으로 이동합니다.");
-
                 if (!isClearMoving)
                 {
                     StartCoroutine(ClearMoveRoutine());
@@ -359,7 +303,9 @@ namespace DH
             }
             else
             {
-                Debug.Log("💀 용사 파티 전멸...");
+                Debug.Log("💀 용사 파티 전멸... 게임 오버!");
+                // 👇 패배 시 게임 오버 연출 실행!
+                StartCoroutine(GameOverRoutine());
             }
         }
 
@@ -371,26 +317,43 @@ namespace DH
             {
                 clearPanel.gameObject.SetActive(true);
                 clearPanel.alpha = 0f;
-
                 float timer = 0f;
-
                 while (timer < clearPanelFadeTime)
                 {
                     timer += Time.deltaTime;
                     clearPanel.alpha = timer / clearPanelFadeTime;
                     yield return null;
                 }
-
                 clearPanel.alpha = 1f;
             }
 
             SeoAhn.StageClearManager.SetDevillClear();
-
             Debug.Log("✅ Devill 클리어 저장 완료!");
 
             yield return new WaitForSeconds(clearMoveDelay);
-
             SceneManager.LoadScene(stageSceneName);
+        }
+
+        // 👇 새로 추가된 게임 오버 스르륵 연출!
+        IEnumerator GameOverRoutine()
+        {
+            if (gameOverPanel != null)
+            {
+                gameOverPanel.gameObject.SetActive(true);
+                gameOverPanel.alpha = 0f;
+                float timer = 0f;
+
+                // 클리어랑 똑같은 속도로 스르륵 나타납니다.
+                while (timer < clearPanelFadeTime)
+                {
+                    timer += Time.deltaTime;
+                    gameOverPanel.alpha = timer / clearPanelFadeTime;
+                    yield return null;
+                }
+
+                gameOverPanel.alpha = 1f;
+                gameOverPanel.blocksRaycasts = true; // 이제 버튼을 누를 수 있게 허용!
+            }
         }
 
         IEnumerator WarningRoutine()
@@ -399,21 +362,28 @@ namespace DH
             while (true)
             {
                 timer += Time.deltaTime;
-                // PingPong(시간 * 속도, 최대 투명도)
-                // 속도를 2f로, 최대 진하기를 0.4f (40%)로 설정했습니다.
                 warningPanel.alpha = Mathf.PingPong(timer * 2f, 0.4f);
-                yield return null; // 프레임마다 반복
+                yield return null;
             }
         }
 
+        // 👇 버튼에 연결할 기능들
         public void RestartGame()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        // 👇 타이틀로 돌아가는 버튼 기능 추가!
+        public void GoToTitle()
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(titleSceneName);
         }
 
         void OnGUI()
         {
-            GUILayout.BeginArea(new Rect(20, 20, 150, 350));
+            GUILayout.BeginArea(new Rect(20, 20, 150, 400));
 
             GUIStyle titleStyle = new GUIStyle(GUI.skin.label);
             titleStyle.fontSize = 15;
@@ -427,35 +397,27 @@ namespace DH
                 Debug.Log("🎉 테스트: 게임 클리어 강제 실행!");
             }
 
+            // 👇 게임 오버 테스트 버튼 추가!
+            if (GUILayout.Button("💀 게임 오버", GUILayout.Height(40)))
+            {
+                GameOver(false);
+                Debug.Log("💀 테스트: 게임 오버 강제 실행!");
+            }
+
             if (GUILayout.Button("🔨 방패 부수기", GUILayout.Height(40)))
             {
-                if (BoardManager.Instance != null)
-                {
-                    BoardManager.Instance.BreakDefenseNotes();
-                }
+                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
             }
 
             if (GUILayout.Button("🪨 돌멩이 소환", GUILayout.Height(40)))
             {
-                if (BoardManager.Instance != null)
-                {
-                    BoardManager.Instance.SpawnStones(6);
-                }
+                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(6);
             }
 
             if (GUILayout.Button("🌍 지진 발생", GUILayout.Height(40)))
             {
-                if (EarthQuakeEffect != null)
-                {
-                    EarthQuakeEffect.SetTrigger("EarthQuake");
-                }
-
-                if (PuzzleManager.Instance != null)
-                {
-                    PuzzleManager.Instance.ShuffleBoard();
-                }
-
-                Debug.Log("🌍 테스트: 지진 발생!");
+                if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
+                if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
             }
 
             if (GUILayout.Button("⚔️ 보스 공격 (랜덤)", GUILayout.Height(40)))
