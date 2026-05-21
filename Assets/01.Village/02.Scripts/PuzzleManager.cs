@@ -1,21 +1,33 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // Image 컴포넌트를 사용하기 위해 추가
+using UnityEngine.UI;
 
 namespace TM
 {
     public class PuzzleManager : MonoBehaviour
     {
-        // [핵심 1. 싱글톤 패턴]
         public static PuzzleManager instance;
 
         [Header("퍼즐 보드에 있는 모든 파이프 타일들")]
         public Pipe[] allPipes;
 
-        // [핵심 2. 2차원 배열 (그리드)]
+        [Header("파이프 종류별 스프라이트 등록")]
+        public Sprite straightEmpty, straightWater;
+        public Sprite L_Empty, L_Water;
+        public Sprite T_Empty, T_Water;
+
         private Pipe[,] grid = new Pipe[4, 3];
         public bool isCleared = false;
+
+        [Header("스테이지 (연속 클리어) 설정")]
+        [Tooltip("최종 클리어를 위해 퍼즐을 연속으로 맞춰야 하는 횟수입니다.")]
+        public int maxClearCount = 5;
+        private int currentClearCount = 0;
+
+        [Tooltip("한 판을 깬 후, 다음 맵으로 섞이기 전까지 대기하는 시간입니다.")]
+        public float nextStageDelay = 3.0f;
 
         [Header("Audio Settings")]
         public AudioSource audioSource;
@@ -26,9 +38,6 @@ namespace TM
 
         [Header("UI Settings")]
         public CanvasGroup clearUIGroup;
-
-        // [추가됨] StageClearImage.png 이미지를 넣을 곳
-        [Tooltip("StageClearImage.png 이미지가 들어간 UI Image 컴포넌트를 연결해주세요.")]
         public Image stageClearImage;
 
         [Header("타이밍 설정")]
@@ -47,7 +56,6 @@ namespace TM
 
         private void Start()
         {
-            // 기존 UI 그룹 투명도 초기화
             if (clearUIGroup != null)
             {
                 clearUIGroup.alpha = 0f;
@@ -55,12 +63,22 @@ namespace TM
                 clearUIGroup.blocksRaycasts = false;
             }
 
-            // [추가됨] 클리어 이미지 투명도 초기화 (시작할 때 안 보이게)
             if (stageClearImage != null)
             {
                 Color imgColor = stageClearImage.color;
                 imgColor.a = 0f;
                 stageClearImage.color = imgColor;
+            }
+
+            // [수정됨] 게임 시작 시 파티클과 사운드가 켜져있다면 강제로 끕니다.
+            if (waterParticle != null)
+            {
+                waterParticle.Stop();
+                waterParticle.Clear();
+            }
+            if (audioSource != null)
+            {
+                audioSource.Stop();
             }
 
             if (allPipes == null || allPipes.Length < 12) return;
@@ -75,21 +93,124 @@ namespace TM
                 }
             }
 
-            ShufflePipes();
+            // 첫 게임 시작 (카운트 0으로 초기화)
+            currentClearCount = 0;
+            GenerateProceduralBoard();
             CheckWaterFlow();
         }
 
-        public void ShufflePipes()
+        public void GenerateProceduralBoard()
         {
-            foreach (Pipe pipe in allPipes)
-            {
-                if (pipe == null) continue;
+            int[,] pathGrid = new int[4, 3];
+            List<Vector2Int> path = new List<Vector2Int>();
 
-                int randomRotationCount = Random.Range(0, 4);
-                for (int i = 0; i < randomRotationCount; i++)
+            int currentX = 0, currentY = 1;
+            path.Add(new Vector2Int(currentX, currentY));
+            pathGrid[currentX, currentY] = 1;
+
+            // 매운맛 경로 꼬기 (80% 확률로 상하 이동)
+            while (currentX < 3)
+            {
+                List<Vector2Int> verticalMoves = new List<Vector2Int>();
+
+                if (currentY > 0 && pathGrid[currentX, currentY - 1] == 0)
+                    verticalMoves.Add(new Vector2Int(currentX, currentY - 1));
+                if (currentY < 2 && pathGrid[currentX, currentY + 1] == 0)
+                    verticalMoves.Add(new Vector2Int(currentX, currentY + 1));
+
+                Vector2Int next;
+                if (verticalMoves.Count > 0 && Random.value < 0.8f)
+                    next = verticalMoves[Random.Range(0, verticalMoves.Count)];
+                else
+                    next = new Vector2Int(currentX + 1, currentY);
+
+                currentX = next.x;
+                currentY = next.y;
+
+                path.Add(new Vector2Int(currentX, currentY));
+                pathGrid[currentX, currentY] = 1;
+            }
+
+            while (currentY != 1)
+            {
+                currentY += (currentY < 1) ? 1 : -1;
+                path.Add(new Vector2Int(currentX, currentY));
+                pathGrid[currentX, currentY] = 1;
+            }
+
+            for (int x = 0; x < 4; x++)
+            {
+                for (int y = 0; y < 3; y++)
                 {
-                    pipe.RotatePipe();
+                    Pipe targetPipe = grid[x, y];
+                    bool needN = false, needE = false, needS = false, needW = false;
+
+                    if (pathGrid[x, y] == 1)
+                    {
+                        int pIndex = path.IndexOf(new Vector2Int(x, y));
+
+                        if (x == 0 && y == 1) needW = true;
+                        if (x == 3 && y == 1) needE = true;
+
+                        if (pIndex > 0)
+                        {
+                            Vector2Int p = path[pIndex - 1];
+                            if (p.y < y) needN = true;
+                            if (p.x > x) needE = true;
+                            if (p.y > y) needS = true;
+                            if (p.x < x) needW = true;
+                        }
+                        if (pIndex < path.Count - 1)
+                        {
+                            Vector2Int n = path[pIndex + 1];
+                            if (n.y < y) needN = true;
+                            if (n.x > x) needE = true;
+                            if (n.y > y) needS = true;
+                            if (n.x < x) needW = true;
+                        }
+
+                        AssignPipeShape(targetPipe, needN, needE, needS, needW);
+                    }
+                    else
+                    {
+                        // 함정 페이크 타일 배치 (T자, ㄱ자 위주)
+                        int rand = Random.Range(0, 10);
+                        if (rand < 2) AssignPipeShape(targetPipe, true, false, true, false);
+                        else if (rand < 6) AssignPipeShape(targetPipe, true, true, false, false);
+                        else AssignPipeShape(targetPipe, true, true, true, false);
+                    }
+
+                    int randomRot = Random.Range(0, 4);
+                    for (int i = 0; i < randomRot; i++) targetPipe.RotatePipe();
                 }
+            }
+        }
+
+        private void AssignPipeShape(Pipe pipe, bool n, bool e, bool s, bool w)
+        {
+            int openCount = (n ? 1 : 0) + (e ? 1 : 0) + (s ? 1 : 0) + (w ? 1 : 0);
+
+            // [유지] 원본 이미지 방향에 맞춘 세팅
+            if (openCount == 2 && ((n && s) || (e && w)))
+                pipe.SetPipeType(true, false, true, false, straightEmpty, straightWater);
+            else if (openCount == 2)
+                pipe.SetPipeType(false, true, true, false, L_Empty, L_Water);
+            else
+                pipe.SetPipeType(false, true, true, true, T_Empty, T_Water);
+
+            int maxRotations = 4;
+            while (maxRotations > 0)
+            {
+                if (openCount < 3)
+                {
+                    if (pipe.isOpened[0] == n && pipe.isOpened[1] == e && pipe.isOpened[2] == s && pipe.isOpened[3] == w) break;
+                }
+                else
+                {
+                    if ((!n || pipe.isOpened[0]) && (!e || pipe.isOpened[1]) && (!s || pipe.isOpened[2]) && (!w || pipe.isOpened[3])) break;
+                }
+                pipe.RotatePipe();
+                maxRotations--;
             }
         }
 
@@ -111,20 +232,60 @@ namespace TM
             {
                 if (!isCleared)
                 {
-                    isCleared = true;
-                    Debug.Log("퍼즐 클리어!");
+                    isCleared = true; // 터치 방지
+                    currentClearCount++; // 클리어 횟수 증가
+
+                    Debug.Log($"퍼즐 클리어! ({currentClearCount}/{maxClearCount})");
 
                     if (audioSource != null && clearSound != null) audioSource.PlayOneShot(clearSound);
-                    if (waterParticle != null) waterParticle.Play();
 
-                    // UI와 이미지를 동시에 띄우는 코루틴 실행
-                    StartCoroutine(FadeInClearUIAndReturn());
+                    // 파티클 실행 (이미 실행 중일 수 있으니 껐다 켭니다)
+                    if (waterParticle != null)
+                    {
+                        waterParticle.Stop();
+                        waterParticle.Play();
+                    }
+
+                    // 목표 횟수에 도달했는지 확인
+                    if (currentClearCount >= maxClearCount)
+                    {
+                        // 최종 3연속 클리어 달성!
+                        StartCoroutine(FadeInClearUIAndReturn());
+                    }
+                    else
+                    {
+                        // 아직 남았다면 맵을 섞기 위해 다음 페이즈 코루틴 실행
+                        StartCoroutine(LoadNextStageDelay());
+                    }
                 }
             }
             else
             {
-                isCleared = false;
+                isCleared = false; // 물길이 끊기면 다시 터치 가능하게 풀어줌
             }
+        }
+
+        private IEnumerator LoadNextStageDelay()
+        {
+            // 플레이어가 성공적으로 이어진 물길과 이펙트를 볼 수 있도록 잠시 대기
+            yield return new WaitForSeconds(nextStageDelay);
+
+            // [수정된 부분] 맵이 새로 섞이기 직전에 물 파티클과 사운드를 끄고 화면에서 완전히 지워줍니다.
+            if (waterParticle != null)
+            {
+                waterParticle.Stop();
+                waterParticle.Clear();
+            }
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
+
+            // 맵 완전히 새로 짜기
+            GenerateProceduralBoard();
+
+            // 파이프들의 물 상태를 다시 초기화 (이 과정에서 isCleared가 다시 false로 풀림)
+            CheckWaterFlow();
         }
 
         private void DFS_CheckConnection(int x, int y)
@@ -149,26 +310,18 @@ namespace TM
                 DFS_CheckConnection(x - 1, y);
         }
 
-        // [핵심 4. 코루틴을 이용한 시간 제어 및 연출]
         private IEnumerator FadeInClearUIAndReturn()
         {
             yield return new WaitForSeconds(clearDelay);
 
             float elapsedTime = 0f;
 
-            // fadeDuration 시간 동안 서서히 투명도(alpha)를 0에서 1로 올립니다.
             while (elapsedTime < fadeDuration)
             {
                 elapsedTime += Time.deltaTime;
                 float currentAlpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
 
-                // 기존 CanvasGroup 페이드인
-                if (clearUIGroup != null)
-                {
-                    clearUIGroup.alpha = currentAlpha;
-                }
-
-                // [추가됨] 클리어 이미지 페이드인
+                if (clearUIGroup != null) clearUIGroup.alpha = currentAlpha;
                 if (stageClearImage != null)
                 {
                     Color imgColor = stageClearImage.color;
@@ -179,7 +332,6 @@ namespace TM
                 yield return null;
             }
 
-            // 완전히 다 보이게 값 고정
             if (clearUIGroup != null) clearUIGroup.alpha = 1f;
             if (stageClearImage != null)
             {
@@ -190,7 +342,6 @@ namespace TM
 
             yield return new WaitForSeconds(autoReturnDelay);
 
-            // 데이터 저장 및 씬 전환
             SeoAhn.StageClearManager.SetVillageClear();
             SeoAhn.SceneTransitionData.SetNextScene(stageSceneName);
             SceneManager.LoadScene(loadingSceneName);
