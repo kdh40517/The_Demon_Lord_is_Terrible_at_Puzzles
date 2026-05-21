@@ -925,7 +925,7 @@ MonoBehaviour:
   masterSlider: {fileID: 1576543009727320713}
   bgmSlider: {fileID: 1600998748095844227}
   sfxSlider: {fileID: 7063644636883108971}
-  buttonClickSound: {fileID: 0}
+  buttonClickSound: {fileID: 8300000, guid: 1b8747813cdf14649891d67bb02bb1ed, type: 3}
   sliderTickSound: {fileID: 0}
 --- !u!82 &4518080761448719851
 AudioSource:

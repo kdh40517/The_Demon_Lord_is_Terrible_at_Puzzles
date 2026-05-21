@@ -88,6 +88,24 @@ namespace TM
             UpdateSprite();
         }
 
+        // [추가된 부분] 매니저가 파이프의 모양(일자, ㄱ자, T자)을 강제로 지정할 때 사용합니다.
+        public void SetPipeType(bool n, bool e, bool s, bool w, Sprite newEmptySprite, Sprite newWaterSprite)
+        {
+            isOpened[0] = n;
+            isOpened[1] = e;
+            isOpened[2] = s;
+            isOpened[3] = w;
+
+            emptySprite = newEmptySprite;
+            waterSprite = newWaterSprite;
+
+            // [핵심 추가] 파이프 종류가 바뀔 때, 눈에 보이는 이미지의 회전 각도도 무조건 기본 상태(0도)로 초기화합니다!
+            transform.rotation = Quaternion.identity;
+
+            // 모양이 완전히 바뀌었으니 초기 상태(물이 없는 상태)로 리셋합니다.
+            SetWater(false);
+        }
+
         private void UpdateSprite()
         {
             if (pipeImage == null)
