@@ -2861,6 +2861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlobalOptionCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2681395712523817962, guid: 73c1b9914fdb5214ea6a04bb92907c12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2721286985200891659, guid: 73c1b9914fdb5214ea6a04bb92907c12, type: 3}
       propertyPath: m_IsActive
       value: 0
