@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 74c330675144c5147b9fd890034f21a2
+guid: b63ab3cc14b374446a10935c130a66c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4573368764973961710
-    second: StageClearImage_0
+      213: -2534338999803398583
+    second: CharBubble2_0
   - first:
-      213: -5029865136858495759
-    second: StageClearImage_1
+      213: -7365049160950991859
+    second: CharBubble2_1
   - first:
-      213: 7489351357781490053
-    second: StageClearImage_2
+      213: -489572667805720309
+    second: CharBubble2_2
   - first:
-      213: 2638650805461186129
-    second: StageClearImage_3
+      213: -6872044663646564714
+    second: CharBubble2_3
   - first:
-      213: 426536413821873317
-    second: StageClearImage_4
+      213: -1136460553938250331
+    second: CharBubble2_4
   - first:
-      213: 6386708337084771826
-    second: StageClearImage_5
-  - first:
-      213: -5084915033976318520
-    second: StageClearImage_6
-  - first:
-      213: -675356062002680997
-    second: StageClearImage_7
+      213: -992397401311571412
+    second: CharBubble2_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -67,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +128,29 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StageClearImage_0
+      name: CharBubble2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 848
+        width: 122
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 946bc407b1834dcd0800000000000000
+      internalID: -2534338999803398583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharBubble2_1
       rect:
         serializedVersion: 2
         x: 11
@@ -149,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 21e2cd8c6512880c0800000000000000
-      internalID: -4573368764973961710
+      spriteID: d043a305fc61ac990800000000000000
+      internalID: -7365049160950991859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StageClearImage_1
+      name: CharBubble2_2
       rect:
         serializedVersion: 2
-        x: 664
-        y: 753
-        width: 47
-        height: 48
+        x: 121
+        y: 1008
+        width: 24
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,19 +187,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1f48d61be44523ab0800000000000000
-      internalID: -5029865136858495759
+      spriteID: b0123b3a040b439f0800000000000000
+      internalID: -489572667805720309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StageClearImage_2
+      name: CharBubble2_3
       rect:
         serializedVersion: 2
-        x: 735
-        y: 791
-        width: 10
+        x: 149
+        y: 1019
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69e4abeb9c791a0a0800000000000000
+      internalID: -6872044663646564714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharBubble2_4
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1015
+        width: 6
         height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -193,20 +231,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 589b7ae21658fe760800000000000000
-      internalID: 7489351357781490053
+      spriteID: 5a5544db52b7a30f0800000000000000
+      internalID: -1136460553938250331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StageClearImage_3
+      name: CharBubble2_5
       rect:
         serializedVersion: 2
-        x: 739
-        y: 767
-        width: 28
-        height: 25
+        x: 81
+        y: 974
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,96 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 156ffc96dee5e9420800000000000000
-      internalID: 2638650805461186129
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StageClearImage_4
-      rect:
-        serializedVersion: 2
-        x: 802
-        y: 779
-        width: 12
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5ac2f95cb9c5be500800000000000000
-      internalID: 426536413821873317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StageClearImage_5
-      rect:
-        serializedVersion: 2
-        x: 848
-        y: 767
-        width: 27
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2fda6f3f46522a850800000000000000
-      internalID: 6386708337084771826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StageClearImage_6
-      rect:
-        serializedVersion: 2
-        x: 902
-        y: 760
-        width: 51
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c55cc6b7b0ce69b0800000000000000
-      internalID: -5084915033976318520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StageClearImage_7
-      rect:
-        serializedVersion: 2
-        x: 942
-        y: 719
-        width: 68
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b5b6c636d37a0a6f0800000000000000
-      internalID: -675356062002680997
+      spriteID: c229dca42db4a32f0800000000000000
+      internalID: -992397401311571412
       vertices: []
       indices: 
       edges: []
@@ -313,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -323,14 +273,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StageClearImage_0: -4573368764973961710
-      StageClearImage_1: -5029865136858495759
-      StageClearImage_2: 7489351357781490053
-      StageClearImage_3: 2638650805461186129
-      StageClearImage_4: 426536413821873317
-      StageClearImage_5: 6386708337084771826
-      StageClearImage_6: -5084915033976318520
-      StageClearImage_7: -675356062002680997
+      CharBubble2_0: -2534338999803398583
+      CharBubble2_1: -7365049160950991859
+      CharBubble2_2: -489572667805720309
+      CharBubble2_3: -6872044663646564714
+      CharBubble2_4: -1136460553938250331
+      CharBubble2_5: -992397401311571412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

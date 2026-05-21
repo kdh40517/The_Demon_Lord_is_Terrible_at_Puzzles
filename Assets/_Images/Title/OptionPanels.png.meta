@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 34843aa983330bf449ecd068e1fc9a7b
+guid: f9e111920e926f94d8860820b32222a1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 393141524705285387
-    second: CastleFrame_0
+      213: 4540441062194270908
+    second: OptionPanels_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CastleFrame_0
+      name: OptionPanels_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1356
-        height: 1159
+        x: 283
+        y: 19
+        width: 967
+        height: 993
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b05938e3228b47500800000000000000
-      internalID: 393141524705285387
+      spriteID: cb2dfabf613e20f30800000000000000
+      internalID: 4540441062194270908
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0281f63c6173c0141ad5b7b267ec6628
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CastleFrame_0: 393141524705285387
+      OptionPanels_0: 4540441062194270908
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

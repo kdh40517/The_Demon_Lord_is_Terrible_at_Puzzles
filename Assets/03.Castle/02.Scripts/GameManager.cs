@@ -9,36 +9,41 @@ namespace TM
         public static GameManager instance;
 
         [Header("UI 설정")]
-        public CanvasGroup clearUIGroup; // 활짝 열린 문(실루엣) 이미지가 있는 CanvasGroup
+        public CanvasGroup clearUIGroup;
 
         [Header("타이밍 설정")]
-        public float clearDelay = 1.0f;     // 클리어 직후 대기 시간
-        public float fadeDuration = 1.5f;   // 이미지가 서서히 나타나는 시간
-        public float autoReturnDelay = 3f;  // 이미지가 완전히 뜬 후 씬 이동 전 대기 시간
+        public float clearDelay = 1.0f;
+        public float fadeDuration = 1.5f;
+        public float autoReturnDelay = 3f;
 
         [Header("씬 이동 설정")]
         public string loadingSceneName = "99_LoadingScene";
         public string stageSceneName = "03_StageScene";
 
-        // ✅ 오디오 설정을 위한 변수 추가
         [Header("오디오 설정")]
         public AudioSource audioSource;
-        public AudioClip clearUIRevealSound; // 이미지가 떠오를 때 재생할 효과음
+        public AudioClip clearUIRevealSound;
+
+        [Header("경고 연출")]
+        public CanvasGroup warningPanel;
+        private Coroutine warningCoroutine;
 
         private bool isCleared = false;
 
         private void Awake()
         {
-            // 싱글톤 세팅
             if (instance == null)
             {
                 instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 
         private void Start()
         {
-            // 시작할 때 클리어 이미지를 완전히 숨깁니다.
             if (clearUIGroup != null)
             {
                 clearUIGroup.alpha = 0f;
@@ -49,43 +54,60 @@ namespace TM
 
         public void TriggerClearSequence()
         {
-            if (isCleared) return; // 중복 실행 방지
-            isCleared = true;
-
-            if (clearUIGroup != null)
+            if (isCleared)
             {
-                StartCoroutine(FadeInClearUIAndReturn());
+                return;
             }
+
+            isCleared = true;
+            StartCoroutine(FadeInClearUIAndReturn());
         }
 
         private IEnumerator FadeInClearUIAndReturn()
         {
-            // 1. 퍼즐을 막 푼 직후 약간의 여운을 위해 대기
             yield return new WaitForSeconds(clearDelay);
 
-            // 2. 투명도를 0에서 1로 서서히 올림 (페이드 인 효과)
             float elapsedTime = 0f;
+
             while (elapsedTime < fadeDuration)
             {
                 elapsedTime += Time.deltaTime;
-                clearUIGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+
+                if (clearUIGroup != null)
+                {
+                    clearUIGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+                }
+
                 yield return null;
             }
-            clearUIGroup.alpha = 1f; // 페이드 인 완료!
 
-            // 🔊 3. 페이드 인이 완전히 끝난 직후 효과음 재생
+            if (clearUIGroup != null)
+            {
+                clearUIGroup.alpha = 1f;
+                clearUIGroup.interactable = true;
+                clearUIGroup.blocksRaycasts = true;
+            }
+
             if (audioSource != null && clearUIRevealSound != null)
             {
                 audioSource.PlayOneShot(clearUIRevealSound);
             }
 
-            // 4. 문이 활짝 열리고 실루엣이 보이는 상태로 잠시 대기
             yield return new WaitForSeconds(autoReturnDelay);
 
-            // 5. 데이터 저장 및 씬 전환
-            SeoAhn.StageClearManager.SetVillageClear();
+            SaveCastleClearData();
+
             SeoAhn.SceneTransitionData.SetNextScene(stageSceneName);
             SceneManager.LoadScene(loadingSceneName);
+        }
+
+        private void SaveCastleClearData()
+        {
+            // Castle 클리어 상태 저장
+            // StageSelectController가 이 값을 읽고 Castle 카드에 도장을 찍습니다.
+            SeoAhn.StageClearManager.SetCastleClear();
+
+            Debug.Log("✅ Castle 클리어 저장 완료! Stage 씬으로 이동합니다.");
         }
     }
 }

@@ -1,31 +1,22 @@
 fileFormatVersion: 2
-guid: 74c330675144c5147b9fd890034f21a2
+guid: b841d61744c143346990607abd6a9e63
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4573368764973961710
-    second: StageClearImage_0
+      213: 6171725107706079299
+    second: Ending3_Bubble_0
   - first:
-      213: -5029865136858495759
-    second: StageClearImage_1
+      213: -1364712659426244833
+    second: Ending3_Bubble_1
   - first:
-      213: 7489351357781490053
-    second: StageClearImage_2
+      213: -3402384333524633701
+    second: Ending3_Bubble_2
   - first:
-      213: 2638650805461186129
-    second: StageClearImage_3
+      213: -6575360944665494838
+    second: Ending3_Bubble_3
   - first:
-      213: 426536413821873317
-    second: StageClearImage_4
-  - first:
-      213: 6386708337084771826
-    second: StageClearImage_5
-  - first:
-      213: -5084915033976318520
-    second: StageClearImage_6
-  - first:
-      213: -675356062002680997
-    second: StageClearImage_7
+      213: 2833515080772435687
+    second: Ending3_Bubble_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -67,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,12 +125,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StageClearImage_0
+      name: Ending3_Bubble_0
       rect:
         serializedVersion: 2
-        x: 11
+        x: 0
         y: 0
-        width: 1513
+        width: 108
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -149,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 21e2cd8c6512880c0800000000000000
-      internalID: -4573368764973961710
+      spriteID: 3482e28494f56a550800000000000000
+      internalID: 6171725107706079299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StageClearImage_1
+      name: Ending3_Bubble_1
       rect:
         serializedVersion: 2
-        x: 664
-        y: 753
-        width: 47
-        height: 48
+        x: 60
+        y: 0
+        width: 1466
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,19 +162,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1f48d61be44523ab0800000000000000
-      internalID: -5029865136858495759
+      spriteID: f178b6a11119f0de0800000000000000
+      internalID: -1364712659426244833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StageClearImage_2
+      name: Ending3_Bubble_2
       rect:
         serializedVersion: 2
-        x: 735
-        y: 791
-        width: 10
+        x: 106
+        y: 1015
+        width: 8
         height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -193,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 589b7ae21658fe760800000000000000
-      internalID: 7489351357781490053
+      spriteID: b97f8eaa97d48c0d0800000000000000
+      internalID: -3402384333524633701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StageClearImage_3
+      name: Ending3_Bubble_3
       rect:
         serializedVersion: 2
-        x: 739
-        y: 767
-        width: 28
-        height: 25
+        x: 131
+        y: 1016
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 156ffc96dee5e9420800000000000000
-      internalID: 2638650805461186129
+      spriteID: aca7c3ffe00afb4a0800000000000000
+      internalID: -6575360944665494838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StageClearImage_4
+      name: Ending3_Bubble_4
       rect:
         serializedVersion: 2
-        x: 802
-        y: 779
-        width: 12
-        height: 38
+        x: 82
+        y: 0
+        width: 7
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,74 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ac2f95cb9c5be500800000000000000
-      internalID: 426536413821873317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StageClearImage_5
-      rect:
-        serializedVersion: 2
-        x: 848
-        y: 767
-        width: 27
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2fda6f3f46522a850800000000000000
-      internalID: 6386708337084771826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StageClearImage_6
-      rect:
-        serializedVersion: 2
-        x: 902
-        y: 760
-        width: 51
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c55cc6b7b0ce69b0800000000000000
-      internalID: -5084915033976318520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StageClearImage_7
-      rect:
-        serializedVersion: 2
-        x: 942
-        y: 719
-        width: 68
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b5b6c636d37a0a6f0800000000000000
-      internalID: -675356062002680997
+      spriteID: 7ee372f04faa25720800000000000000
+      internalID: 2833515080772435687
       vertices: []
       indices: 
       edges: []
@@ -313,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -323,14 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      StageClearImage_0: -4573368764973961710
-      StageClearImage_1: -5029865136858495759
-      StageClearImage_2: 7489351357781490053
-      StageClearImage_3: 2638650805461186129
-      StageClearImage_4: 426536413821873317
-      StageClearImage_5: 6386708337084771826
-      StageClearImage_6: -5084915033976318520
-      StageClearImage_7: -675356062002680997
+      Ending3_Bubble_0: 6171725107706079299
+      Ending3_Bubble_1: -1364712659426244833
+      Ending3_Bubble_2: -3402384333524633701
+      Ending3_Bubble_3: -6575360944665494838
+      Ending3_Bubble_4: 2833515080772435687
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

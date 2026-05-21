@@ -26,7 +26,7 @@ namespace SeoAhn
             ApplyVolume();
         }
 
-        private void ApplyVolume()
+        public void ApplyVolume()
         {
             if (audioSource == null)
             {
