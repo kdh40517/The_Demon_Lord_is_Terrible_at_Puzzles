@@ -123,7 +123,6 @@ namespace TM
 
         private void SetDevilTimer(bool isOpeningEyes)
         {
-            // 게이지와 상관없이 설정된 고정된 시간 내에서 랜덤하게 타이머 설정
             if (isOpeningEyes)
             {
                 devilTimer = Random.Range(minOpenTime, maxOpenTime);
@@ -145,6 +144,12 @@ namespace TM
                 activeSequence.RemoveAt(0);
                 onCorrectInput.Invoke();
                 AddNewArrow();
+
+                // 싱글톤 매니저를 통해 정답 사운드 즉시 재생
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.PlayCorrectSound();
+                }
 
                 if (currentGauge >= maxGauge)
                 {
