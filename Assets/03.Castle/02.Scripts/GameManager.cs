@@ -23,6 +23,8 @@ namespace TM
         [Header("오디오 설정")]
         public AudioSource audioSource;
         public AudioClip clearUIRevealSound;
+        [Tooltip("방향키 입력을 정확하게 맞췄을 때 재생할 효과음입니다.")]
+        public AudioClip correctInputSound;
 
         [Header("경고 연출")]
         public CanvasGroup warningPanel;
@@ -49,6 +51,16 @@ namespace TM
                 clearUIGroup.alpha = 0f;
                 clearUIGroup.interactable = false;
                 clearUIGroup.blocksRaycasts = false;
+            }
+        }
+
+        // 정답을 맞췄을 때 외부에서 호출할 함수
+        public void PlayCorrectSound()
+        {
+            if (audioSource != null && correctInputSound != null)
+            {
+                // 연속 입력 시 사운드가 겹치더라도 자연스럽게 재생됩니다.
+                audioSource.PlayOneShot(correctInputSound);
             }
         }
 
@@ -103,10 +115,7 @@ namespace TM
 
         private void SaveCastleClearData()
         {
-            // Castle 클리어 상태 저장
-            // StageSelectController가 이 값을 읽고 Castle 카드에 도장을 찍습니다.
             SeoAhn.StageClearManager.SetCastleClear();
-
             Debug.Log("✅ Castle 클리어 저장 완료! Stage 씬으로 이동합니다.");
         }
     }
