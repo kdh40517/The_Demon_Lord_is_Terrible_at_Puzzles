@@ -40,6 +40,17 @@ namespace TM
         public CanvasGroup clearUIGroup;
         public Image stageClearImage;
 
+        [Header("Water Fill UI")]
+        [Tooltip("인스펙터에서 5256_0 이미지를 연결해 주세요. (Image Type은 Filled)")]
+        public Image fountainWaterImage;
+
+        // [부드럽게 차오르는 효과 추가] 물이 차오르는 데 걸리는 시간 (초)
+        [Tooltip("물이 부드럽게 차오르는 데 걸리는 시간입니다.")]
+        public float waterFillDuration = 1.0f;
+
+        // [부드럽게 차오르는 효과 추가] 현재 실행 중인 코루틴 추적용
+        private Coroutine waterFillCoroutine;
+
         [Header("타이밍 설정")]
         public float clearDelay = 2.5f;
         public float fadeDuration = 1.5f;
@@ -70,7 +81,6 @@ namespace TM
                 stageClearImage.color = imgColor;
             }
 
-            // [수정됨] 게임 시작 시 파티클과 사운드가 켜져있다면 강제로 끕니다.
             if (waterParticle != null)
             {
                 waterParticle.Stop();
@@ -79,6 +89,11 @@ namespace TM
             if (audioSource != null)
             {
                 audioSource.Stop();
+            }
+
+            if (fountainWaterImage != null)
+            {
+                fountainWaterImage.fillAmount = 0f;
             }
 
             if (allPipes == null || allPipes.Length < 12) return;
@@ -93,7 +108,6 @@ namespace TM
                 }
             }
 
-            // 첫 게임 시작 (카운트 0으로 초기화)
             currentClearCount = 0;
             GenerateProceduralBoard();
             CheckWaterFlow();
@@ -108,7 +122,6 @@ namespace TM
             path.Add(new Vector2Int(currentX, currentY));
             pathGrid[currentX, currentY] = 1;
 
-            // 매운맛 경로 꼬기 (80% 확률로 상하 이동)
             while (currentX < 3)
             {
                 List<Vector2Int> verticalMoves = new List<Vector2Int>();
@@ -173,7 +186,6 @@ namespace TM
                     }
                     else
                     {
-                        // 함정 페이크 타일 배치 (T자, ㄱ자 위주)
                         int rand = Random.Range(0, 10);
                         if (rand < 2) AssignPipeShape(targetPipe, true, false, true, false);
                         else if (rand < 6) AssignPipeShape(targetPipe, true, true, false, false);
@@ -190,7 +202,6 @@ namespace TM
         {
             int openCount = (n ? 1 : 0) + (e ? 1 : 0) + (s ? 1 : 0) + (w ? 1 : 0);
 
-            // [유지] 원본 이미지 방향에 맞춘 세팅
             if (openCount == 2 && ((n && s) || (e && w)))
                 pipe.SetPipeType(true, false, true, false, straightEmpty, straightWater);
             else if (openCount == 2)
@@ -232,45 +243,80 @@ namespace TM
             {
                 if (!isCleared)
                 {
-                    isCleared = true; // 터치 방지
-                    currentClearCount++; // 클리어 횟수 증가
+                    isCleared = true;
+                    currentClearCount++;
 
                     Debug.Log($"퍼즐 클리어! ({currentClearCount}/{maxClearCount})");
 
+                    UpdateFountainWater();
+
                     if (audioSource != null && clearSound != null) audioSource.PlayOneShot(clearSound);
 
-                    // 파티클 실행 (이미 실행 중일 수 있으니 껐다 켭니다)
                     if (waterParticle != null)
                     {
                         waterParticle.Stop();
                         waterParticle.Play();
                     }
 
-                    // 목표 횟수에 도달했는지 확인
                     if (currentClearCount >= maxClearCount)
                     {
-                        // 최종 3연속 클리어 달성!
                         StartCoroutine(FadeInClearUIAndReturn());
                     }
                     else
                     {
-                        // 아직 남았다면 맵을 섞기 위해 다음 페이즈 코루틴 실행
                         StartCoroutine(LoadNextStageDelay());
                     }
                 }
             }
             else
             {
-                isCleared = false; // 물길이 끊기면 다시 터치 가능하게 풀어줌
+                isCleared = false;
             }
+        }
+
+        // [부드럽게 차오르는 효과 추가] 분수대 물 UI 업데이트 함수 변경
+        private void UpdateFountainWater()
+        {
+            if (fountainWaterImage != null)
+            {
+                // 목표가 되는 Fill Amount 값 계산 (예: 1/5 = 0.2f)
+                float targetFillAmount = (float)currentClearCount / maxClearCount;
+
+                // 이미 실행 중인 코루틴이 있다면 정지 (연속 호출 시 꼬임 방지)
+                if (waterFillCoroutine != null)
+                {
+                    StopCoroutine(waterFillCoroutine);
+                }
+
+                // 부드럽게 채우는 코루틴 시작
+                waterFillCoroutine = StartCoroutine(SmoothFillWater(targetFillAmount));
+            }
+        }
+
+        // [부드럽게 차오르는 효과 추가] 실제 부드럽게 채워주는 코루틴
+        private IEnumerator SmoothFillWater(float targetFill)
+        {
+            float startFill = fountainWaterImage.fillAmount;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < waterFillDuration)
+            {
+                elapsedTime += Time.deltaTime;
+
+                // Mathf.Lerp를 사용하여 시작값과 목표값 사이를 시간에 따라 부드럽게 보간
+                fountainWaterImage.fillAmount = Mathf.Lerp(startFill, targetFill, elapsedTime / waterFillDuration);
+
+                yield return null; // 다음 프레임까지 대기
+            }
+
+            // 루프가 끝난 후 목표값에 정확히 맞춤
+            fountainWaterImage.fillAmount = targetFill;
         }
 
         private IEnumerator LoadNextStageDelay()
         {
-            // 플레이어가 성공적으로 이어진 물길과 이펙트를 볼 수 있도록 잠시 대기
             yield return new WaitForSeconds(nextStageDelay);
 
-            // [수정된 부분] 맵이 새로 섞이기 직전에 물 파티클과 사운드를 끄고 화면에서 완전히 지워줍니다.
             if (waterParticle != null)
             {
                 waterParticle.Stop();
@@ -281,10 +327,7 @@ namespace TM
                 audioSource.Stop();
             }
 
-            // 맵 완전히 새로 짜기
             GenerateProceduralBoard();
-
-            // 파이프들의 물 상태를 다시 초기화 (이 과정에서 isCleared가 다시 false로 풀림)
             CheckWaterFlow();
         }
 

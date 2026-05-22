@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b1f59a10f6f5b834eba1833c381b56fd
+guid: dcbac59c67eb9dd4c8d58ea5d3497775
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3228710942539776863
-    second: 5256_0
+      213: 2781387191381373321
+    second: 55555555555-Photoroom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 5256_0
+      name: 55555555555-Photoroom_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 209
-        height: 310
+        width: 2400
+        height: 1309
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1acff7311805133d0800000000000000
-      internalID: -3228710942539776863
+      spriteID: 981bb150ae8799620800000000000000
+      internalID: 2781387191381373321
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      5256_0: -3228710942539776863
+      55555555555-Photoroom_0: 2781387191381373321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
