@@ -274,7 +274,7 @@ MonoBehaviour:
   finalTextOverlayCanvasGroup: {fileID: 1010116208}
   finalCenterText: {fileID: 979262425}
   finalCenterMessage: "\uADC0\uC5EC\uC6B4\uC544\uC774\uB124.. \\n\uC5B4\uCC28\uD53C
-    \uACE7 \uB9CC\uAC8C \uB420\uAC70\uC57C.. \\n\uBC8C\uC368 \uAE30\uB300\uB418\uB294
+    \uACE7 \uB9CC\uB098\uAC8C \uB420\uAC70\uC57C.. \\n\uBC8C\uC368 \uAE30\uB300\uB418\uB294
     \uAC78?"
   finalTextFadeDuration: 1
   finalOverlayTargetAlpha: 0.7058824
