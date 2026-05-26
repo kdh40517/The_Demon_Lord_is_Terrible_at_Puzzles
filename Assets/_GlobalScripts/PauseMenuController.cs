@@ -10,10 +10,15 @@ namespace SeoAhn
         [Header("UI 패널 연결")]
         [SerializeField] private GameObject pausePanel;
         [SerializeField] private GameObject optionPanel;
-        [SerializeField] private GameObject confirmPanel; // 👇 새로 추가된 재확인 팝업창!
+        [SerializeField] private GameObject confirmPanel;
 
         [Header("씬 이동 설정")]
         [SerializeField] private string mainMenuSceneName = "01_TitleScene";
+
+        [Header("일시정지 BGM 설정")]
+        [Tooltip("비워두시면 게임 시작 시 알아서 BGMManager를 찾아 연결합니다!")]
+        [SerializeField] private AudioSource bgmPlayer;
+        [SerializeField][Range(0f, 1f)] private float pausedBgmRatio = 0.3f;
 
         [Header("슬라이더 연결 (옵션창용)")]
         [SerializeField] private Slider masterSlider;
@@ -25,8 +30,6 @@ namespace SeoAhn
         [SerializeField] private AudioClip sliderTickSound;
 
         private AudioSource myAudioSource;
-
-        // 👇 플레이어가 '재시작'을 눌렀는지, '메뉴'를 눌렀는지 기억하는 메모장입니다.
         private enum ConfirmType { None, Restart, MainMenu }
         private ConfirmType pendingAction = ConfirmType.None;
 
@@ -41,7 +44,7 @@ namespace SeoAhn
         {
             if (pausePanel != null) pausePanel.SetActive(false);
             if (optionPanel != null) optionPanel.SetActive(false);
-            if (confirmPanel != null) confirmPanel.SetActive(false); // 시작할 때 숨김!
+            if (confirmPanel != null) confirmPanel.SetActive(false);
 
             if (masterSlider != null) masterSlider.value = AudioVolumeData.MasterVolume;
             if (bgmSlider != null) bgmSlider.value = AudioVolumeData.BGMVolume;
@@ -50,23 +53,54 @@ namespace SeoAhn
             if (masterSlider != null) masterSlider.onValueChanged.AddListener(OnMasterChanged);
             if (bgmSlider != null) bgmSlider.onValueChanged.AddListener(OnBGMChanged);
             if (sfxSlider != null) sfxSlider.onValueChanged.AddListener(OnSFXChanged);
+
+            // 👇 씬이 시작되면 스피커를 알아서 찾습니다!
+            AutoFindBGMPlayer();
+            UpdateBGMVolume();
+        }
+
+        // ==========================================
+        // 🕵️‍♂️ BGM 스피커 자동 추적 마법 함수
+        // ==========================================
+        private void AutoFindBGMPlayer()
+        {
+            // 이미 드래그해서 넣은 게 있다면 그대로 씁니다.
+            if (bgmPlayer != null) return;
+
+            // 1순위: 권삣삐님 씬 구조처럼 "BGMManager"라는 이름의 오브젝트를 찾습니다.
+            GameObject bgmObj = GameObject.Find("BGMManager");
+            if (bgmObj != null)
+            {
+                bgmPlayer = bgmObj.GetComponent<AudioSource>();
+                if (bgmPlayer != null) return;
+            }
+
+            // 2순위: 만약 이름이 다르다면? -> 씬 전체를 뒤져서 '무한 반복(Loop)'이 켜져 있는 스피커를 BGM으로 간주하고 납치합니다!
+            AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+            foreach (var audio in allAudioSources)
+            {
+                // 자기 자신(옵션창 스피커)은 제외하고, 루프가 켜져 있는 녀석 찾기
+                if (audio.loop && audio.gameObject != this.gameObject)
+                {
+                    bgmPlayer = audio;
+                    Debug.Log($"[자동 연결] {audio.gameObject.name} 오브젝트를 BGM 스피커로 인식했습니다!");
+                    return;
+                }
+            }
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                // 1. 재확인 팝업창이 켜져있을 때 ESC 누르면 -> "아니오" 누른 것과 똑같이 취소!
                 if (confirmPanel != null && confirmPanel.activeSelf)
                 {
                     CancelConfirm();
                 }
-                // 2. 옵션창이 켜져있을 때 -> 옵션 닫기
                 else if (optionPanel != null && optionPanel.activeSelf)
                 {
                     CloseOptionMenu();
                 }
-                // 3. 일시정지 창 켜고 끄기
                 else if (pausePanel != null)
                 {
                     bool isOpening = !pausePanel.activeSelf;
@@ -74,6 +108,8 @@ namespace SeoAhn
                     Time.timeScale = isOpening ? 0f : 1f;
 
                     if (isOpening) PlaySound(buttonClickSound);
+
+                    UpdateBGMVolume();
                 }
             }
         }
@@ -87,9 +123,24 @@ namespace SeoAhn
             }
         }
 
-        // ==========================================
-        // 🔘 기존 버튼 기능들
-        // ==========================================
+        private void UpdateBGMVolume()
+        {
+            if (bgmPlayer == null) return;
+
+            bool isPaused = (pausePanel != null && pausePanel.activeSelf) ||
+                            (optionPanel != null && optionPanel.activeSelf) ||
+                            (confirmPanel != null && confirmPanel.activeSelf);
+
+            float targetVolume = AudioVolumeData.MasterVolume * AudioVolumeData.BGMVolume;
+
+            if (isPaused)
+            {
+                targetVolume *= pausedBgmRatio;
+            }
+
+            bgmPlayer.volume = targetVolume;
+        }
+
         public void ResumeGame()
         {
             PlaySound(buttonClickSound);
@@ -97,6 +148,8 @@ namespace SeoAhn
             if (optionPanel != null) optionPanel.SetActive(false);
             if (confirmPanel != null) confirmPanel.SetActive(false);
             Time.timeScale = 1f;
+
+            UpdateBGMVolume();
         }
 
         public void OpenOptionMenu()
@@ -113,28 +166,24 @@ namespace SeoAhn
             if (pausePanel != null) pausePanel.SetActive(true);
         }
 
-        // 👇 재시작/메뉴 버튼을 누르면 바로 씬이 안 넘어가고 "팝업창"을 띄웁니다!
         public void RestartGame()
         {
             PlaySound(buttonClickSound);
-            pendingAction = ConfirmType.Restart; // "재시작을 누름!" 이라고 기억
+            pendingAction = ConfirmType.Restart;
             if (confirmPanel != null) confirmPanel.SetActive(true);
         }
 
         public void GoToMainMenu()
         {
             PlaySound(buttonClickSound);
-            pendingAction = ConfirmType.MainMenu; // "메뉴로 가기를 누름!" 이라고 기억
+            pendingAction = ConfirmType.MainMenu;
             if (confirmPanel != null) confirmPanel.SetActive(true);
         }
 
-        // ==========================================
-        // 🚨 팝업창의 [예] / [아니오] 버튼 기능
-        // ==========================================
-        public void ConfirmAction() // [예] 버튼에 연결!
+        public void ConfirmAction()
         {
             PlaySound(buttonClickSound);
-            Time.timeScale = 1f; // 시간 복구
+            Time.timeScale = 1f;
 
             if (pendingAction == ConfirmType.Restart)
             {
@@ -146,16 +195,13 @@ namespace SeoAhn
             }
         }
 
-        public void CancelConfirm() // [아니오] 버튼에 연결!
+        public void CancelConfirm()
         {
             PlaySound(buttonClickSound);
-            pendingAction = ConfirmType.None; // 기억 지우기
-            if (confirmPanel != null) confirmPanel.SetActive(false); // 팝업만 닫기 (일시정지 창은 남아있음)
+            pendingAction = ConfirmType.None;
+            if (confirmPanel != null) confirmPanel.SetActive(false);
         }
 
-        // ==========================================
-        // 🔊 오디오 조절 (기존과 동일)
-        // ==========================================
         private void OnMasterChanged(float value) { AudioVolumeData.MasterVolume = value; UpdateAllAudiosInScene(); }
         private void OnBGMChanged(float value) { AudioVolumeData.BGMVolume = value; UpdateAllAudiosInScene(); }
         private void OnSFXChanged(float value)
@@ -172,6 +218,8 @@ namespace SeoAhn
 
             SavedVolumeAudioSource[] savedAudios = FindObjectsOfType<SavedVolumeAudioSource>();
             foreach (var saved in savedAudios) { saved.ApplyVolume(); }
+
+            UpdateBGMVolume();
         }
     }
 }

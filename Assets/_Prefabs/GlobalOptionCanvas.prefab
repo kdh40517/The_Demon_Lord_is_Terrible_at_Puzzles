@@ -783,11 +783,13 @@ MonoBehaviour:
   optionPanel: {fileID: 2721286985200891659}
   confirmPanel: {fileID: 2754865973094996692}
   mainMenuSceneName: 03_StageScene
+  bgmPlayer: {fileID: 0}
+  pausedBgmRatio: 0.3
   masterSlider: {fileID: 1576543009727320713}
   bgmSlider: {fileID: 1600998748095844227}
   sfxSlider: {fileID: 7063644636883108971}
   buttonClickSound: {fileID: 8300000, guid: 1b8747813cdf14649891d67bb02bb1ed, type: 3}
-  sliderTickSound: {fileID: 0}
+  sliderTickSound: {fileID: 8300000, guid: 5fcbf14debbd1fe47926fb61fd390d1e, type: 3}
 --- !u!82 &4518080761448719851
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1905,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1939298306678308510
 RectTransform:
   m_ObjectHideFlags: 0

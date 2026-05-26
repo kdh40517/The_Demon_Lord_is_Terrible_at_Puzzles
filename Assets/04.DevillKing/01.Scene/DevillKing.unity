@@ -2224,10 +2224,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlobalOptionCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6323851022508606462, guid: 73c1b9914fdb5214ea6a04bb92907c12, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3087,9 +3083,9 @@ RectTransform:
   - {fileID: 1281604745}
   - {fileID: 518393065}
   - {fileID: 1755266193}
+  - {fileID: 1524627775}
   - {fileID: 1193303935}
   - {fileID: 812065327}
-  - {fileID: 1524627775}
   - {fileID: 1604537156}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
