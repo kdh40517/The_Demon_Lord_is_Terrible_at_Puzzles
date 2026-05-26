@@ -1,13 +1,100 @@
 fileFormatVersion: 2
-guid: 0f24ecee5b073bc4abaf6e6fe2c1257e
+guid: f2ac5c0ef2855a849aac5bfb8da73d0f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9009641426861971402
-    second: Restart_0
+      213: 6729492362831431167
+    second: Yes_0
   - first:
-      213: 7628329029178916236
-    second: Restart_1
+      213: 3473029891725412671
+    second: Yes_1
+  - first:
+      213: -8053998063249267851
+    second: Yes_2
+  - first:
+      213: 2100237116642847628
+    second: Yes_3
+  - first:
+      213: -347966991341627064
+    second: Yes_4
+  - first:
+      213: 5850248167143473917
+    second: Yes_5
+  - first:
+      213: -3467962372883308750
+    second: Yes_6
+  - first:
+      213: 2710652521218376583
+    second: Yes_7
+  - first:
+      213: 7158467119919750734
+    second: Yes_8
+  - first:
+      213: -7088626774179598402
+    second: Yes_9
+  - first:
+      213: -2635281068566674910
+    second: Yes_10
+  - first:
+      213: 7404572123243168058
+    second: Yes_11
+  - first:
+      213: 8003985157734341255
+    second: Yes_12
+  - first:
+      213: 3513327357969810101
+    second: Yes_13
+  - first:
+      213: -3548318291095038648
+    second: Yes_14
+  - first:
+      213: 1063737745379871370
+    second: Yes_15
+  - first:
+      213: 449706357911121012
+    second: Yes_16
+  - first:
+      213: -8829555792789512698
+    second: Yes_17
+  - first:
+      213: -1610232966312300223
+    second: Yes_18
+  - first:
+      213: -7170477957057186280
+    second: Yes_19
+  - first:
+      213: 1756760110371583769
+    second: Yes_20
+  - first:
+      213: 158814243754142819
+    second: Yes_21
+  - first:
+      213: -6418594489390860277
+    second: Yes_22
+  - first:
+      213: 1358673204651333759
+    second: Yes_23
+  - first:
+      213: 6027025768180679286
+    second: Yes_24
+  - first:
+      213: 8198130680460219184
+    second: Yes_25
+  - first:
+      213: 8875324801873170342
+    second: Yes_26
+  - first:
+      213: -7448621909200292763
+    second: Yes_27
+  - first:
+      213: 2638170608046396481
+    second: Yes_28
+  - first:
+      213: -4952599668549170091
+    second: Yes_29
+  - first:
+      213: -1402822639734149520
+    second: Yes_30
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +203,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Restart_0
+      name: Yes_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 250
-        width: 1444
-        height: 576
+        x: 90
+        y: 306
+        width: 1354
+        height: 497
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +218,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 638af3e7bd257f280800000000000000
-      internalID: -9009641426861971402
+      spriteID: ff5854d46a5f36d50800000000000000
+      internalID: 6729492362831431167
       vertices: []
       indices: 
       edges: []
@@ -141,7 +228,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4be4f3da7a067a146a9d16b08bd1a90d
+    spriteID: 427a3ab6b35817b478be14c6ca9ab180
     internalID: 0
     vertices: []
     indices: 
@@ -151,8 +238,37 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Restart_0: -9009641426861971402
-      Restart_1: 7628329029178916236
+      Yes_0: 6729492362831431167
+      Yes_1: 3473029891725412671
+      Yes_10: -2635281068566674910
+      Yes_11: 7404572123243168058
+      Yes_12: 8003985157734341255
+      Yes_13: 3513327357969810101
+      Yes_14: -3548318291095038648
+      Yes_15: 1063737745379871370
+      Yes_16: 449706357911121012
+      Yes_17: -8829555792789512698
+      Yes_18: -1610232966312300223
+      Yes_19: -7170477957057186280
+      Yes_2: -8053998063249267851
+      Yes_20: 1756760110371583769
+      Yes_21: 158814243754142819
+      Yes_22: -6418594489390860277
+      Yes_23: 1358673204651333759
+      Yes_24: 6027025768180679286
+      Yes_25: 8198130680460219184
+      Yes_26: 8875324801873170342
+      Yes_27: -7448621909200292763
+      Yes_28: 2638170608046396481
+      Yes_29: -4952599668549170091
+      Yes_3: 2100237116642847628
+      Yes_30: -1402822639734149520
+      Yes_4: -347966991341627064
+      Yes_5: 5850248167143473917
+      Yes_6: -3467962372883308750
+      Yes_7: 2710652521218376583
+      Yes_8: 7158467119919750734
+      Yes_9: -7088626774179598402
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
