@@ -665,7 +665,7 @@ MonoBehaviour:
   logoCanvasGroup: {fileID: 65874104}
   audioSource: {fileID: 2005122277}
   starSoundClip: {fileID: 8300000, guid: 1b17f3b14aacaa74db1a324d1e06ad46, type: 3}
-  childrenLaughClip: {fileID: 8300000, guid: a7f07fee4b3b515439f59473c4a5fb91, type: 3}
+  childrenLaughClip: {fileID: 8300000, guid: 4ec6ae16680113b46b87e7042aa46d25, type: 3}
   sfxVolume: 1
   fadeInTime: 1
   stayTime: 1.5
