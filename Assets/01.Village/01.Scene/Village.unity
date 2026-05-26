@@ -578,6 +578,8 @@ MonoBehaviour:
   nextStageDelay: 3
   audioSource: {fileID: 679024727}
   clearSound: {fileID: 8300000, guid: 8897b8fd72d31ec4c888a8b7d4f69086, type: 3}
+  bgmPlayer: {fileID: 1651868831}
+  finalClearBGM: {fileID: 8300000, guid: 33a49ca1e79d8644688aaa42c0b76552, type: 3}
   waterParticle: {fileID: 1269638127}
   clearUIGroup: {fileID: 1632242476}
   stageClearImage: {fileID: 1135129137}

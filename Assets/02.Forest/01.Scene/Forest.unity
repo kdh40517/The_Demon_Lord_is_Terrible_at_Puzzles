@@ -2324,6 +2324,8 @@ MonoBehaviour:
   correctClip: {fileID: 8300000, guid: 0da62dfe70a602a46980bb393a6b3200, type: 3}
   wrongClip: {fileID: 8300000, guid: 75210ad17ac90c64daafd682faaa070c, type: 3}
   sfxVolume: 30
+  bgmPlayer: {fileID: 2052821658}
+  clearBGM: {fileID: 8300000, guid: 33a49ca1e79d8644688aaa42c0b76552, type: 3}
   wrongMarkImage: {fileID: 686691562}
   wrongMarkEffect: {fileID: 686691563}
   wrongMarkShowTime: 1.2

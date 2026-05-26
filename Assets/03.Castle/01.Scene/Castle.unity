@@ -1615,6 +1615,8 @@ MonoBehaviour:
   maxOpenTime: 4
   isDevilWatching: 0
   devilTimer: 0
+  bgmPlayer: {fileID: 173155601}
+  clearBGM: {fileID: 8300000, guid: 33a49ca1e79d8644688aaa42c0b76552, type: 3}
   onArrowAdded:
     m_PersistentCalls:
       m_Calls:

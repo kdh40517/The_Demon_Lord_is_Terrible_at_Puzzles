@@ -34,6 +34,10 @@ namespace TM
         public bool isDevilWatching = false;
         public float devilTimer = 0f;
 
+        [Header("BGM 설정 (클리어 시)")]
+        public AudioSource bgmPlayer; // 평소 성 BGM을 틀고 있는 스피커
+        public AudioClip clearBGM;    // 게이지 100% 달성 시 나올 BGM
+
         [Header("이벤트")]
         public UnityEvent<KeyCode> onArrowAdded;
         public UnityEvent onCorrectInput;
@@ -63,6 +67,14 @@ namespace TM
         void Update()
         {
             if (isGameClear) return;
+
+            //// 👇 [디버그 기능] F12 키를 누르면 묻지도 따지지도 않고 즉시 클리어!
+            //if (Input.GetKeyDown(KeyCode.F12))
+            //{
+            //    Debug.Log("🛠️ 디버그: F12 강제 클리어 발동!");
+            //    ForceClear();
+            //    return; // 클리어했으니 아래 로직은 무시!
+            //}
 
             // 1. 게이지 자동 감소
             if (currentGauge > 0)
@@ -153,12 +165,8 @@ namespace TM
 
                 if (currentGauge >= maxGauge)
                 {
-                    currentGauge = maxGauge;
-                    isGameClear = true;
-                    Debug.Log("게이지 100% 달성! 퍼즐 클리어!");
-                    onGaugeFull.Invoke();
-
-                    GameManager.instance.TriggerClearSequence();
+                    // 👇 100% 달성 시 클리어 함수 호출!
+                    ForceClear();
                 }
             }
             else
@@ -171,6 +179,37 @@ namespace TM
             }
 
             UpdateGaugeUI();
+        }
+
+        // 👇 클리어 연출과 처리를 묶어놓은 만능 함수!
+        private void ForceClear()
+        {
+            if (isGameClear) return; // 이미 클리어했으면 중복 실행 방지
+
+            currentGauge = maxGauge;
+            UpdateGaugeUI(); // 게이지 100%로 꽉 채우기 
+
+            isGameClear = true;
+            Debug.Log("🎉 퍼즐 클리어!");
+            onGaugeFull.Invoke();
+
+            // 최종 클리어 BGM 재생 로직!
+            if (bgmPlayer != null)
+            {
+                bgmPlayer.Stop();
+                bgmPlayer.loop = false; // 클리어 음악은 딱 한 번만 나오도록 루프 끄기
+
+                if (clearBGM != null)
+                {
+                    bgmPlayer.clip = clearBGM;
+                    bgmPlayer.Play();
+                }
+            }
+
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.TriggerClearSequence();
+            }
         }
 
         private void UpdateGaugeUI()

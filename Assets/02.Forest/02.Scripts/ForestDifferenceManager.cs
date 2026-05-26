@@ -1,45 +1,50 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace SeoAhn
 {
-    // ForestSceneÀÇ Æ²¸°±×¸²Ã£±â ÆÛÁñÀ» °ü¸®ÇÏ´Â ½ºÅ©¸³Æ®ÀÔ´Ï´Ù.
-    // Á¤´ä/¿À´ä È¿°ú, ÆÛÁñ ÆäÀÌµå¾Æ¿ô, Å¬¸®¾î ÀÌ¹ÌÁö ÆäÀÌµåÀÎ, StageScene º¹±Í¸¦ ´ã´çÇÕ´Ï´Ù.
+    // ForestSceneì˜ í‹€ë¦°ê·¸ë¦¼ì°¾ê¸° í¼ì¦ì„ ê´€ë¦¬í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸ì…ë‹ˆë‹¤.
+    // ì •ë‹µ/ì˜¤ë‹µ íš¨ê³¼, í¼ì¦ í˜ì´ë“œì•„ì›ƒ, í´ë¦¬ì–´ ì´ë¯¸ì§€ í˜ì´ë“œì¸, StageScene ë³µê·€ë¥¼ ë‹´ë‹¹í•©ë‹ˆë‹¤.
     public class ForestDifferenceManager : MonoBehaviour
     {
-        [Header("Ã£À½ Ç¥½Ã ¿ø")]
-        [SerializeField] private DrawMarkEffect[] foundCircleEffects; // Á¤´ä µ¿±×¶ó¹Ì ±×¸®±â È¿°ú
+        [Header("ì°¾ìŒ í‘œì‹œ ì›")]
+        [SerializeField] private DrawMarkEffect[] foundCircleEffects; // ì •ë‹µ ë™ê·¸ë¼ë¯¸ ê·¸ë¦¬ê¸° íš¨ê³¼
 
-        [Header("È¿°úÀ½")]
-        [SerializeField] private AudioSource sfxAudioSource; // È¿°úÀ½ Àç»ı¿ë AudioSource
-        [SerializeField] private AudioClip correctClip; // Á¤´ä È¿°úÀ½
-        [SerializeField] private AudioClip wrongClip; // ¿À´ä È¿°úÀ½
-        [SerializeField] private float sfxVolume = 1f; // È¿°úÀ½ º¼·ı
+        [Header("íš¨ê³¼ìŒ")]
+        [SerializeField] private AudioSource sfxAudioSource; // íš¨ê³¼ìŒ ì¬ìƒìš© AudioSource
+        [SerializeField] private AudioClip correctClip; // ì •ë‹µ íš¨ê³¼ìŒ
+        [SerializeField] private AudioClip wrongClip; // ì˜¤ë‹µ íš¨ê³¼ìŒ
+        [SerializeField] private float sfxVolume = 1f; // íš¨ê³¼ìŒ ë³¼ë¥¨
 
-        [Header("¿À´ä Ç¥½Ã")]
-        [SerializeField] private RectTransform wrongMarkImage; // X Ç¥½Ã À§Ä¡
-        [SerializeField] private DrawMarkEffect wrongMarkEffect; // X ±×¸®±â È¿°ú
-        [SerializeField] private float wrongMarkShowTime = 0.7f; // X Ç¥½Ã À¯Áö ½Ã°£
+        // ğŸ‘‡ ìƒˆë¡­ê²Œ ì¶”ê°€ëœ BGM êµì²´ ì‹œìŠ¤í…œ!
+        [Header("BGM ì„¤ì •")]
+        [SerializeField] private AudioSource bgmPlayer; // í‰ì†Œì— ë°°ê²½ìŒì•…ì„ í‹€ê³  ìˆëŠ” ìŠ¤í”¼ì»¤
+        [SerializeField] private AudioClip clearBGM;    // í´ë¦¬ì–´ ì‹œ í‹€ì–´ì¤„ BGM
 
-        [Header("Å¬¸®¾î ½Ã »ç¶óÁú UI")]
+        [Header("ì˜¤ë‹µ í‘œì‹œ")]
+        [SerializeField] private RectTransform wrongMarkImage; // X í‘œì‹œ ìœ„ì¹˜
+        [SerializeField] private DrawMarkEffect wrongMarkEffect; // X ê·¸ë¦¬ê¸° íš¨ê³¼
+        [SerializeField] private float wrongMarkShowTime = 0.7f; // X í‘œì‹œ ìœ ì§€ ì‹œê°„
+
+        [Header("í´ë¦¬ì–´ ì‹œ ì‚¬ë¼ì§ˆ UI")]
         [SerializeField] private CanvasGroup puzzlePanelCanvasGroup; // GameImages
         [SerializeField] private CanvasGroup frameCanvasGroup; // Frame
-        [SerializeField] private float transitionDuration = 1.5f; // ÆÛÁñÀÌ »ç¶óÁö°í Å¬¸®¾î UI°¡ ³ªÅ¸³ª´Â ½Ã°£
+        [SerializeField] private float transitionDuration = 1.5f; // í¼ì¦ì´ ì‚¬ë¼ì§€ê³  í´ë¦¬ì–´ UIê°€ ë‚˜íƒ€ë‚˜ëŠ” ì‹œê°„
 
-        [Header("Å¬¸®¾î UI")]
+        [Header("í´ë¦¬ì–´ UI")]
         [SerializeField] private CanvasGroup clearUIGroup; // ClearImage
-        [SerializeField] private CanvasGroup clearTextUIGroup; // CLEAR! ÀÌ¹ÌÁö
-        [SerializeField] private float returnDelay = 3f; // Å¬¸®¾î È­¸éÀÌ ³ª¿Â µÚ ·Îµù¾ÀÀ¸·Î ³Ñ¾î°¡±â Àü ´ë±â ½Ã°£
+        [SerializeField] private CanvasGroup clearTextUIGroup; // CLEAR! ì´ë¯¸ì§€
+        [SerializeField] private float returnDelay = 3f; // í´ë¦¬ì–´ í™”ë©´ì´ ë‚˜ì˜¨ ë’¤ ë¡œë”©ì”¬ìœ¼ë¡œ ë„˜ì–´ê°€ê¸° ì „ ëŒ€ê¸° ì‹œê°„
 
-        [Header("¾À ÀÌµ¿")]
-        [SerializeField] private string loadingSceneName = "99_LoadingScene"; // ·Îµù¾À ÀÌ¸§
-        [SerializeField] private string stageSceneName = "03_StageScene"; // µ¹¾Æ°¥ ½ºÅ×ÀÌÁö¾À ÀÌ¸§
+        [Header("ì”¬ ì´ë™")]
+        [SerializeField] private string loadingSceneName = "99_LoadingScene"; // ë¡œë”©ì”¬ ì´ë¦„
+        [SerializeField] private string stageSceneName = "03_StageScene"; // ëŒì•„ê°ˆ ìŠ¤í…Œì´ì§€ì”¬ ì´ë¦„
 
-        private bool[] foundStates; // °¢ Á¤´äÀ» Ã£¾Ò´ÂÁö ÀúÀå
-        private int foundCount; // Ã£Àº Á¤´ä °³¼ö
-        private bool isCleared; // Å¬¸®¾î ¿©ºÎ
-        private Coroutine wrongMarkCoroutine; // ¿À´ä X Ç¥½Ã ÄÚ·çÆ¾
+        private bool[] foundStates; // ê° ì •ë‹µì„ ì°¾ì•˜ëŠ”ì§€ ì €ì¥
+        private int foundCount; // ì°¾ì€ ì •ë‹µ ê°œìˆ˜
+        private bool isCleared; // í´ë¦¬ì–´ ì—¬ë¶€
+        private Coroutine wrongMarkCoroutine; // ì˜¤ë‹µ X í‘œì‹œ ì½”ë£¨í‹´
 
         private void Start()
         {
@@ -48,7 +53,7 @@ namespace SeoAhn
 
             foundStates = new bool[foundCircleEffects.Length];
 
-            // ½ÃÀÛÇÒ ¶§ ¸ğµç Á¤´ä µ¿±×¶ó¹Ì¸¦ ¼û±é´Ï´Ù.
+            // ì‹œì‘í•  ë•Œ ëª¨ë“  ì •ë‹µ ë™ê·¸ë¼ë¯¸ë¥¼ ìˆ¨ê¹ë‹ˆë‹¤.
             for (int i = 0; i < foundCircleEffects.Length; i++)
             {
                 if (foundCircleEffects[i] != null)
@@ -57,13 +62,13 @@ namespace SeoAhn
                 }
             }
 
-            // ½ÃÀÛÇÒ ¶§ ¿À´ä X Ç¥½Ã¸¦ ¼û±é´Ï´Ù.
+            // ì‹œì‘í•  ë•Œ ì˜¤ë‹µ X í‘œì‹œë¥¼ ìˆ¨ê¹ë‹ˆë‹¤.
             if (wrongMarkEffect != null)
             {
                 wrongMarkEffect.Hide();
             }
 
-            // ÆÛÁñ ÀüÃ¼ ÀÌ¹ÌÁö´Â Ã³À½¿¡ º¸ÀÌ°Ô µÓ´Ï´Ù.
+            // í¼ì¦ ì „ì²´ ì´ë¯¸ì§€ëŠ” ì²˜ìŒì— ë³´ì´ê²Œ ë‘¡ë‹ˆë‹¤.
             if (puzzlePanelCanvasGroup != null)
             {
                 puzzlePanelCanvasGroup.alpha = 1f;
@@ -71,7 +76,7 @@ namespace SeoAhn
                 puzzlePanelCanvasGroup.blocksRaycasts = true;
             }
 
-            // ÇÁ·¹ÀÓµµ Ã³À½¿¡ º¸ÀÌ°Ô µÓ´Ï´Ù.
+            // í”„ë ˆì„ë„ ì²˜ìŒì— ë³´ì´ê²Œ ë‘¡ë‹ˆë‹¤.
             if (frameCanvasGroup != null)
             {
                 frameCanvasGroup.alpha = 1f;
@@ -79,7 +84,7 @@ namespace SeoAhn
                 frameCanvasGroup.blocksRaycasts = true;
             }
 
-            // Å¬¸®¾î ¹è°æ ÀÌ¹ÌÁö´Â Ã³À½¿¡ ¼û±é´Ï´Ù.
+            // í´ë¦¬ì–´ ë°°ê²½ ì´ë¯¸ì§€ëŠ” ì²˜ìŒì— ìˆ¨ê¹ë‹ˆë‹¤.
             if (clearUIGroup != null)
             {
                 clearUIGroup.alpha = 0f;
@@ -87,7 +92,7 @@ namespace SeoAhn
                 clearUIGroup.blocksRaycasts = false;
             }
 
-            // CLEAR! ÀÌ¹ÌÁö´Â Ã³À½¿¡ ¼û±é´Ï´Ù.
+            // CLEAR! ì´ë¯¸ì§€ëŠ” ì²˜ìŒì— ìˆ¨ê¹ë‹ˆë‹¤.
             if (clearTextUIGroup != null)
             {
                 clearTextUIGroup.alpha = 0f;
@@ -98,19 +103,19 @@ namespace SeoAhn
 
         public void ClickDifference(int index)
         {
-            // ÀÌ¹Ì Å¬¸®¾îÇß´Ù¸é ´õ ÀÌ»ó Å¬¸¯À» ¹ŞÁö ¾Ê½À´Ï´Ù.
+            // ì´ë¯¸ í´ë¦¬ì–´í–ˆë‹¤ë©´ ë” ì´ìƒ í´ë¦­ì„ ë°›ì§€ ì•ŠìŠµë‹ˆë‹¤.
             if (isCleared)
             {
                 return;
             }
 
-            // Àß¸øµÈ ¹øÈ£°¡ µé¾î¿À¸é ¹«½ÃÇÕ´Ï´Ù.
+            // ì˜ëª»ëœ ë²ˆí˜¸ê°€ ë“¤ì–´ì˜¤ë©´ ë¬´ì‹œí•©ë‹ˆë‹¤.
             if (index < 0 || index >= foundStates.Length)
             {
                 return;
             }
 
-            // ÀÌ¹Ì Ã£Àº Á¤´äÀÌ¸é Áßº¹ Ã³¸®ÇÏÁö ¾Ê½À´Ï´Ù.
+            // ì´ë¯¸ ì°¾ì€ ì •ë‹µì´ë©´ ì¤‘ë³µ ì²˜ë¦¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
             if (foundStates[index])
             {
                 return;
@@ -121,13 +126,13 @@ namespace SeoAhn
             foundStates[index] = true;
             foundCount++;
 
-            // ÇØ´ç Á¤´ä À§Ä¡ÀÇ µ¿±×¶ó¹Ì¸¦ ±×¸®µí Ç¥½ÃÇÕ´Ï´Ù.
+            // í•´ë‹¹ ì •ë‹µ ìœ„ì¹˜ì˜ ë™ê·¸ë¼ë¯¸ë¥¼ ê·¸ë¦¬ë“¯ í‘œì‹œí•©ë‹ˆë‹¤.
             if (foundCircleEffects[index] != null)
             {
                 foundCircleEffects[index].PlayDraw();
             }
 
-            // ¸ğµç Á¤´äÀ» Ã£À¸¸é Å¬¸®¾î Ã³¸®ÇÕ´Ï´Ù.
+            // ëª¨ë“  ì •ë‹µì„ ì°¾ìœ¼ë©´ í´ë¦¬ì–´ ì²˜ë¦¬í•©ë‹ˆë‹¤.
             if (foundCount >= foundStates.Length)
             {
                 StartCoroutine(ClearRoutine());
@@ -136,7 +141,7 @@ namespace SeoAhn
 
         public void ClickWrongArea()
         {
-            // ÀÌ¹Ì Å¬¸®¾îÇß°Å³ª X Ç¥½Ã°¡ ¾øÀ¸¸é Ã³¸®ÇÏÁö ¾Ê½À´Ï´Ù.
+            // ì´ë¯¸ í´ë¦¬ì–´í–ˆê±°ë‚˜ X í‘œì‹œê°€ ì—†ìœ¼ë©´ ì²˜ë¦¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
             if (isCleared || wrongMarkImage == null || wrongMarkEffect == null)
             {
                 return;
@@ -144,7 +149,7 @@ namespace SeoAhn
 
             PlaySFX(wrongClip);
 
-            // Å¬¸¯ÇÑ À§Ä¡·Î X Ç¥½Ã¸¦ ÀÌµ¿½ÃÅµ´Ï´Ù.
+            // í´ë¦­í•œ ìœ„ì¹˜ë¡œ X í‘œì‹œë¥¼ ì´ë™ì‹œí‚µë‹ˆë‹¤.
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 wrongMarkImage.parent as RectTransform,
                 Input.mousePosition,
@@ -164,7 +169,7 @@ namespace SeoAhn
 
         private IEnumerator ShowWrongMarkRoutine()
         {
-            // X¸¦ ½»½» ±×¸®µíÀÌ Ç¥½ÃÇÕ´Ï´Ù.
+            // Xë¥¼ ìŠ¥ìŠ¥ ê·¸ë¦¬ë“¯ì´ í‘œì‹œí•©ë‹ˆë‹¤.
             wrongMarkEffect.PlayDraw();
 
             yield return new WaitForSeconds(wrongMarkShowTime);
@@ -189,7 +194,20 @@ namespace SeoAhn
         {
             isCleared = true;
 
-            // ÆÛÁñ°ú ÇÁ·¹ÀÓÀº »ç¶óÁö°í, ClearImage¿Í CLEAR! ÀÌ¹ÌÁö´Â °°ÀÌ ³ªÅ¸³³´Ï´Ù.
+            // ğŸ‘‡ í´ë¦¬ì–´ ìŒì•… ì¬ìƒ ë¡œì§! (ê¸°ì¡´ BGM ë©ˆì¶¤ -> ë¬´í•œë°˜ë³µ í•´ì œ -> í´ë¦¬ì–´ ìŒì•… ì¬ìƒ)
+            if (bgmPlayer != null)
+            {
+                bgmPlayer.Stop();
+                bgmPlayer.loop = false; // í´ë¦¬ì–´ ìŒì•…ì€ ë”± í•œ ë²ˆë§Œ ë‚˜ì˜¤ë„ë¡ ë£¨í”„ë¥¼ êº¼ì¤ë‹ˆë‹¤.
+
+                if (clearBGM != null)
+                {
+                    bgmPlayer.clip = clearBGM;
+                    bgmPlayer.Play();
+                }
+            }
+
+            // í¼ì¦ê³¼ í”„ë ˆì„ì€ ì‚¬ë¼ì§€ê³ , ClearImageì™€ CLEAR! ì´ë¯¸ì§€ëŠ” ê°™ì´ ë‚˜íƒ€ë‚©ë‹ˆë‹¤.
             yield return StartCoroutine(FadePuzzleOutAndClearIn());
 
             yield return new WaitForSeconds(returnDelay);

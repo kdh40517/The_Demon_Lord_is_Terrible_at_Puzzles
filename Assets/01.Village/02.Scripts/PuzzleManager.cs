@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -10,10 +10,10 @@ namespace TM
     {
         public static PuzzleManager instance;
 
-        [Header("ÆÛÁñ º¸µå¿¡ ÀÖ´Â ¸ğµç ÆÄÀÌÇÁ Å¸ÀÏµé")]
+        [Header("í¼ì¦ ë³´ë“œì— ìˆëŠ” ëª¨ë“  íŒŒì´í”„ íƒ€ì¼ë“¤")]
         public Pipe[] allPipes;
 
-        [Header("ÆÄÀÌÇÁ Á¾·ùº° ½ºÇÁ¶óÀÌÆ® µî·Ï")]
+        [Header("íŒŒì´í”„ ì¢…ë¥˜ë³„ ìŠ¤í”„ë¼ì´íŠ¸ ë“±ë¡")]
         public Sprite straightEmpty, straightWater;
         public Sprite L_Empty, L_Water;
         public Sprite T_Empty, T_Water;
@@ -21,17 +21,22 @@ namespace TM
         private Pipe[,] grid = new Pipe[4, 3];
         public bool isCleared = false;
 
-        [Header("½ºÅ×ÀÌÁö (¿¬¼Ó Å¬¸®¾î) ¼³Á¤")]
-        [Tooltip("ÃÖÁ¾ Å¬¸®¾î¸¦ À§ÇØ ÆÛÁñÀ» ¿¬¼ÓÀ¸·Î ¸ÂÃç¾ß ÇÏ´Â È½¼öÀÔ´Ï´Ù.")]
+        [Header("ìŠ¤í…Œì´ì§€ (ì—°ì† í´ë¦¬ì–´) ì„¤ì •")]
+        [Tooltip("ìµœì¢… í´ë¦¬ì–´ë¥¼ ìœ„í•´ í¼ì¦ì„ ì—°ì†ìœ¼ë¡œ ë§ì¶°ì•¼ í•˜ëŠ” íšŸìˆ˜ì…ë‹ˆë‹¤.")]
         public int maxClearCount = 5;
         private int currentClearCount = 0;
 
-        [Tooltip("ÇÑ ÆÇÀ» ±ü ÈÄ, ´ÙÀ½ ¸ÊÀ¸·Î ¼¯ÀÌ±â Àü±îÁö ´ë±âÇÏ´Â ½Ã°£ÀÔ´Ï´Ù.")]
+        [Tooltip("í•œ íŒì„ ê¹¬ í›„, ë‹¤ìŒ ë§µìœ¼ë¡œ ì„ì´ê¸° ì „ê¹Œì§€ ëŒ€ê¸°í•˜ëŠ” ì‹œê°„ì…ë‹ˆë‹¤.")]
         public float nextStageDelay = 3.0f;
 
-        [Header("Audio Settings")]
+        [Header("Audio Settings (íš¨ê³¼ìŒ)")]
         public AudioSource audioSource;
-        public AudioClip clearSound;
+        public AudioClip clearSound; // í•œ ë‹¨ê³„ ê¹° ë•Œë§ˆë‹¤ ë‚˜ëŠ” ì†Œë¦¬
+
+        // ğŸ‘‡ ìƒˆë¡­ê²Œ ì¶”ê°€ëœ BGM êµì²´ ì‹œìŠ¤í…œ!
+        [Header("BGM Settings (ìµœì¢… í´ë¦¬ì–´)")]
+        public AudioSource bgmPlayer;    // í‰ì†Œì— ë§ˆì„ BGMì„ í‹€ê³  ìˆëŠ” ìŠ¤í”¼ì»¤
+        public AudioClip finalClearBGM;  // 5ë‹¨ê³„ ëª¨ë‘ ê¹¼ì„ ë•Œ ë‚˜ì˜¬ ìµœì¢… BGM
 
         [Header("Effect Settings")]
         public ParticleSystem waterParticle;
@@ -41,17 +46,15 @@ namespace TM
         public Image stageClearImage;
 
         [Header("Water Fill UI")]
-        [Tooltip("ÀÎ½ºÆåÅÍ¿¡¼­ 5256_0 ÀÌ¹ÌÁö¸¦ ¿¬°áÇØ ÁÖ¼¼¿ä. (Image TypeÀº Filled)")]
+        [Tooltip("ì¸ìŠ¤í™í„°ì—ì„œ 5256_0 ì´ë¯¸ì§€ë¥¼ ì—°ê²°í•´ ì£¼ì„¸ìš”. (Image Typeì€ Filled)")]
         public Image fountainWaterImage;
 
-        // [ºÎµå·´°Ô Â÷¿À¸£´Â È¿°ú Ãß°¡] ¹°ÀÌ Â÷¿À¸£´Â µ¥ °É¸®´Â ½Ã°£ (ÃÊ)
-        [Tooltip("¹°ÀÌ ºÎµå·´°Ô Â÷¿À¸£´Â µ¥ °É¸®´Â ½Ã°£ÀÔ´Ï´Ù.")]
+        [Tooltip("ë¬¼ì´ ë¶€ë“œëŸ½ê²Œ ì°¨ì˜¤ë¥´ëŠ” ë° ê±¸ë¦¬ëŠ” ì‹œê°„ì…ë‹ˆë‹¤.")]
         public float waterFillDuration = 1.0f;
 
-        // [ºÎµå·´°Ô Â÷¿À¸£´Â È¿°ú Ãß°¡] ÇöÀç ½ÇÇà ÁßÀÎ ÄÚ·çÆ¾ ÃßÀû¿ë
         private Coroutine waterFillCoroutine;
 
-        [Header("Å¸ÀÌ¹Ö ¼³Á¤")]
+        [Header("íƒ€ì´ë° ì„¤ì •")]
         public float clearDelay = 2.5f;
         public float fadeDuration = 1.5f;
         public float autoReturnDelay = 3f;
@@ -246,7 +249,7 @@ namespace TM
                     isCleared = true;
                     currentClearCount++;
 
-                    Debug.Log($"ÆÛÁñ Å¬¸®¾î! ({currentClearCount}/{maxClearCount})");
+                    Debug.Log($"í¼ì¦ í´ë¦¬ì–´! ({currentClearCount}/{maxClearCount})");
 
                     UpdateFountainWater();
 
@@ -260,6 +263,19 @@ namespace TM
 
                     if (currentClearCount >= maxClearCount)
                     {
+                        // ğŸ‘‡ ìµœì¢… í´ë¦¬ì–´ BGM ì¬ìƒ ë¡œì§!
+                        if (bgmPlayer != null)
+                        {
+                            bgmPlayer.Stop();
+                            bgmPlayer.loop = false; // í´ë¦¬ì–´ ìŒì•…ì€ ë¬´í•œë°˜ë³µ ë„ê¸°
+
+                            if (finalClearBGM != null)
+                            {
+                                bgmPlayer.clip = finalClearBGM;
+                                bgmPlayer.Play();
+                            }
+                        }
+
                         StartCoroutine(FadeInClearUIAndReturn());
                     }
                     else
@@ -274,26 +290,21 @@ namespace TM
             }
         }
 
-        // [ºÎµå·´°Ô Â÷¿À¸£´Â È¿°ú Ãß°¡] ºĞ¼ö´ë ¹° UI ¾÷µ¥ÀÌÆ® ÇÔ¼ö º¯°æ
         private void UpdateFountainWater()
         {
             if (fountainWaterImage != null)
             {
-                // ¸ñÇ¥°¡ µÇ´Â Fill Amount °ª °è»ê (¿¹: 1/5 = 0.2f)
                 float targetFillAmount = (float)currentClearCount / maxClearCount;
 
-                // ÀÌ¹Ì ½ÇÇà ÁßÀÎ ÄÚ·çÆ¾ÀÌ ÀÖ´Ù¸é Á¤Áö (¿¬¼Ó È£Ãâ ½Ã ²¿ÀÓ ¹æÁö)
                 if (waterFillCoroutine != null)
                 {
                     StopCoroutine(waterFillCoroutine);
                 }
 
-                // ºÎµå·´°Ô Ã¤¿ì´Â ÄÚ·çÆ¾ ½ÃÀÛ
                 waterFillCoroutine = StartCoroutine(SmoothFillWater(targetFillAmount));
             }
         }
 
-        // [ºÎµå·´°Ô Â÷¿À¸£´Â È¿°ú Ãß°¡] ½ÇÁ¦ ºÎµå·´°Ô Ã¤¿öÁÖ´Â ÄÚ·çÆ¾
         private IEnumerator SmoothFillWater(float targetFill)
         {
             float startFill = fountainWaterImage.fillAmount;
@@ -302,14 +313,10 @@ namespace TM
             while (elapsedTime < waterFillDuration)
             {
                 elapsedTime += Time.deltaTime;
-
-                // Mathf.Lerp¸¦ »ç¿ëÇÏ¿© ½ÃÀÛ°ª°ú ¸ñÇ¥°ª »çÀÌ¸¦ ½Ã°£¿¡ µû¶ó ºÎµå·´°Ô º¸°£
                 fountainWaterImage.fillAmount = Mathf.Lerp(startFill, targetFill, elapsedTime / waterFillDuration);
-
-                yield return null; // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö ´ë±â
+                yield return null;
             }
 
-            // ·çÇÁ°¡ ³¡³­ ÈÄ ¸ñÇ¥°ª¿¡ Á¤È®È÷ ¸ÂÃã
             fountainWaterImage.fillAmount = targetFill;
         }
 
