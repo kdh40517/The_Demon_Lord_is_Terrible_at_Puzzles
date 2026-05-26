@@ -39,7 +39,7 @@ namespace SeoAhn
         [Header("마지막 텍스트 연출")]
         [SerializeField] private CanvasGroup finalTextOverlayCanvasGroup;
         [SerializeField] private TMP_Text finalCenterText;
-        [SerializeField] private string finalCenterMessage = "귀여운아이네.. \n어차피 곧 만나게 될거야..";
+        [SerializeField] private string finalCenterMessage = "귀여운아이네.. \n어차피 곧 보게 될거야..";
         [SerializeField] private float finalTextFadeDuration = 1f;
         [SerializeField] private float finalOverlayTargetAlpha = 0.7058824f;
 

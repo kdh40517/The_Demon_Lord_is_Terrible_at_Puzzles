@@ -8816,6 +8816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlobalOptionCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6323851022508606462, guid: 73c1b9914fdb5214ea6a04bb92907c12, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
