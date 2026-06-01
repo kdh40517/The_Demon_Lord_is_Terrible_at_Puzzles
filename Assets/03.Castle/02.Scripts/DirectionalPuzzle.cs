@@ -235,7 +235,7 @@ namespace TM
         // ==========================================
         // 🛠️ 퍼즐 전용 디버그 UI (OnGUI)
         // ==========================================
-
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         void OnGUI()
         {
             // GameManager 메뉴와 겹치지 않게 우측 상단에 배치
@@ -268,6 +268,7 @@ namespace TM
 
             GUILayout.EndArea();
         }
+#endif
 
     }
 }

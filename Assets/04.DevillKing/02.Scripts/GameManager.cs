@@ -434,9 +434,10 @@ namespace DH
             SceneManager.LoadScene(titleSceneName);
         }
         // ==========================================
-        // 🛠️ 디버그용 화면 UI (OnGUI)
-        // ==========================================
-        void OnGUI()
+        // 🛠️ 디버그용 화면 UI (OnGUI)
+        // ==========================================
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        void OnGUI()
         {
             // 화면 좌측 상단에 디버그 메뉴 배치
             GUILayout.BeginArea(new Rect(10, 10, 200, 300));
@@ -471,8 +472,8 @@ namespace DH
                 if (breakEffect != null) breakEffect.SetTrigger("Break");
                 if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
             }
-
             GUILayout.EndArea();
         }
+#endif
     }
 }
