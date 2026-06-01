@@ -68,14 +68,6 @@ namespace TM
         {
             if (isGameClear) return;
 
-            //// 👇 [디버그 기능] F12 키를 누르면 묻지도 따지지도 않고 즉시 클리어!
-            //if (Input.GetKeyDown(KeyCode.F12))
-            //{
-            //    Debug.Log("🛠️ 디버그: F12 강제 클리어 발동!");
-            //    ForceClear();
-            //    return; // 클리어했으니 아래 로직은 무시!
-            //}
-
             // 1. 게이지 자동 감소
             if (currentGauge > 0)
             {
@@ -239,5 +231,43 @@ namespace TM
 
             return KeyCode.None;
         }
+
+        // ==========================================
+        // 🛠️ 퍼즐 전용 디버그 UI (OnGUI)
+        // ==========================================
+
+        void OnGUI()
+        {
+            // GameManager 메뉴와 겹치지 않게 우측 상단에 배치
+            GUILayout.BeginArea(new Rect(Screen.width - 210, 10, 200, 300));
+            GUILayout.Box("퍼즐 기믹 디버그");
+
+            if (GUILayout.Button("🌟 즉시 클리어 (F12)"))
+            {
+                ForceClear();
+            }
+
+            if (GUILayout.Button("📈 게이지 +20%"))
+            {
+                currentGauge = Mathf.Min(currentGauge + 20f, maxGauge);
+                UpdateGaugeUI();
+            }
+
+            if (GUILayout.Button("📉 게이지 -20%"))
+            {
+                currentGauge = Mathf.Max(currentGauge - 20f, 0f);
+                UpdateGaugeUI();
+            }
+
+            // 악마의 상태를 강제로 즉시 전환
+            string devilText = isDevilWatching ? "😇 악마 강제 수면" : "😈 악마 강제 각성";
+            if (GUILayout.Button(devilText))
+            {
+                devilTimer = 0f; // 타이머를 0으로 만들어 즉시 상태가 바뀌게 유도
+            }
+
+            GUILayout.EndArea();
+        }
+
     }
 }

@@ -433,5 +433,46 @@ namespace DH
             Time.timeScale = 1f;
             SceneManager.LoadScene(titleSceneName);
         }
+        // ==========================================
+        // 🛠️ 디버그용 화면 UI (OnGUI)
+        // ==========================================
+        void OnGUI()
+        {
+            // 화면 좌측 상단에 디버그 메뉴 배치
+            GUILayout.BeginArea(new Rect(10, 10, 200, 300));
+            GUILayout.Box("디버그 메뉴");
+
+            if (GUILayout.Button("🌟 즉시 클리어"))
+            {
+                GameOver(true);
+            }
+
+            if (GUILayout.Button("패턴: 보스 체력 회복"))
+            {
+                if (healEffect != null) healEffect.SetTrigger("Heal");
+                bossHP = Mathf.Min(bossHP + 20, bossMaxHP);
+                UpdateHPUI();
+            }
+
+            if (GUILayout.Button("패턴: 지진 (보드 섞기)"))
+            {
+                if (EarthQuakeEffect != null) EarthQuakeEffect.SetTrigger("EarthQuake");
+                if (PuzzleManager.Instance != null) PuzzleManager.Instance.ShuffleBoard();
+            }
+
+            if (GUILayout.Button("패턴: 돌 무작위 생성"))
+            {
+                if (stoneEffect != null) stoneEffect.SetTrigger("Stone");
+                if (BoardManager.Instance != null) BoardManager.Instance.SpawnStones(8);
+            }
+
+            if (GUILayout.Button("패턴: 방어 타일 파괴"))
+            {
+                if (breakEffect != null) breakEffect.SetTrigger("Break");
+                if (BoardManager.Instance != null) BoardManager.Instance.BreakDefenseNotes();
+            }
+
+            GUILayout.EndArea();
+        }
     }
 }
