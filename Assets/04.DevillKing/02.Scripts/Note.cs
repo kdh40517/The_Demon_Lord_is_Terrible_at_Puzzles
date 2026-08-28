@@ -5,19 +5,19 @@ namespace DH
 {
     public class Note : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerUpHandler
     {
-        [Header("Á¶°¢ ¼³Á¤")]
+        [Header("ì¡°ê° ì„¤ì •")]
         public NoteType instrumentType;
 
-        // ¡Ú ÀÎ½ºÆåÅÍ¿¡¼­ Ã¼Å©ÇÏ´Â µ¶ ½ºÆ¼Ä¿ (±×´ë·Î À¯Áö!)
+        // â˜… ì¸ìŠ¤íŽ™í„°ì—ì„œ ì²´í¬í•˜ëŠ” ë… ìŠ¤í‹°ì»¤ (ê·¸ëŒ€ë¡œ ìœ ì§€!)
         public bool isPoisoned = false;
 
-        [Header("»óÅÂ È¿°ú ·¹ÀÌ¾î")]
-        // ¡Ú ¹æ±Ý ¸¸µç ±î¸¸»ö ¹ÝÅõ¸í ÀÌ¹ÌÁö¸¦ ¿©±â¿¡ ³Ö½À´Ï´Ù!
+        [Header("ìƒíƒœ íš¨ê³¼ ë ˆì´ì–´")]
+        // â˜… ë°©ê¸ˆ ë§Œë“  ê¹Œë§Œìƒ‰ ë°˜íˆ¬ëª… ì´ë¯¸ì§€ë¥¼ ì—¬ê¸°ì— ë„£ìŠµë‹ˆë‹¤!
         public GameObject brokenOverlay;
 
         private bool _isBroken = false;
 
-        // ¡Ú ¸Å´ÏÀú°¡ isBroken = true; ¶ó°í ÇÏ´Â ¼ø°£ ÀÚµ¿À¸·Î ±î¸¸ ÇÊÅÍ°¡ ÄÑÁý´Ï´Ù!
+        // â˜… ë§¤ë‹ˆì €ê°€ isBroken = true; ë¼ê³  í•˜ëŠ” ìˆœê°„ ìžë™ìœ¼ë¡œ ê¹Œë§Œ í•„í„°ê°€ ì¼œì§‘ë‹ˆë‹¤!
         public bool isBroken
         {
             get => _isBroken;
